@@ -8,3 +8,205 @@
 ';
 
 /* append your custom style below */
+
+/* callout */
+.callout {
+  border-left: 4px solid;
+  border-radius: 4px;
+  padding: 0.7rem;
+  margin: 0.7rem 0;
+  background-color: var(--callout-bg);
+
+  .callout-title {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    color: var(--callout-title-color);
+    cursor: pointer;
+    user-select: none;
+
+    .callout-icon::before {
+      content: '';
+      margin-right: 0.4rem;
+      font-size: 1.2em;
+    }
+
+    .fold-indicator {
+      margin-left: auto;
+      transition: transform 0.2s ease;
+      font-size: 1.2em;
+      font-weight: 300;
+    }
+  }
+
+  p {
+    margin: 0;
+    color: var(--callout-text-color);
+    line-height: 1.5;
+  }
+
+  .callout-content {
+    transition: max-height 0.2s ease, opacity 0.2s ease;
+    max-height: 1000px;
+    opacity: 1;
+    overflow: hidden;
+  }
+
+  &.is-folded {
+    .fold-indicator {
+      transform: rotate(-90deg);
+    }
+
+    .callout-content {
+      max-height: 0;
+      opacity: 0;
+    }
+  }
+
+  &.abstract,
+  &.summary,
+  &.tldr {
+    --callout-bg: rgba(0, 176, 155, 0.1);
+    --callout-title-color: rgb(0, 176, 155);
+    --callout-text-color: rgba(0, 176, 155, 0.8);
+    border-color: rgb(0, 176, 155);
+
+    .callout-icon::before {
+      content: '📑';
+    }
+  }
+
+  &.info {
+    --callout-bg: rgba(0, 184, 212, 0.1);
+    --callout-title-color: rgb(0, 184, 212);
+    --callout-text-color: rgba(0, 184, 212, 0.8);
+    border-color: rgb(0, 184, 212);
+
+    .callout-icon::before {
+      content: 'ℹ️';
+    }
+  }
+
+  &.todo {
+    --callout-bg: rgba(82, 139, 255, 0.1);
+    --callout-title-color: rgb(82, 139, 255);
+    --callout-text-color: rgba(82, 139, 255, 0.8);
+    border-color: rgb(82, 139, 255);
+
+    .callout-icon::before {
+      content: '✓';
+    }
+  }
+
+  &.tip,
+  &.hint,
+  &.important {
+    --callout-bg: rgba(0, 191, 165, 0.1);
+    --callout-title-color: rgb(0, 191, 165);
+    --callout-text-color: rgba(0, 191, 165, 0.8);
+    border-color: rgb(0, 191, 165);
+
+    .callout-icon::before {
+      content: '💡';
+    }
+  }
+
+  &.success,
+  &.check,
+  &.done {
+    --callout-bg: rgba(0, 200, 83, 0.1);
+    --callout-title-color: rgb(0, 200, 83);
+    --callout-text-color: rgba(0, 200, 83, 0.8);
+    border-color: rgb(0, 200, 83);
+
+    .callout-icon::before {
+      content: '✅';
+    }
+  }
+
+  &.question,
+  &.help,
+  &.faq {
+    --callout-bg: rgba(255, 145, 0, 0.1);
+    --callout-title-color: rgb(255, 145, 0);
+    --callout-text-color: rgba(255, 145, 0, 0.8);
+    border-color: rgb(255, 145, 0);
+
+    .callout-icon::before {
+      content: '❓';
+    }
+  }
+
+  &.warning,
+  &.caution,
+  &.attention {
+    --callout-bg: rgba(255, 145, 0, 0.1);
+    --callout-title-color: rgb(255, 145, 0);
+    --callout-text-color: rgba(255, 145, 0, 0.8);
+    border-color: rgb(255, 145, 0);
+
+    .callout-icon::before {
+      content: '⚠️';
+    }
+  }
+
+  &.failure,
+  &.fail,
+  &.missing {
+    --callout-bg: rgba(255, 82, 82, 0.1);
+    --callout-title-color: rgb(255, 82, 82);
+    --callout-text-color: rgba(255, 82, 82, 0.8);
+    border-color: rgb(255, 82, 82);
+
+    .callout-icon::before {
+      content: '❌';
+    }
+  }
+
+  &.danger,
+  &.error {
+    --callout-bg: rgba(255, 23, 68, 0.1);
+    --callout-title-color: rgb(255, 23, 68);
+    --callout-text-color: rgba(255, 23, 68, 0.8);
+    border-color: rgb(255, 23, 68);
+
+    .callout-icon::before {
+      content: '⚡';
+    }
+  }
+
+  &.bug {
+    --callout-bg: rgba(245, 0, 87, 0.1);
+    --callout-title-color: rgb(245, 0, 87);
+    --callout-text-color: rgba(245, 0, 87, 0.8);
+    border-color: rgb(245, 0, 87);
+
+    .callout-icon::before {
+      content: '🐛';
+    }
+  }
+
+  &.example {
+    --callout-bg: rgba(103, 58, 183, 0.1);
+    --callout-title-color: rgb(103, 58, 183);
+    --callout-text-color: rgba(103, 58, 183, 0.8);
+    border-color: rgb(103, 58, 183);
+
+    .callout-icon::before {
+      content: '📝';
+    }
+  }
+
+  &.quote,
+  &.cite {
+    --callout-bg: rgba(158, 158, 158, 0.1);
+    --callout-title-color: rgb(158, 158, 158);
+    --callout-text-color: rgba(158, 158, 158, 0.8);
+    border-color: rgb(158, 158, 158);
+
+    .callout-icon::before {
+      content: '💭';
+    }
+  }
+}
