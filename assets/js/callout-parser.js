@@ -2,14 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const blockquotes = document.querySelectorAll('blockquote');
 
   blockquotes.forEach((quote) => {
-    const text = quote.textContent.trim();
-    const lines = text.split('\n');
+    const lines = quote.innerHTML.trim().split('\n');
     const firstLine = lines[0];
     const match = firstLine.match(/\[!(\w+)\]([+-])?\s*(.*)/);
 
     if (match) {
       const [fullMatch, type, fold, title] = match;
-      const content = lines.slice(1).join('\n').trim();
+      const content = lines.slice(1).join('\n');
 
       const isFolded = fold === '-';
 
