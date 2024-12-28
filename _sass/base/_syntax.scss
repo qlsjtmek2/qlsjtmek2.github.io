@@ -23,6 +23,7 @@
   pre {
     margin-bottom: 0;
     font-size: v.$code-font-size;
+    font-family: v.$code-font-family;
     line-height: 1.4rem;
     word-wrap: normal; /* Fixed Safari overflow-x */
   }
@@ -65,6 +66,7 @@ code {
 
   &.highlighter-rouge {
     font-size: v.$code-font-size;
+    font-family: v.$code-font-family;
     padding: 3px 5px;
     word-break: break-word;
     border-radius: v.$radius-sm;
