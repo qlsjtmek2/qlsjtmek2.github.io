@@ -33,6 +33,7 @@
     }
 
     .fold-indicator {
+      transform: rotate(90deg);
       margin-left: auto;
       transition: transform 0.2s ease;
       font-size: 1.2em;
