@@ -7,207 +7,131 @@
 {%- endif -%}
 ';
 
-/* append your custom style below */
-
-/* callout */
+/* 공통 콜아웃 스타일 */
 .callout {
-  border-left: 4px solid;
-  border-radius: 4px;
-  padding: 0.7rem;
-  margin: 0.7rem 0;
-  background-color: var(--callout-bg);
+  position: relative;
+  margin: 1.4em 0;
+  padding: 1em 1.2em;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: all 0.2s ease;
+}
 
-  .callout-title {
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-    display: flex;
-    align-items: center;
-    color: var(--callout-title-color);
-    cursor: pointer;
-    user-select: none;
+/* 접기(폴딩) 되었을 때 내용 숨김 */
+.callout.is-folded .callout-content {
+  display: none;
+}
 
-    .callout-icon::before {
-      content: '';
-      margin-right: 0.4rem;
-      font-size: 1.2em;
-    }
+/* 콜아웃 타이틀 영역 */
+.callout-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer; /* 클릭하면 접고/펼치기 */
+}
 
-    .fold-indicator {
-      transform: rotate(90deg);
-      margin-left: auto;
-      transition: transform 0.2s ease;
-      font-size: 1.2em;
-      font-weight: 300;
-    }
-  }
+/* 콜아웃 내용 영역 */
+.callout-content {
+  margin-top: 0.5em; /* 타이틀 아래 여백 대신 컨텐츠 위쪽 여백 */
+}
 
-  p {
-    margin: 0;
-    color: var(--callout-text-color);
-    line-height: 1.5;
-  }
+/* 콜아웃 아이콘 (조금 더 얇게) */
+.callout-icon {
+  font-family: "Font Awesome 5 Free"; /* Font Awesome 사용 */
+  font-weight: 600;                  /* 기존 900 → 600으로 줄여서 가볍게 */
+  font-size: 1.1em;
+  margin-right: 0.5em;
+}
 
-  .callout-content {
-    transition: max-height 0.2s ease, opacity 0.2s ease;
-    max-height: 1000px;
-    opacity: 1;
-    overflow: hidden;
-  }
+/* 콜아웃 제목 텍스트 */
+.callout-title-text {
+  flex-grow: 1; /* 아이콘과 접기 화살표 사이 공간 확보 */
+}
 
-  &.is-folded {
-    .fold-indicator {
-      transform: rotate(-90deg);
-    }
+/* 접기 화살표(›) 회전 애니메이션 */
+.fold-indicator {
+  transition: transform 0.2s ease;
+}
+.callout.is-folded .fold-indicator {
+  transform: rotate(-90deg);
+}
 
-    .callout-content {
-      max-height: 0;
-      opacity: 0;
-    }
-  }
+/* 콜아웃 내용의 p 태그 마진 조정 (선택 사항) */
+.callout-content p {
+  margin-bottom: 0;
+}
+.callout-title p {
+  margin-bottom: 0;
+}
 
-  &.abstract,
-  &.summary,
-  &.tldr {
-    --callout-bg: rgba(0, 176, 155, 0.1);
-    --callout-title-color: rgb(0, 176, 155);
-    --callout-text-color: rgba(0, 176, 155, 0.8);
-    border-color: rgb(0, 176, 155);
+/* 공통적으로 왼쪽 테두리에 색상 바를 넣어 강조 */
+.callout::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0.3em;
+  height: 100%;
+  border-radius: 8px 0 0 8px;
+}
 
-    .callout-icon::before {
-      content: '📑';
-    }
-  }
+/* ===== Variant: Danger (빨간/분홍) ===== */
+.callout.danger {
+  background-color: #fff7f8;
+  color: #b71c1c; /* 조금 진한 레드 */
+  border-color: #f8d7da;
+}
+.callout.danger::before {
+  background-color: #f44336; /* 왼쪽 포인트 컬러 */
+}
+.callout.danger .callout-icon::before {
+  content: "\f071"; /* Font Awesome 'exclamation-triangle' */
+  color: #f44336;
+}
 
-  &.info {
-    --callout-bg: rgba(0, 184, 212, 0.1);
-    --callout-title-color: rgb(0, 184, 212);
-    --callout-text-color: rgba(0, 184, 212, 0.8);
-    border-color: rgb(0, 184, 212);
+/* ===== Variant: Warning (노랑/주황) ===== */
+.callout.warning {
+  background-color: #fffbe6;
+  color: #8a6d3b;
+  border-color: #fff3cd;
+}
+.callout.warning::before {
+  background-color: #ffcc00; /* 왼쪽 포인트 컬러 */
+}
+.callout.warning .callout-icon::before {
+  content: "\f06a"; /* Font Awesome 'exclamation-circle' */
+  color: #ff9800;
+}
 
-    .callout-icon::before {
-      content: 'ℹ️';
-    }
-  }
+/* ===== Variant: Info (파랑/하늘색) ===== */
+.callout.info {
+  background-color: #f0faff;
+  color: #0b4659;
+  border-color: #d1ecf1;
+}
+.callout.info::before {
+  background-color: #2196f3; /* 왼쪽 포인트 컬러 */
+}
+.callout.info .callout-icon::before {
+  content: "\f05a"; /* Font Awesome 'info-circle' */
+  color: #2196f3;
+}
 
-  &.todo {
-    --callout-bg: rgba(82, 139, 255, 0.1);
-    --callout-title-color: rgb(82, 139, 255);
-    --callout-text-color: rgba(82, 139, 255, 0.8);
-    border-color: rgb(82, 139, 255);
-
-    .callout-icon::before {
-      content: '✓';
-    }
-  }
-
-  &.tip,
-  &.hint,
-  &.important {
-    --callout-bg: rgba(0, 191, 165, 0.1);
-    --callout-title-color: rgb(0, 191, 165);
-    --callout-text-color: rgba(0, 191, 165, 0.8);
-    border-color: rgb(0, 191, 165);
-
-    .callout-icon::before {
-      content: '💡';
-    }
-  }
-
-  &.success,
-  &.check,
-  &.done {
-    --callout-bg: rgba(0, 200, 83, 0.1);
-    --callout-title-color: rgb(0, 200, 83);
-    --callout-text-color: rgba(0, 200, 83, 0.8);
-    border-color: rgb(0, 200, 83);
-
-    .callout-icon::before {
-      content: '✅';
-    }
-  }
-
-  &.question,
-  &.help,
-  &.faq {
-    --callout-bg: rgba(255, 145, 0, 0.1);
-    --callout-title-color: rgb(255, 145, 0);
-    --callout-text-color: rgba(255, 145, 0, 0.8);
-    border-color: rgb(255, 145, 0);
-
-    .callout-icon::before {
-      content: '❓';
-    }
-  }
-
-  &.warning,
-  &.caution,
-  &.attention {
-    --callout-bg: rgba(255, 145, 0, 0.1);
-    --callout-title-color: rgb(255, 145, 0);
-    --callout-text-color: rgba(255, 145, 0, 0.8);
-    border-color: rgb(255, 145, 0);
-
-    .callout-icon::before {
-      content: '⚠️';
-    }
-  }
-
-  &.failure,
-  &.fail,
-  &.missing {
-    --callout-bg: rgba(255, 82, 82, 0.1);
-    --callout-title-color: rgb(255, 82, 82);
-    --callout-text-color: rgba(255, 82, 82, 0.8);
-    border-color: rgb(255, 82, 82);
-
-    .callout-icon::before {
-      content: '❌';
-    }
-  }
-
-  &.danger,
-  &.error {
-    --callout-bg: rgba(255, 23, 68, 0.1);
-    --callout-title-color: rgb(255, 23, 68);
-    --callout-text-color: rgba(255, 23, 68, 0.8);
-    border-color: rgb(255, 23, 68);
-
-    .callout-icon::before {
-      content: '⚡';
-    }
-  }
-
-  &.bug {
-    --callout-bg: rgba(245, 0, 87, 0.1);
-    --callout-title-color: rgb(245, 0, 87);
-    --callout-text-color: rgba(245, 0, 87, 0.8);
-    border-color: rgb(245, 0, 87);
-
-    .callout-icon::before {
-      content: '🐛';
-    }
-  }
-
-  &.example {
-    --callout-bg: rgba(103, 58, 183, 0.1);
-    --callout-title-color: rgb(103, 58, 183);
-    --callout-text-color: rgba(103, 58, 183, 0.8);
-    border-color: rgb(103, 58, 183);
-
-    .callout-icon::before {
-      content: '📝';
-    }
-  }
-
-  &.quote,
-  &.cite {
-    --callout-bg: rgba(158, 158, 158, 0.1);
-    --callout-title-color: rgb(158, 158, 158);
-    --callout-text-color: rgba(158, 158, 158, 0.8);
-    border-color: rgb(158, 158, 158);
-
-    .callout-icon::before {
-      content: '💭';
-    }
-  }
+/* ===== Variant: Tip (녹색 계열) ===== */
+.callout.tip {
+  background-color: #ebfff6;
+  color: #105742;
+  border-color: #d7f3e3;
+}
+.callout.tip::before {
+  background-color: #4caf50; /* 왼쪽 포인트 컬러 */
+}
+/* 기존 \f4a6 에서 \f0eb로 변경 (더 범용적) */
+.callout.tip .callout-icon::before {
+  content: "\f0eb"; /* Font Awesome 'lightbulb' */
+  color: #4caf50;
 }

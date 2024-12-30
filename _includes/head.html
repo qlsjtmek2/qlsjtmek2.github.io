@@ -144,6 +144,4 @@
   site.analytics[platform].id and site.analytics[platform].id != empty %} {%
   include analytics/{{ platform }}.html %} {% endif %} {% endfor %} {% endif %}
   {% include metadata-hook.html %}
-
-  <script src="{{ '/assets/js/callout-parser.js' | relative_url }}"></script>
 </head>
