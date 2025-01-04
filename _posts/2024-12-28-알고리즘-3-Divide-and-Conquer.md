@@ -2,7 +2,7 @@
 title: "알고리즘 3. Divide and Conquer"
 date: "2024-12-28"
 categories: ["IT", "알고리즘"]
-tags: ["Divide and Conquer", "Quick Sort", "Selection Problem", "Approximate Median", "Matrix Multiplication", "Convex Hull", "Graham Scan", "Karatsuba Algorithm"]
+tags: ["알고리즘", "Divide and Conquer", "Quick Sort", "Selection Problem", "Approximate Median", "Matrix Multiplication", "Convex Hull", "Karatsuba Algorithm"]
 math: true
 toc: true
 comments: true
