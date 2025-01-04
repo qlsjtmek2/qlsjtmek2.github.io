@@ -2,7 +2,7 @@
 title: "알고리즘 1. Basic Algorithm"
 date: "2024-12-28"
 categories: ["IT", "알고리즘"]
-tags: ["정렬 알고리즘", "비교 정렬", "선택 정렬", "병합 정렬", "퀵 정렬", "카운팅 정렬", "기수 정렬", "이진 탐색"]
+tags: ["정렬 알고리즘", "비교 정렬", "선택 정렬", "병합 정렬", "퀵 정렬", "카운팅 정렬", "이진 탐색", "시간 복잡도"]
 math: true
 toc: true
 comments: true
@@ -25,16 +25,16 @@ comments: true
 ```c++
 void selectionSort(int *array, int array_size)
 {
-    if (array_size <= 1) return;
+    if (array_size <= 1) return;
 
-    int minium_index = 0;
-    for (int index = 0; index < array_size; index++) {
-        for (int k = index; k < array_size - 1; k++) {
-            if (array[k] < array[minium_index])
-                minium_index = k;
-        }
-        swap(array[index], array[minium_index]);
-    }
+    int minium_index = 0;
+    for (int index = 0; index < array_size; index++) {
+        for (int k = index; k < array_size - 1; k++) {
+            if (array[k] < array[minium_index])
+                minium_index = k;
+        }
+        swap(array[index], array[minium_index]);
+    }
 }
 ```
 
@@ -54,15 +54,15 @@ void selectionSort(int *array, int array_size)
 ```c++
 void selectionSort_recursion(int *array, int array_size)
 {
-    if (array_size <= 1) return;
+    if (array_size <= 1) return;
 
-    for (int index = 0, minium_index = 0; index < array_size; index++) {
-        if (array[index] < array[minium_index])
-            minium_index = index;
-    }
+    for (int index = 0, minium_index = 0; index < array_size; index++) {
+        if (array[index] < array[minium_index])
+            minium_index = index;
+    }
 
-    swap(array[0], array[minium_index]);
-    selectionSort_recursion(array + 1, array_size - 1);
+    swap(array[0], array[minium_index]);
+    selectionSort_recursion(array + 1, array_size - 1);
 }
 ```
 
@@ -89,35 +89,35 @@ void selectionSort_recursion(int *array, int array_size)
 ```c++
 void mergeSort(int* array, int array_size)
 {
-    if (array_size <= 1) return;
+    if (array_size <= 1) return;
 
-    int half_array_size = array_size / 2;
-    int copy_array[array_size];
-    copy(array, array + array_size, copy_array);
+    int half_array_size = array_size / 2;
+    int copy_array[array_size];
+    copy(array, array + array_size, copy_array);
 
-    // 앞에 절반, 뒤에 절반 sort
-    mergeSort(copy_array, half_array_size);
-    mergeSort(copy_array + half_array_size, array_size - half_array_size);
+    // 앞에 절반, 뒤에 절반 sort
+    mergeSort(copy_array, half_array_size);
+    mergeSort(copy_array + half_array_size, array_size - half_array_size);
 
-    // 이후 앞에 절반, 뒤에 절반 합치기
-    int front_index = 0, back_index = half_array_size;
-    for (int index = 0; index < array_size; index++) {
-        if (front_index == half_array_size - 1) { // 앞에 원소를 다 뽑았다면
-            array[index] = copy_array[back_index];
-            back_index += 1;
-        } else if (back_index == array_size - 1) { // 뒤에 원소를 다 뽑았다면
-            array[index] = copy_array[front_index];
-            front_index += 1;
-        } else {
-            if (copy_array[front_index] < copy_array[back_index]) {
-                array[index] = copy_array[front_index];
-                front_index += 1;
-            } else {
-                array[index] = copy_array[back_index];
-                back_index += 1;
-            }
-        }
-    }
+    // 이후 앞에 절반, 뒤에 절반 합치기
+    int front_index = 0, back_index = half_array_size;
+    for (int index = 0; index < array_size; index++) {
+        if (front_index == half_array_size - 1) { // 앞에 원소를 다 뽑았다면
+            array[index] = copy_array[back_index];
+            back_index += 1;
+        } else if (back_index == array_size - 1) { // 뒤에 원소를 다 뽑았다면
+            array[index] = copy_array[front_index];
+            front_index += 1;
+        } else {
+            if (copy_array[front_index] < copy_array[back_index]) {
+                array[index] = copy_array[front_index];
+                front_index += 1;
+            } else {
+                array[index] = copy_array[back_index];
+                back_index += 1;
+            }
+        }
+    }
 }
 ```
 
@@ -243,20 +243,20 @@ void qsort(int a[], int n) {
 ```c++
 int binarySearch(int *sorting_array, int target)
 {
-    int left, middle = 0;
-    int right = _msize(sorting_array) - 1;
+    int left, middle = 0;
+    int right = _msize(sorting_array) - 1;
 
-    while (left <= right) {
-        middle = (left + right) / 2;
-        if (sorting_array[middle] < target)
-            left = middle + 1;
-        else if (sorting_array[middle] > target)
-            right = middle - 1;
-        else
-            return middle;
-    }
+    while (left <= right) {
+        middle = (left + right) / 2;
+        if (sorting_array[middle] < target)
+            left = middle + 1;
+        else if (sorting_array[middle] > target)
+            right = middle - 1;
+        else
+            return middle;
+    }
 
-    return -1;
+    return -1;
 }
 ```
 
@@ -284,19 +284,19 @@ int binarySearch(int *sorting_array, int target)
 ```c++
 int binarySearch_recursion(int *sorting_array, int array_size, int target)
 {
-    if (array_size == 0) return -1;
+    if (array_size == 0) return -1;
 
-    int middle = array_size / 2;
-    if (sorting_array[middle] < target) {
-        int result = binarySearch_recursion(sorting_array + middle + 1, array_size - (middle + 1), target);
+    int middle = array_size / 2;
+    if (sorting_array[middle] < target) {
+        int result = binarySearch_recursion(sorting_array + middle + 1, array_size - (middle + 1), target);
 
-        if (result == -1) return result;
-        else return result + middle + 1;
-    }
-    else if (sorting_array[middle] > target)
-        return binarySearch_recursion(sorting_array, middle, target);
-    else
-        return middle;
+        if (result == -1) return result;
+        else return result + middle + 1;
+    }
+    else if (sorting_array[middle] > target)
+        return binarySearch_recursion(sorting_array, middle, target);
+    else
+        return middle;
 }
 ```
 
