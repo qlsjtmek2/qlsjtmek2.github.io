@@ -260,36 +260,36 @@ $n$을 node 수, $m$을 edge 수라고 하자. 만약 우선 순위 큐의 descr
 > ```c++
 > template \<typename T>
 > map<T, int> dijkstra(const Graph\<T>& graph, const T& start) {
->     // redSet: Node : Shortest Weight Distance
->     map<T, int> redSet = { { start, 0 } };
->     PriorityQueue\<T> blueSet;
+>     // redSet: Node : Shortest Weight Distance
+>     map<T, int> redSet = { { start, 0 } };
+>     PriorityQueue\<T> blueSet;
 > 
->     for (const auto& neighbor : graph.getNeighbors(start)) {
->         blueSet.push(get<0>(neighbor),
->                      get<1>(neighbor));  // node, weight
->     }
+>     for (const auto& neighbor : graph.getNeighbors(start)) {
+>         blueSet.push(get<0>(neighbor),
+>                      get<1>(neighbor));  // node, weight
+>     }
 > 
->     while (!blueSet.isEmpty()) {
->         int maybeShortestWeight = blueSet.topPriority();
->         T currentNode = blueSet.pop();
+>     while (!blueSet.isEmpty()) {
+>         int maybeShortestWeight = blueSet.topPriority();
+>         T currentNode = blueSet.pop();
 > 
->         // redSet에 이미 있는 노드는 무시
->         if (redSet.find(currentNode) != redSet.end()) continue;
+>         // redSet에 이미 있는 노드는 무시
+>         if (redSet.find(currentNode) != redSet.end()) continue;
 > 
->         // maybeShortestWeight였던 것을 확정
->         redSet[currentNode] = maybeShortestWeight;
+>         // maybeShortestWeight였던 것을 확정
+>         redSet[currentNode] = maybeShortestWeight;
 > 
->         // Update maybeShortestWeight of nodes in blue set
->         for (const auto& neighbor : graph.getNeighbors(currentNode)) {
->             T node = get<0>(neighbor);
->             int weight = get<1>(neighbor);
->             blueSet.push(node, maybeShortestWeight + weight);  
+>         // Update maybeShortestWeight of nodes in blue set
+>         for (const auto& neighbor : graph.getNeighbors(currentNode)) {
+>             T node = get<0>(neighbor);
+>             int weight = get<1>(neighbor);
+>             blueSet.push(node, maybeShortestWeight + weight);  
 >   
->             // 여기서 currentNode와 neighbor을 사용해서 preTable에 넣으면 될듯.
->         }
->     }
+>             // 여기서 currentNode와 neighbor을 사용해서 preTable에 넣으면 될듯.
+>         }
+>     }
 > 
->     return redSet;
+>     return redSet;
 > }
 > ```
 > 
@@ -346,7 +346,7 @@ $J_{i}$를 버렸다는 것은 무슨 의미인가? $J_{1}, J_{2}, \dots, J_{i-2
 
 ## Job Scheduling
 
-Start Time과 End Time을 갖는 Job들을 Time Schedule 내에 가장 효율적으로 배치하는 방법. $n$개의 Job 존재한다. $J_{i} = \{ (S_{i}, E_{i}) | 1 \leq i \leq n \}$ Job은 Start Time과 End Time의 Tuple이다. 문제의 조건은 다음과 같다.
+Start Time과 End Time을 갖는 Job들을 Time Schedule 내에 가장 효율적으로 배치하는 방법. $n$개의 Job 존재한다. $J_{i} =(S_{i}, E_{i})$,  Job은 Start Time과 End Time의 Tuple이다. 문제의 조건은 다음과 같다.
 
 1. 모든 Job의 Profit는 동일하다.
 2. 한번에 하나씩 Job를 처리 할 수 있다.
