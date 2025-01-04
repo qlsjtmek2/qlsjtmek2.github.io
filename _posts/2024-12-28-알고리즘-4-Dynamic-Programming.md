@@ -2,7 +2,7 @@
 title: "알고리즘 4. Dynamic Programming"
 date: "2024-12-28"
 categories: ["IT", "알고리즘"]
-tags: ["Dynamic Programming", "Memoization", "Tabulation", "알고리즘", "최적화", "경로 계산", "게임 이론", "문자열 매칭"]
+tags: ["다이나믹 프로그래밍", "메모이제이션", "점화식", "최적화", "알고리즘", "재귀", "DP 테이블", "공통 부분 수열"]
 math: true
 toc: true
 comments: true
@@ -89,45 +89,43 @@ int Fibonacci(int n)
 > 	- 당일 일을 하지 않았을 때, 전날에 일을 하거나 일을 하지 않거나 두가지 경우를 모두 고려해야 한다.
 > - 당일 최대 이익 : $max(W[i], N[i])$
 > 
-> > [!example]- Code{title}
-> > ```c++
-> > int maxProfit(int P[], int n)
-> > {
-> > 	int W[n], N[n];
-> > 	W[0] = N[0] = 0;
-> > 	
-> > 	for (int i = 1; i <= n; i++)
-> > 	{
-> > 		W[i] = P[i] + N[i-1];
-> > 		N[i] = max(W[i-1], N[i-1]);
-> > 	}
-> > 	
-> > 	return max(W[n], N[n]);
-> > }
-> > ```
 > 
-> > [!tip]- 최적화{title}
-> > 결과를 계산하는 과정에서 이전의 모든 값을 활용하면 배열을 유지하면 되지만, 이번 계산은 딱 이전결과의 값만 사용하면 되므로, 배열에서 변수로 수정하면 공간복잡도를 $O(n)$에서 $O(1)$로 줄일 수 있다.
-> > 
-> > ```c++
-> > int maxProfit(int profits[], int n)
-> > {
-> > 	int preWork = profits[0];
-> > 	int preNonWork = 0;
-> > 	
-> > 	for (int i = 1; i < n; i++)
-> > 	{
-> > 		int currentWork = work[i] = preNonWork + profits[i];
-> > 		int currentNonWork = max(preWork, preNonWork);
-> > 
-> > 		preWork = currentWork;
-> > 		preNonwork = currentNonWork;
-> > 	}
-> > 	
-> > 	return max(preWork, preNonWork);
-> > }
-> > ```
+> ```c++
+> int maxProfit(int P[], int n)
+> {
+> 	int W[n], N[n];
+> 	W[0] = N[0] = 0;
+> 	
+> 	for (int i = 1; i <= n; i++)
+> 	{
+> 		W[i] = P[i] + N[i-1];
+> 		N[i] = max(W[i-1], N[i-1]);
+> 	}
+> 	
+> 	return max(W[n], N[n]);
+> }
+> ```
 > 
+> 결과를 계산하는 과정에서 이전의 모든 값을 활용하면 배열을 유지하면 되지만, 이번 계산은 딱 이전결과의 값만 사용하면 되므로, 배열에서 변수로 수정하면 공간복잡도를 $O(n)$에서 $O(1)$로 줄일 수 있다.
+> 
+> ```c++
+> int maxProfit(int profits[], int n)
+> {
+> 	int preWork = profits[0];
+> 	int preNonWork = 0;
+> 	
+> 	for (int i = 1; i < n; i++)
+> 	{
+> 		int currentWork = work[i] = preNonWork + profits[i];
+> 		int currentNonWork = max(preWork, preNonWork);
+> 
+> 		preWork = currentWork;
+> 		preNonwork = currentNonWork;
+> 	}
+> 	
+> 	return max(preWork, preNonWork);
+> }
+> ```
 
 > [!example]- Path Counting{title}
 > 
@@ -140,61 +138,60 @@ int Fibonacci(int n)
 > 각 점까지 오는 모든 경로의 수를 담는 상태 배열 `pathCount[n][m]`를 정의하면, 그 위치로 올 수 있는 모든 경로의 경우의 수를 합하면 된다. 따라서 상태가 정의되고, 이전 상태의 결과만을 사용하여 현재 상태의 값을 계산해내므로 DP로 해결할 수 있다.
 > 
 > ![Pasted image 20241029094214.png](/assets/img/posts/Pasted image 20241029094214.png){: width="300"}
+> 
 > 예를들어, 위와 같은 그림에서 해당 Point로 오는 경로의 개수는 왼쪽에서 오는 경우의 수와 위에서 오는 경로의 경우의 수의 합과 같다. 이때 값이 계산되는 순서 또한 중요하다. 만약 대각선부터 계산하게 되면 이전 경로의 값이 계산되지 않았으므로 DP를 수행할 수 없기 때문이다.
 > 
-> > [!example]- Code{title}
-> > ```c++
-> > int pathCounting(int map[][], int n, int m)
-> > {
-> > 	int DP[n+1][m+1];
-> > 	
-> > 	memset(DP, 0, sizeof(D));
-> > 	
-> > 	// 외곽선부터 계산
-> > 	for (int i = 1; i <= n; i++) DP[i][1] = 1;
-> > 	for (int j = 1; j <= m; j++) DP[1][j] = 1;
-> > 	
-> > 	// 내부 DP 계산
-> > 	for (int i = 2; i <= n; i++)
-> > 	{
-> > 		for (int j = 2; j <= m; j++)
-> > 		{
-> > 			DP[i][j] = DP[i-1][j] + DP[i][j-1];
-> > 		}
-> > 	}
-> > 	
-> > 	return DP[n][m];
-> > }
-> > ```
 > 
-> > [!tip]- 최적화{title}
-> > 그런데 이것도 결국 현재 행과 이전 행만 사용하므로, 공간 복잡도 $O(nm)$에서 $O(m)$으로 최적화가 가능할 것 같다. `pathCount[n][m]` 대신 `preRow[m], currentRow[m]` 두개를 사용하면 되지 않을까?
-> > 
-> > ```c++
-> > int pathCounting(int map[][], int n, int m)
-> > {
-> > 	int preRow[m];
-> > 	int currentRow[m];
-> > 	
-> > 	for (int j = 0; j < m; j++) preRow[0] = 1;
-> > 	for (int i = 1; i < n; i++) 
-> > 	{
-> > 		currentRow[0] = 1;
-> > 		
-> > 		for (int j = 1; j < m; j++)
-> > 		{
-> > 			currentRow[j] = preRow[j] + currentRow[j-1];
-> > 		}
-> > 		
-> > 		copy(currentRow to preRow);
-> > 	}
-> > 	
-> > 	return currentRow[m-1];
-> > }
-> > ```
+> ```c++
+> int pathCounting(int map[][], int n, int m)
+> {
+> 	int DP[n+1][m+1];
+> 	
+> 	memset(DP, 0, sizeof(D));
+> 	
+> 	// 외곽선부터 계산
+> 	for (int i = 1; i <= n; i++) DP[i][1] = 1;
+> 	for (int j = 1; j <= m; j++) DP[1][j] = 1;
+> 	
+> 	// 내부 DP 계산
+> 	for (int i = 2; i <= n; i++)
+> 	{
+> 		for (int j = 2; j <= m; j++)
+> 		{
+> 			DP[i][j] = DP[i-1][j] + DP[i][j-1];
+> 		}
+> 	}
+> 	
+> 	return DP[n][m];
+> }
+> ```
 > 
-> > [!example]- Path Counting Algorithm 활용 예{title}
-> > Path Counting를 실제로 사용하는 경우가 바로 구글의 Page Ranking이다. 좋은 문서는 다른 곳에서 참조를 많이 하는 웹페이지일 것이라는 아이디어에 착안해, 그 웹페이지로 오는 Path Counting을 계산하여 랭킹을 매긴다.
+> 그런데 이것도 결국 현재 행과 이전 행만 사용하므로, 공간 복잡도 $O(nm)$에서 $O(m)$으로 최적화가 가능할 것 같다. `pathCount[n][m]` 대신 `preRow[m], currentRow[m]` 두개를 사용하면 되지 않을까?
+> 
+> ```c++
+> int pathCounting(int map[][], int n, int m)
+> {
+> 	int preRow[m];
+> 	int currentRow[m];
+> 	
+> 	for (int j = 0; j < m; j++) preRow[0] = 1;
+> 	for (int i = 1; i < n; i++) 
+> 	{
+> 		currentRow[0] = 1;
+> 		
+> 		for (int j = 1; j < m; j++)
+> 		{
+> 			currentRow[j] = preRow[j] + currentRow[j-1];
+> 		}
+> 		
+> 		copy(currentRow to preRow);
+> 	}
+> 	
+> 	return currentRow[m-1];
+> }
+> ```
+> 
+> `Path Counting를 실제로 사용하는 경우가 바로 구글의 Page Ranking이다. 좋은 문서는 다른 곳에서 참조를 많이 하는 웹페이지일 것이라는 아이디어에 착안해, 그 웹페이지로 오는 Path Counting을 계산하여 랭킹을 매긴다.`
 > 
 
 > [!example]- Matrix Multiplication{title}
@@ -206,29 +203,29 @@ int Fibonacci(int n)
 > 
 > 곱하는 행렬을 $A_{1}, A_{2}, \dots, A_{n}$라고 하고, $A_{i}$ 행렬의 사이즈를 $d_{i-1} \times d_{i}$로 정의하자. 실질적인 입력값은 $d_{0}, d_{1}, d_{2}, \dots, d_{n}$이다. 모든 경우를 다 따져보면 된다. (i~i+1, i+2~j), (i~i+2, i+3~j), ... (i~j-2, j-1~j) 행렬을 곱했을 때 결과가 가장 작으면 된다. 점화식으로 표현하면, $DP[i][j] = min(DP[i][i+k] + DP[j-k][j]), ~~(1\leq k\leq j-i)$를 계산하면 됨.
 > 
-> > [!example]- Code{title}
-> > ```c++
-> > int minCalculationCount(int d[], int n)
-> > {
-> > 	int DP[n][n];
-> > 
-> > 	for (int len = 2; len <= n; len++)
-> > 	{
-> > 		for (int i = 0; i <= n - len; i++)
-> > 		{
-> > 			int j = i + len - 1;
-> > 			DP[i][j] = INT_MAX;
-> > 			
-> > 			for (int k = i; k < j; k++)
-> > 			{
-> > 				DP[i][j] = min(DP[i][j], DP[i][k] + DP[k+1][j] + d[i-1] * d[k] * d[j]);
-> > 			}
-> > 		}
-> > 	}
-> > 	
-> > 	return DP[0][n-1];
-> > }
-> > ```
+> [!example]- Code{title}
+> ```c++
+> int minCalculationCount(int d[], int n)
+> {
+> 	int DP[n][n];
+> 
+> 	for (int len = 2; len <= n; len++)
+> 	{
+> 		for (int i = 0; i <= n - len; i++)
+> 		{
+> 			int j = i + len - 1;
+> 			DP[i][j] = INT_MAX;
+> 			
+> 			for (int k = i; k < j; k++)
+> 			{
+> 				DP[i][j] = min(DP[i][j], DP[i][k] + DP[k+1][j] + d[i-1] * d[k] * d[j]);
+> 			}
+> 		}
+> 	}
+> 	
+> 	return DP[0][n-1];
+> }
+> ```
 > 
 
 > [!example]- Maximum Subarray{title}
@@ -446,8 +443,8 @@ int Fibonacci(int n)
 > [!example]- Longest Increasing Subsequence (LIS){title}
 > 숫자 배열이 입력될 때, 증가하는 가장 긴 Subsequence를 찾는 방법.
 > 
-> > [!error]- 시행착오{title}
-> > 함수 자체를 숫자 배열과 배열의 크기를 입력하면, 가장 긴 Subsequence의 길이와 가장 큰 숫자를 반환하면 됨. 재귀적으로 LIS(n-1) 값을 얻어내서 $LIS(n-1).max < A[n]$이 성립하면 $LIS(n-1).len+1$ 반환하면 되는거고 아니면 그대로 $LIS(n-1)$ 값을 반환하면 된다.
+> [!error]- 시행착오{title}
+> 함수 자체를 숫자 배열과 배열의 크기를 입력하면, 가장 긴 Subsequence의 길이와 가장 큰 숫자를 반환하면 됨. 재귀적으로 LIS(n-1) 값을 얻어내서 $LIS(n-1).max < A[n]$이 성립하면 $LIS(n-1).len+1$ 반환하면 되는거고 아니면 그대로 $LIS(n-1)$ 값을 반환하면 된다.
 > 
 > 어 그런데 단순히 딱 -1인 경우만 되는게 아니라 다른 모든 경우와 비교해봐야하는데? 즉 1부터 i-1까지 Loop도는 Index를 j라고 하면, $A[j]<A[i]$일 때 $LIS[i] = max(LIS[i], LIS[j]+1)$을 모두 체크해봐야 함. 이 방법은 $O(n^2)$의 시간이 걸린다.
 > 
@@ -524,16 +521,13 @@ String Matching이란, 주어진 문자열에서 특정 문자열이 존재하�
 > 
 > 이미지 압축 방식을 통한 아이디어를 얻는다. 이미지 압축의 원리는 이미지 픽셀 주변의 차이값을 기록한다. 픽셀 사이의 차이값은 그렇게 크지 않기 때문에, 적은 바이트로도 이미지를 표현할 수 있게 된다. 똑같이 최초에 한번 D Table을 생성한다. 이후 D Table을 DR Table로 변환한다. DR Table은 DR Table은 주변 칸과의 차이값만을 기록해둔 Table이다. 즉 각 칸마다 나와 위의 칸, 왼쪽 칸, 대각선 위의 칸과의 차이 3개(구조체)를 기록한다. 이후 어떤 열을 제거한다면 그 열과 인접한 셀들의 값들이 바뀌어야 할 것이다. 그 바뀌는 차이값만 따라가서 업데이트하면 Table의 값 전체를 Update하지 않아도 된다.
 
-
 ## 최대 공백 직사각형
 
-만약 ![Pasted image 20241107095810.png](/assets/img/posts/Pasted image 20241107095810.png){: width="300"}
+`잘 모르겠다다`
 
-이런 모양의 막대 모양에 들어갈 수 있는 가장 큰 직사각형은 뭘까?
+ ![Pasted image 20241107095810.png](/assets/img/posts/Pasted image 20241107095810.png){: width="300"}
 
-만약 정답이 있다면, 좌우나 상하로 늘릴 수 없다.
-
-따라서 정답은 아래에 몰려있겠네?
+만약 위와 같은 모양의 막대 모양에 들어갈 수 있는 가장 큰 직사각형은 뭘까? 만약 정답이 있다면, 좌우나 상하로 늘릴 수 없다. 따라서 정답은 아래에 몰려있을 것이다.
 
 
 ![Pasted image 20241107100016.png](/assets/img/posts/Pasted image 20241107100016.png){: width="300"}
@@ -541,8 +535,7 @@ String Matching이란, 주어진 문자열에서 특정 문자열이 존재하�
 만약 저 빨간색 선분에 닿도록 정답을 만드려면, 한쪽점에서 반대쪽에 닿을떄까지 쏴야한다. 또 오른쪽 점에서 반대쪽에 닿을떄까지 쏴야한다. 만약 한쪽이 막혀있다면 쐇는데 0인것과 같다.
 
 선분 개수를 찾아서 따져보면 답을 구할 수 있겠다.
-수평 선분은 최대 n개 올수 있으므로 선분을 잘 찾기만 하면 O(n)에 풀릴수도 있겠다.
-
+수평 선분은 최대 n개 올수 있으므로 선분을 잘 찾기만 하면 $O(n)$에 풀릴수도 있겠다.
 
 저 꺾이는 점만 찾으면 선분을 찾겠는데, 꺾이는 점을 어떻게 빠르게 찾을까?
 
@@ -552,16 +545,11 @@ Convex Hull에서 하듯이 오른쪽에서 왼쪽으로 스위핑한다.
 
 ![Pasted image 20241107100824.png](/assets/img/posts/Pasted image 20241107100824.png)
 
-만약 저렇게 파란점을 봤다면, 그위쪽에 있는 점은 의미없다.
-
-다음부턴 왼쪽에서 쏜다면은 이미 저 쏜 언덕에 가려져서 그 위쪽은 안보이기 떄문이다.
-
+만약 저렇게 파란점을 봤다면, 그위쪽에 있는 점은 의미없다. 다음부턴 왼쪽에서 쏜다면은 이미 저 쏜 언덕에 가려져서 그 위쪽은 안보이기 떄문이다.
 
 실제 문제에선 수평선 하나를 쭉 긋고 각 점마다 최대 높이를 따져보면 똑같은 모양이 나옴. 이후 윗줄 입력의 답을 찾아내면 아랫줄 한줄 늘리는거는 빠르게 찾을 수 있음. 장애물 만나면 0으로 바꾸고 아니면 +1 늘리면 된다.
 
-직사각형 찾는데 걸리는 시간 n, 그걸 n번 내려가므로 n^2에 풀린다.
-
-잘 모르겠다
+직사각형 찾는데 걸리는 시간 n, 그걸 n번 내려가므로 $n^2$에 풀린다.
 
 ## 완전 정보 게임
 
