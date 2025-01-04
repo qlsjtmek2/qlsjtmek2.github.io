@@ -2,7 +2,7 @@
 title: "알고리즘 4. Dynamic Programming"
 date: "2024-12-28"
 categories: ["IT", "알고리즘"]
-tags: ["다이나믹 프로그래밍", "메모이제이션", "점화식", "최적화", "경로 계산", "알고리즘", "최대 이익", "편집 거리"]
+tags: ["Dynamic Programming", "Memoization", "Tabulation", "알고리즘", "최적화", "경로 계산", "게임 이론", "문자열 매칭"]
 math: true
 toc: true
 comments: true
@@ -575,7 +575,7 @@ Convex Hull에서 하듯이 오른쪽에서 왼쪽으로 스위핑한다.
 
 예를들어, 한 턴에 돌을 1, 3, 4개씩 가져갈 수 있다고 하자. 아래 Table은 현재 상태에서 Index 개수만큼 돌이 있을 때가 내 차례라면, 이기는지 지는지를 계산한 Table이다.
 
-![](Pasted%20image%2020250104184900.png)
+![Pasted image 20250104184900.png](/assets/img/posts/Pasted image 20250104184900.png)
 
 내 차례에 돌이 0이라면 게임 규칙상 패배한다.
 내 차례에 돌이 1개라면 1개를 가져가면 상대를 '패배하는 상태'로 만들 수 있다. Win.
