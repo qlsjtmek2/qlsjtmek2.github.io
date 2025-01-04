@@ -2,7 +2,7 @@
 title: "알고리즘 3. Divide and Conquer"
 date: "2024-12-28"
 categories: ["IT", "알고리즘"]
-tags: ["알고리즘", "Divide and Conquer", "Quick Sort", "Selection Problem", "Approximate Median", "Matrix Multiplication", "Convex Hull", "Karatsuba Algorithm"]
+tags: ["알고리즘", "Divide and Conquer", "Quick Sort", "Selection Problem", "Approximate Median", "Matrix Multiplication", "Closest Pair", "Convex Hull"]
 math: true
 toc: true
 comments: true
@@ -328,7 +328,7 @@ Upper Hull, Lower Hull 두개를 따로따로 구해서, 나중에 합치는 방
 > 
 > 접점이 바뀌면, 또 반대쪽도 체크하고, 둘다 만족할 때까지 반복해야 한다.
 
-```c#
+```
 while (왼쪽 조건 만족 && 오른쪽 조건 만족)
 {
 	while (오른쪽 CCW)
