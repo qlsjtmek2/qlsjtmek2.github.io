@@ -2,7 +2,7 @@
 title: "알고리즘 1. Basic Algorithm"
 date: "2024-12-28"
 categories: ["IT", "알고리즘"]
-tags: ["정렬 알고리즘", "비교 정렬", "선택 정렬", "병합 정렬", "퀵 정렬", "카운팅 정렬", "기수 정렬", "이진 탐색"]
+tags: ["정렬 알고리즘", "비교 정렬", "선택 정렬", "병합 정렬", "퀵 정렬", "카운팅 정렬", "기준 선택", "이진 탐색"]
 math: true
 toc: true
 comments: true
@@ -22,7 +22,7 @@ comments: true
 
 전체를 한번 탐색하여 가장 작은 값을 맨앞으로 보낸다. 다음 칸에서 시작하여 다시 한번 탐색하고, 가장 작은 값을 두번째로 보낸다. 이를 반복한다. $O(n^2)$ 시간이 걸린다. 반복문으로 구현하면 다음과 같다.
 
-```C++
+```c++
 void selectionSort(int *array, int array_size)
 {
     if (array_size <= 1) return;
@@ -51,7 +51,7 @@ void selectionSort(int *array, int array_size)
 재귀로 구현하면 다음과 같다. 
 시간 복잡도는 $T(n)=n+T(n-1) = n+n-1+T(n-2) = \dots = O(n^2)$와 같이 계산할 수 있다.
 
-```C++
+```c
 void selectionSort_recursion(int *array, int array_size)
 {
     if (array_size <= 1) return;
@@ -86,7 +86,7 @@ void selectionSort_recursion(int *array, int array_size)
 - $\displaystyle T(n) = n + 2T\left( \frac{n}{2} \right) = n + 2\left( \frac{n}{2} + 2T\left( \frac{n}{4} \right) \right) = ... = O(n \log n)$
 - $n + \log n \implies O(n)$
 
-```C++
+```java
 void mergeSort(int* array, int array_size)
 {
     if (array_size <= 1) return;
@@ -158,7 +158,7 @@ void mergeSort(int* array, int array_size)
 ![image](/assets/img/posts/Pasted image 20240910104624.png)
 i는 앞에서부터 p보다 큰 값을 탐색하고, j는 뒤에서부터 p보다 작은 값을 탐색한다. 하나씩 값을 찾았다면 $a[i]$와 $a[j]$의 값을 Swap한다. $j\leq i$가 될 때까지 반복한다.
 
-```C++
+```c#
 void qsort(int a[], int n) {
     int pivot = a[0];
     int i = 1;
