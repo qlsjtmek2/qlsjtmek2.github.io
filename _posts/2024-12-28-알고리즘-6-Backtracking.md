@@ -2,7 +2,7 @@
 title: "알고리즘 6. Backtracking"
 date: "2024-12-28"
 categories: ["IT", "알고리즘"]
-tags: ["Backtracking", "DP", "State Space", "N-Queen", "Traveling Salesman Problem", "A Star Algorithm", "Heuristic", "Subset Sum Problem"]
+tags: ["Backtracking", "동적 프로그래밍", "N-Queen", "상태 공간", "15 퍼즐", "Traveling Salesman Problem", "A Star Algorithm", "Subset Sum Problem"]
 math: true
 toc: true
 comments: true
@@ -85,8 +85,11 @@ comments: true
 > 
 > 1. Search Tree를 Depth 우선 탐색할 때 가능한 작전이다. 현재까지 탐색한 완성 경로의 최소 가중치를 알고있다고 하고, 그 값을 $W$라고 하자. 또, 현재까지 탐색하면서 거쳐온 경로 가중치의 합을 $C$라고 하자. $C\geq W$일 때 더이상 탐색하는 것은 의미가 없다.
 > 2. Edge Weight가 모두 양의 정수로 주어졌을 때 가능한 작전이다. 앞으로 방문해야 할 노드의 개수를 $N$이라고 할 때 $C+N\geq W$인 경우 더이상 탐색은 의미가 없다. 1번보다 더 빨리 끊을 수 있게 되었다.
-> 3. Edge를 전체적으로 한번 정렬하여 그 값을 $[e_{1}, e_{2}, \dots, e_{m}]$이라고 하자. $\displaystyle C+\sum^{2N}_{j=i+1}e_{j} \geq W$ 인 경우 더이상 탐색은 의미가 없다. $\displaystyle \sum^{2N}_{j=i+1}e_{j}$ 의 의미는 무엇인가? 앞으로 노드를 N번 방문해야 하고, 따라서 엣지는 반드시 2N번을 지나야 한다. 그 2N개의 Edge Weight를 더했을 때 나올 수 있는 최솟값을 뜻한다. 이 방법을 사용하여 2번보다 더 빨리 끊을 수 있게 되었다.
-> 4. 3번에서는 전체 그래프에서 정렬된 Edge Set을 사용했지만, 실질적으로 거쳐가는 Edge는 정해져있다. 앞으로 거쳐가야 할 노드를 $[v_{1}, v_{2}, \dots, v_{N}]$라고 하고, 현재 노드를 $X$라고 하자. $X$ 노드에서 출발하여 $v_{i}$ 노드를 모두 거치고 $s$ 노드로 들어가야 한다. $v_{i}$ 노드들과 인접해있는 Edge중 최솟값의 Edge를 각각 $x_{i}, y_{i}$라고 하면 $\displaystyle C +\left( \frac{1}{2}\sum_{i=j+1}^{N}(x_{j} + y_{j}) \right) \geq W$인 경우 더이상 탐색은 의미가 없다. $x_{i}+y_{i}$를 다 더한것에 2로 나눈 이유는, $v_{i-1}$ 노드에서 나오는 엣지와 $v_{i}$에서 들어가는 엣지가 중복으로 세졌기 때문이다. 이 방법을 사용하면 3번보다 더 빨리 Cutoff할 수 있고, 계산의 오버헤드가 3번보다는 크지만 그래프가 거대해질 수록 이 방법이 더 효율적이다.
+> 3. Edge를 전체적으로 한번 정렬하여 그 값을 $[e_{1}, e_{2}, \dots, e_{m}]$이라고 하자.
+> - $\displaystyle C+\sum^{2N}_{j=i+1}e_{j} \geq W$ 인 경우 더이상 탐색은 의미가 없다.
+> - $\displaystyle \sum^{2N}_{j=i+1}e_{j}$ 의 의미는 무엇인가? 앞으로 노드를 N번 방문해야 하고, 따라서 엣지는 반드시 2N번을 지나야 한다. 
+> - 그 2N개의 Edge Weight를 더했을 때 나올 수 있는 최솟값을 뜻한다. 이 방법을 사용하여 2번보다 더 빨리 끊을 수 있게 되었다.
+> 1. 3번에서는 전체 그래프에서 정렬된 Edge Set을 사용했지만, 실질적으로 거쳐가는 Edge는 정해져있다. 앞으로 거쳐가야 할 노드를 $[v_{1}, v_{2}, \dots, v_{N}]$라고 하고, 현재 노드를 $X$라고 하자. $X$ 노드에서 출발하여 $v_{i}$ 노드를 모두 거치고 $s$ 노드로 들어가야 한다. $v_{i}$ 노드들과 인접해있는 Edge중 최솟값의 Edge를 각각 $x_{i}, y_{i}$라고 하면 $\displaystyle C +\left( \frac{1}{2}\sum_{i=j+1}^{N}(x_{j} + y_{j}) \right) \geq W$인 경우 더이상 탐색은 의미가 없다. $x_{i}+y_{i}$를 다 더한것에 2로 나눈 이유는, $v_{i-1}$ 노드에서 나오는 엣지와 $v_{i}$에서 들어가는 엣지가 중복으로 세졌기 때문이다. 이 방법을 사용하면 3번보다 더 빨리 Cutoff할 수 있고, 계산의 오버헤드가 3번보다는 크지만 그래프가 거대해질 수록 이 방법이 더 효율적이다.
 
 > [!example]- A Star Algorithm{title}
 > State Space Tree를 깊이 우선, 너비 우선으로 탐색하지 않고 한 Level씩 내려가면서 어느 노드의 Child를 '펼칠 지'의 대한 관점으로 접근해도 된다. 그 판단은 Estimation`(, Guess, Heuristic)`하게 하며, 그런 알고리즘을 통틀어서 $A^*$ Algorithm라고 부른다. 요즘은 이 Estimation 과정을 AI에게 맡기는 시도가 많다.
