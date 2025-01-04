@@ -49,6 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!extractedTitle) {
       extractedTitle =
         calloutType.charAt(0).toUpperCase() + calloutType.slice(1);
+    } else {
+      // ]와 {title} 사이의 텍스트를 제목으로 추출
+      const titleMatch = extractedTitle.match(/\](.*?)\{title\}/);
+      if (titleMatch) {
+        extractedTitle = titleMatch[1].trim();
+      }
     }
 
     // (C) titleText에 최종 타이틀 넣기
@@ -59,10 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
     titleEl.appendChild(titleText);
     titleEl.appendChild(foldIndicator);
 
-    // 접기 기능 추가
-    titleEl.addEventListener('click', () => {
-      calloutDiv.classList.toggle('is-folded');
-    });
+    // 접기 기능 추가 - 만약 prompt-{type}- 형식이면 기본적으로 접혀있도록 설정
+    const isFolded = promptClass.endsWith('-');
+    if (isFolded) {
+      calloutDiv.classList.add('is-folded');
+    }
 
     // ----------------------------
     // 3) content 영역 만들기
