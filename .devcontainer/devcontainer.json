@@ -3,6 +3,11 @@
   "image": "mcr.microsoft.com/devcontainers/jekyll:2-bullseye",
   "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
   "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "mounts": [
+    // 로컬 절대경로 → 컨테이너 내부경로
+    "type=bind,source=C:/Users/s_qlsjtmek2/Desktop/Documents/SubBrain/Utilities/_posts,target=/_posts",
+    "type=bind,source=C:/Users/s_qlsjtmek2/Desktop/Documents/SubBrain/Utilities/Reference Files,target=/assets/img/posts"
+  ],
   "customizations": {
     "vscode": {
       "settings": {
