@@ -22,7 +22,7 @@ comments: true
 
 전체를 한번 탐색하여 가장 작은 값을 맨앞으로 보낸다. 다음 칸에서 시작하여 다시 한번 탐색하고, 가장 작은 값을 두번째로 보낸다. 이를 반복한다. $O(n^2)$ 시간이 걸린다. 반복문으로 구현하면 다음과 같다.
 
-```
+```c++
 void selectionSort(int *array, int array_size)
 {
     if (array_size <= 1) return;
@@ -51,7 +51,7 @@ void selectionSort(int *array, int array_size)
 재귀로 구현하면 다음과 같다. 
 시간 복잡도는 $T(n)=n+T(n-1) = n+n-1+T(n-2) = \dots = O(n^2)$와 같이 계산할 수 있다.
 
-```yaml
+```c++
 void selectionSort_recursion(int *array, int array_size)
 {
     if (array_size <= 1) return;
@@ -86,7 +86,7 @@ void selectionSort_recursion(int *array, int array_size)
 - $\displaystyle T(n) = n + 2T\left( \frac{n}{2} \right) = n + 2\left( \frac{n}{2} + 2T\left( \frac{n}{4} \right) \right) = ... = O(n \log n)$
 - $n + \log n \implies O(n)$
 
-```java
+```c++
 void mergeSort(int* array, int array_size)
 {
     if (array_size <= 1) return;
@@ -158,7 +158,7 @@ void mergeSort(int* array, int array_size)
 ![image](/assets/img/posts/Pasted image 20240910104624.png)
 i는 앞에서부터 p보다 큰 값을 탐색하고, j는 뒤에서부터 p보다 작은 값을 탐색한다. 하나씩 값을 찾았다면 $a[i]$와 $a[j]$의 값을 Swap한다. $j\leq i$가 될 때까지 반복한다.
 
-```c#
+```c++
 void qsort(int a[], int n) {
     int pivot = a[0];
     int i = 1;
@@ -240,7 +240,7 @@ void qsort(int a[], int n) {
 
 정렬된 배열에서 중앙값부터 시작하여 절반씩 탐색 범위를 줄여가는 Search 알고리즘. 시간은 $O(\log n)$만에 Search 가능하다. 반복문으로 구현한 것은 다음과 같다. 
 
-```C++
+```c++
 int binarySearch(int *sorting_array, int target)
 {
     int left, middle = 0;
@@ -281,7 +281,7 @@ int binarySearch(int *sorting_array, int target)
 
 재귀로 구현한 버전은 다음과 같다. 공간 복잡도가 함수 호출 스택때문에 $O(\log n)$이다.
 
-```C++
+```c++
 int binarySearch_recursion(int *sorting_array, int array_size, int target)
 {
     if (array_size == 0) return -1;
