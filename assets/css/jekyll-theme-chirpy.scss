@@ -357,16 +357,6 @@
       opacity: 0.8;
     }
   }
-
-  img {
-    transition: none;
-    filter: none;
-
-    &:hover {
-      transform: none;
-      filter: none;
-    }
-  }
 }
 
 // 각주 스타일
@@ -375,4 +365,8 @@
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+}
+
+.shimmer::before {
+  background:none
 }
