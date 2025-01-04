@@ -2,7 +2,7 @@
 title: "알고리즘 2. Greedy Algorithm"
 date: "2024-12-28"
 categories: ["IT", "알고리즘"]
-tags: ["Greedy", "알고리즘", "최소 스패닝 트리", "Prim 알고리즘", "Kruskal 알고리즘", "다익스트라 알고리즘", "작업 스케줄링", "기댓값"]
+tags: ["Greedy", "알고리즘", "Prim", "Kruskal", "Dijkstra", "최소 신장 트리", "스케줄링", "기댓값"]
 math: true
 toc: true
 comments: true
@@ -40,27 +40,27 @@ $n$을 노드 개수, $m$을 노드 개수라고 하면 시간 복잡도는 $O(n
 > [!tip]- 정확성 증명{title}
 > 목표는, 복잡한 그래프에서 올바른 [Minimum Spanning Tree](https://qlsjtmek2.github.io/Minimum-Spanning-Tree)를 추출하는 것이다. 정답이라고 이미 밝혀진 [Minimum Spanning Tree](https://qlsjtmek2.github.io/Minimum-Spanning-Tree)를 $T_{mst}$라고 가정하자. Prim Algorithm을 이용해서 내가 만들고있는 [Minimum Spanning Tree](https://qlsjtmek2.github.io/Minimum-Spanning-Tree)를 $T$라고 가정하자. $T$와 $T_{mst}$는 Edge Set이다.
 > 
-> ![image](/assets/img/posts/Pasted image 20240914174618.png){: width="400"}
+> ![Pasted image 20240914174618.png](/assets/img/posts/Pasted image 20240914174618.png){: width="400"}
 > 
 > $V_{0}$ 노드에서 시작하자. 아무 노드에서 시작해도 된다.
 > 
-> ![image](/assets/img/posts/Pasted image 20240914175349.png){: width="400"}
+> ![Pasted image 20240914175349.png](/assets/img/posts/Pasted image 20240914175349.png){: width="400"}
 > 
 > 처음엔 두 엣지 $E_{1}, E_{2}$중 하나를 고를 수 있다. $E_{1}$가 가장 Weight가 작고, 싸이클을 만들지 않으므로 $T$에 $E_{1}$을 추가한다. $T = \{E_{1}\}$
 > 
-> ![image](/assets/img/posts/Pasted image 20240914175403.png){: width="400"}
+> ![Pasted image 20240914175403.png](/assets/img/posts/Pasted image 20240914175403.png){: width="400"}
 > 
 > $E_{2}, E_{3}, E_{4}$중 하나를 골라야 한다. $E_{3}$이 가장 작고, 싸이클을 만들지 않으므로 $E_{3}$ 엣지를 $T$에 추가한다. $T = \{E_{1}, E_{3}\}$
 > 
-> ![image](/assets/img/posts/Pasted image 20240914175506.png){: width="400"}
+> ![Pasted image 20240914175506.png](/assets/img/posts/Pasted image 20240914175506.png){: width="400"}
 > 
 > $E_{2}, E_{4}$ 중 $E_{2}$ 엣지가 가장 Weigt가 작고, 싸이클을 만들지 않으므로 $E_{2}$ 엣지를 $T$에 추가한다. $T = \{ E_{1},  E_{3}, E_{2} \}$
 > 
-> ![image](/assets/img/posts/Pasted image 20240914175649.png){: width="400"}
+> ![Pasted image 20240914175649.png](/assets/img/posts/Pasted image 20240914175649.png){: width="400"}
 > 
 > $E_{4}, E_{5}$ 중 $E_{5}$ 엣지가 웨이트가 가장 작고, $T$ 기준으로 싸이클을 만들지 않으므로 $E_{5}$ 엣지를 $T$에 추가한다. $T = \{ E_{1},  E_{3}, E_{2}, E_{5} \}$ 여기서 문제가 발생한다. $T_{mst}$ 기준으로 $E_{5}$를 추가하게 되면 싸이클이 발생한다.
 > 
-> ![image](/assets/img/posts/Pasted image 20240914180235.png){: width="400"}
+> ![Pasted image 20240914180235.png](/assets/img/posts/Pasted image 20240914180235.png){: width="400"}
 > 
 > $T_{mst}$에서 정점 U에서 정점 V로 가는 경로는, 트리의 성질에 의해 P 하나 뿐이다. $T$의 다음 선택 고려 대상이자, 아직 포함되지는 않고 P 경로에 포함된 엣지 $E'$는 반드시 하나 존재한다. 우리는 Prim Algorithm을 잘 지키면서 왔으므로 문제의 엣지 $E$와 $E'$의 Weight는 $E$가 작거나 같다. $w(E) \leq w(E')$ 따라서, 기존에 알고있던 답 $T_{mst}$에서 $E'$를 빼버리고, $E$를 추가한 새로운 Tree를 $T_{new}$라고 하자. $T_{new} = T_{mst} - \{ E' \} + \{ E \}$  Tree Edges의 총 Weight의 합은 $T_{new}$가 $T_{mst}$보다 반드시 작거나 같다. $w(T_{new}) \leq w(T_{mst})$ 따라서 $T_{new}$는 새로운 MST가 된다.
 > 
@@ -182,7 +182,7 @@ Source Node밖에 없으므로 Source Node로부터 인접한 노드가 모두 B
 		Blue Set에 (Path Weight + Direct Edge Weight, Adject Node)를 추가한다.
 
 > [!question]- (1) 왜 그냥 정답으로 봐도 될까?{title}
-> ![image](/assets/img/posts/Pasted image 20240924103322.png){: width="350"}
+> ![Pasted image 20240924103322.png](/assets/img/posts/Pasted image 20240924103322.png){: width="350"}
 > 
 > 그것보다 더 최단거리로 가는 길이 있다고 가정해보자.
 > 
@@ -192,21 +192,29 @@ Source Node밖에 없으므로 Source Node로부터 인접한 노드가 모두 B
 > 따라서 귀류법에 의해 모순이고, Blue Sets의 Weight중 가장 작은게 최단거리가 된다.
 
 > [!question]- (2) 왜 Direct Edge만 체크할까?{title}
-> ![image](/assets/img/posts/Pasted image 20240924161141.png){: width="350"}
+> ![Pasted image 20240924161141.png](/assets/img/posts/Pasted image 20240924161141.png){: width="350"}
 > 
 > 노란색 같은 케이스는 없을까?
 > 
 > 만약 노란색 케이스가 있어서, Direct Edge에서 더하는 것보다 더 작은 Shorest Path를 만든다고 가정해보자.
 > 
-> ![image](/assets/img/posts/Pasted image 20240924161823.png){: width="350"}
+> ![Pasted image 20240924161823.png](/assets/img/posts/Pasted image 20240924161823.png){: width="350"}
 > 
 > 노란색 결과로 만들어지는 Path Weight를 $p_{1}$, 파란색 업데이트 결과로 만들어지는 Path Weight를 $p_{2}$라고 하자.
-> $$w(n_{2}) + w(e_{1}) = p_{2}$$
+> 
+> $$
+> w(n_{2}) + w(e_{1}) = p_{2}
+> $$
+> 
 > 
 > 만약 노란색 Edge와 같이 거쳐서 노드에 도달한다면, $n_{1}$ to 목적지 노드로 가는 $e_{2}$와 같은 Edge가 반드시 하나 존재한다.
 > 
 > 최소한
-> $$w(n_{1}) + w(e_{2}) < p_{2}$$
+> 
+> $$
+> w(n_{1}) + w(e_{2}) < p_{2}
+> $$
+> 
 > 는 반드시 만족되어야 노란색 Path가 존재할 가능성이 있다.
 > 
 > 하지만 저 조건이 만족이 되면, blue 노드로 가는 Path Weight가 정의에 의해 기존보다 더 작은 값이 되었어야 한다.
@@ -244,16 +252,13 @@ $n$을 node 수, $m$을 edge 수라고 하자. 만약 우선 순위 큐의 descr
 > 			BlueSet에 push한다. (ShortestDistance + Edge Weight, Node)
 > ```
 > 
-> > [!tip] Find One Path{title}
-> > ...(1) 과정에서 Adject Node에게 나를 업데이트 해준 Node를 기억하게 해주면 된다.
-> > 
-> > 그렇게 하면, Node에서 나를 업데이트 해준 Node를 따라가다보면 Source Node가 나오고, 그 자취가 바로 Shortest Path.
+> 1. Find One Path
+> - ...(1) 과정에서 Adject Node에게 나를 업데이트 해준 Node를 기억하게 해주면 된다. 
+> - 그렇게 하면, Node에서 나를 업데이트 해준 Node를 따라가다보면 Source Node가 나오고, 그 자취가 바로 Shortest Path.
 > 
-> > [!tip] Find All Path{title}
-> > ...(1) 과정에서 horestDistance + Edge Weight = MaybeShorestDistance인 경우, 나에게 오는 Shortest Path가 여러개라는 뜻이다.
-> > 
-> > 따라서, 둘다 기억한다.
-> > 만약 더 짧은 길이 생기면, 이전에 기억해둔 것을 초기화하고 새로운 노드를 기억하면 된다.
+> 2. Find All Path
+> - ...(1) 과정에서 horestDistance + Edge Weight = MaybeShorestDistance인 경우, 나에게 오는 Shortest Path가 여러개라는 뜻이다.
+> - 따라서, 둘다 기억한다. 만약 더 짧은 길이 생기면, 이전에 기억해둔 것을 초기화하고 새로운 노드를 기억하면 된다.
 > 
 > C++로 구현한 코드는 다음과 같다.
 > 
@@ -309,7 +314,7 @@ n개의 Job 존재한다. $J_{i} = \{ (D_{i}, P_{i}) | 1 \leq i \leq n \}$ Job�
 
 만약 $J_{i}$ 를 A에 넣으려 헀더니, S와 A가 달라지면? 일단 알고있는 것은, $J_{1}, \dots, J_{i-1}$까지는 A와 S가 동일하고, $J_{i}$는 반드시 $D_{i}$ 전에 추가되어야 한다는 점이다. 
 
-![image](/assets/img/posts/Pasted image 20241003154522.png){: width="400"}
+![Pasted image 20241003154522.png](/assets/img/posts/Pasted image 20241003154522.png){: width="400"}
 
 **Case 1.** A에서 $J_{i}$를 버렸는데, $S$는 갖고있는 경우.
 $J_{i}$를 버렸다는 것은 무슨 의미인가? $J_{1}, J_{2}, \dots, J_{i-2}, J_{i-1}$ 얘네들이 $D_{i}$ 이전의 모든 Schedule 공간을 차지하고 있어 넣을 공간이 없는 경우이다. 하지만 $J_{1}, J_{2}, \dots, J_{i-2}, J_{i-1}$까지는 A와 S가 동일하기 때문에, 만약 A에서 $J_{i}$를 버렸다면 S도 $D_{i}$ 전까지 스케쥴 공간이 꽉 차있어 $J_{i}$를 넣을 자리가 존재하지 않을 것이다. 따라서 **모순**.
@@ -322,19 +327,19 @@ $J_{i}$를 버렸다는 것은 무슨 의미인가? $J_{1}, J_{2}, \dots, J_{i-2
 
 **Case 3-1.** 똑같은 자리에 $J_{i}$를 넣은 경우
 
-![image](/assets/img/posts/Pasted image 20241003154901.png){: width="400"}
+![Pasted image 20241003154901.png](/assets/img/posts/Pasted image 20241003154901.png){: width="400"}
 
 이 경우는 문제가 되지 않는다. 따라서 **OK**.
 
 **Case 3-2.** S에 들어간 $J_{i}$보다 A에 들어간 $J_{i}$가 앞에 있는 경우
 
-![image](/assets/img/posts/Pasted image 20241003160849.png){: width="400"}
+![Pasted image 20241003160849.png](/assets/img/posts/Pasted image 20241003160849.png){: width="400"}
 
 위 그림과 같은 상황은 불가능하다.  왜? S에서 $J_{i}, J_{i+1}, \dots$를 다 덜어내면, A와 같아진다. 그러면 S에 있는 $J_{i}$ 자리가 빈 공간이 될 것이며, A와 S는 동일한 집합이므로 A 또한 저 자리가 빈 공간일 것이다. 따라서 알고리즘은 애초에 A의 $J_{i}$ 자리가 아닌 그보다 더 뒤에 추가했을 것이다. 따라서 **모순**.
 
 **Case 3-3.** S에 들어간 $J_{i}$보다 A에 들어간 $J_{i}$가 뒤에 있는 경우
 
-![image](/assets/img/posts/Pasted image 20241003160043.png){: width="400"}
+![Pasted image 20241003160043.png](/assets/img/posts/Pasted image 20241003160043.png){: width="400"}
 
 똑같이 A의 $J_{i}$ 자리에 대응되는 S 자리에 있는 Job을 $J_{x}$라고 하자. $J_{x}$ 자리에 Job은 비어있을 수 없다. 만약 비어있다면, S에 $J_{i}$를 넣어 더 좋은 답을 만들 수 있기 때문이다. $J_{x}$는 $J_{i}$ 자리에 들어가도 괜찮다. 왜? 스케줄의 뒤로 가는건 데드라인 밖으로 넘어갈 수 있기 때문에 문제가 될 수 있다. 하지만 스케쥴의 앞으로 가는건, 어차피 데드라인 안에서 처리될 작업이기 때문에 문제가 안된다.
 
@@ -353,7 +358,7 @@ Start Time과 End Time을 갖는 Job들을 Time Schedule 내에 가장 효율적
 
 목표는, 제한된 Time Schedule 내에 가장 많은 Job을 Schedule하는 것이다. End Time이 짧은 순서대로 Sorting 해보자. 추가할 수 있다면 추가하고, 추가 할 수 없으면 추가하지 않는다. 이걸 계속 반복한다.
 
-![image](/assets/img/posts/Pasted image 20241003162841.png){: width="350"}
+![Pasted image 20241003162841.png](/assets/img/posts/Pasted image 20241003162841.png){: width="350"}
 
 - $J_{i}$의 $S_{i}$가 $J_{i-1}$의 $E_{i-1}$보다 작으면 추가할 수 없다.
 - 같거나 크면, 추가할 수 있다. 
@@ -363,11 +368,11 @@ Start Time과 End Time을 갖는 Job들을 Time Schedule 내에 가장 효율적
 
 일단 A의 $J_{i}$와 충돌하는 S의 Job을 $J_{x}$라고 하자. $J_{x}$의 End Time $E_{x}$는 $J_{i}$보다 크거나 같다. 그 이유는, 알고리즘 자체가 End Time이 작은 순서대로 Task를 추가하고 있었기 때문이다. 만약 $E_{x}$가 더 작았다면, 애초에 그걸 추가했을 것이다.
 
-![image](/assets/img/posts/Pasted image 20241003163745.png){: width="550"}
+![Pasted image 20241003163745.png](/assets/img/posts/Pasted image 20241003163745.png){: width="550"}
 
 두 케이스 모두 S에 있는 $J_{x}$ 대신 $J_{i}$를 넣어도 괜찮다.
 
-![image](/assets/img/posts/Pasted image 20241003163837.png){: width="550"}
+![Pasted image 20241003163837.png](/assets/img/posts/Pasted image 20241003163837.png){: width="550"}
 
 따라서 두 케이스 모두 새로운 정답 $S_{new}$가 될 수 있다. 위 과정은 모든 과정에 똑같이 적용된다. $J_{i}$를 추가하는데, A와 S가 같다면 문제가 없고, 달라진다면 Swap 과정을 통해 새로운 정답 $S_{new}$를 만들 수 있다.  Greedy Algorithm이 끝나면, A는 $S$ 또는 $S_{new}$와 같아진다. 따라서 우리가 만든 Greedy Algorithm이 하나의 정답을 찾아낼 수 있음을 증명한다.
 
