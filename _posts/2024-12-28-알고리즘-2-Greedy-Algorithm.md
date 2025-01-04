@@ -2,7 +2,7 @@
 title: "알고리즘 2. Greedy Algorithm"
 date: "2024-12-28"
 categories: ["IT", "알고리즘"]
-tags: ["Greedy", "알고리즘", "최소 신장 트리", "Prim 알고리즘", "Kruskal 알고리즘", "다익스트라 알고리즘", "작업 스케줄링", "기댓값"]
+tags: ["Greedy", "알고리즘", "최소 스패닝 트리", "Prim 알고리즘", "Kruskal 알고리즘", "다익스트라 알고리즘", "작업 스케줄링", "기댓값"]
 math: true
 toc: true
 comments: true
@@ -346,7 +346,7 @@ $J_{i}$를 버렸다는 것은 무슨 의미인가? $J_{1}, J_{2}, \dots, J_{i-2
 
 ## Job Scheduling
 
-Start Time과 End Time을 갖는 Job들을 Time Schedule 내에 가장 효율적으로 배치하는 방법. $n$개의 Job 존재한다. $J_{i} =(S_{i}, E_{i})$,  Job은 Start Time과 End Time의 Tuple이다. 문제의 조건은 다음과 같다.
+Start Time과 End Time을 갖는 Job들을 Time Schedule 내에 가장 효율적으로 배치하는 방법. $n$개의 Job 존재한다. $J_{i} = \{(S_{i}, E_{i}) \mid 1 \leq i \leq n \}$ Job은 Start Time과 End Time의 Tuple이다. 문제의 조건은 다음과 같다.
 
 1. 모든 Job의 Profit는 동일하다.
 2. 한번에 하나씩 Job를 처리 할 수 있다.
