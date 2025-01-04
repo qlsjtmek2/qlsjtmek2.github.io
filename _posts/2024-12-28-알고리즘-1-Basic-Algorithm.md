@@ -2,7 +2,7 @@
 title: "알고리즘 1. Basic Algorithm"
 date: "2024-12-28"
 categories: ["IT", "알고리즘"]
-tags: ["정렬 알고리즘", "비교 정렬", "선택 정렬", "병합 정렬", "퀵 정렬", "카운팅 정렬", "기준 선택", "이진 탐색"]
+tags: ["정렬 알고리즘", "비교 정렬", "선택 정렬", "병합 정렬", "퀵 정렬", "카운팅 정렬", "기수 정렬", "이진 탐색"]
 math: true
 toc: true
 comments: true
@@ -22,7 +22,7 @@ comments: true
 
 전체를 한번 탐색하여 가장 작은 값을 맨앞으로 보낸다. 다음 칸에서 시작하여 다시 한번 탐색하고, 가장 작은 값을 두번째로 보낸다. 이를 반복한다. $O(n^2)$ 시간이 걸린다. 반복문으로 구현하면 다음과 같다.
 
-```c++
+```
 void selectionSort(int *array, int array_size)
 {
     if (array_size <= 1) return;
@@ -51,7 +51,7 @@ void selectionSort(int *array, int array_size)
 재귀로 구현하면 다음과 같다. 
 시간 복잡도는 $T(n)=n+T(n-1) = n+n-1+T(n-2) = \dots = O(n^2)$와 같이 계산할 수 있다.
 
-```c
+```yaml
 void selectionSort_recursion(int *array, int array_size)
 {
     if (array_size <= 1) return;
