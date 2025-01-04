@@ -157,6 +157,12 @@ baseurl: ""
 kramdown:
   footnote_backlink: "&#8617;&#xfe0e;"
   parse_block_html: true
+  math_engine: mathjax
+  math_engine_opts:
+    # 인라인 수식 구분자
+    inlinemath_delims: ["$", "$"]
+    # 디스플레이 수식 구분자
+    displaymath_delims: ["$$", "$$"]
   syntax_highlighter: rouge
   syntax_highlighter_opts: # Rouge Options › https://github.com/jneen/rouge#full-options
     css_class: highlight
@@ -183,6 +189,7 @@ defaults:
       # DO NOT modify the following parameter unless you are confident enough
       # to update the code of all other post links in this project.
       permalink: /posts/:title/
+      use_math: true
   - scope:
       path: _drafts
     values:
