@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 2. Advanced Shader"
 date: "2024-11-02"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["OpenGL", "GLSL", "Vertex Shader", "Fragment Shader", "Geometry Shader", "Tessellation Shader", "GPU", "Rendering"]
+tags: ["OpenGL", "GLSL", "GPU", "렌더링", "Vertex Shader", "Fragment Shader", "Tessellation", "Geometry Shader"]
 math: true
 toc: true
 comments: true
@@ -73,14 +73,14 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > 
 > count (그릴 Vertex의 개수)
 > 
-> > [!example] VAO의 처음 3개 Vertex를 사용하여 삼각형 그리기{title}
-> > ```c
+> > VAO의 처음 3개 Vertex를 사용하여 삼각형 그리기
+> > ```C
 > > glBindVertexArray(VAO);
 > > glDrawArrays(GL_TRIANGLES, 0, 3);
 >> ```
 > 
-> > [!example] VAO를 사용해 삼각형 Mesh 그리기{title}
-> > ```c
+> > VAO를 사용해 삼각형 Mesh 그리기
+> > ```C
 > > struct object
 > > {
 > > 	GLfloat vertices[];
@@ -138,7 +138,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > [!tip]- VBO 생성 함수 : glGenBuffers(n, &vbo);{title}
 > n개의 Vertex Buffer Object를 생성한다.
 > 
-> ```c
+> ```C
 > GLuint vbo;
 > glGenBuffers(1, &vbo); // 1개의 VBO 생성\
 > 
@@ -168,7 +168,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > - 위치 속성의 경우 `((void*) 0)`
 > - Color 속성의 경우  `(void*)(3 * sizeof(float))`
 >    
-> > [!example] > > ```c{title}
+> > > > ```C
 > > GLint positionAttribute = glGetAttribLocation(shaderProgram, "position"); 
 > > 
 > > if (positionAttribute == -1) 
@@ -194,7 +194,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 >  - GL_STREAM_DRAW : 임시 데이터를 빠르게 사용하고 버릴 때 사용한다.
 
 > [!tip]- VAO 생성, 바인딩, 바인딩 해제{title}
-> ```c
+> ```C
 > GLuint VAO;
 > glGenVertexArrays(1, &VAO);
 > glBindVertexArray(VAO);
@@ -202,7 +202,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > ```
 > 
 > 여러개의 VAO 생성: 
-> ```c
+> ```C
 > GLuint VAO[2];
 > glGenVertexArrays(2, &VAO);
 > 
@@ -244,7 +244,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > 
 > 그런 객체를 렌더링할 땐 속성을 비활성화 하고 렌더링하면 불필요한 연산을 줄일 수 있다.
 > 
-> ```c
+> ```C
 > glDrawArrays(VAO1);
 > glDrawArrays(VAO2);
 > 
@@ -253,7 +253,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > ```
 > 
 > 실제로는 VAO 안에 어떤 속성을 활성화할건지 정보까지 다 매크로로 저장해서 사용하게 되므로, 딱히 신경쓰지 않고 아래와 같이 사용하면 된다.
-> ```c
+> ```C
 > glBindVertexArray(VAO);
 > glDrawArrays(GL_TRIANGLES, 0, 3);
 > 
@@ -311,7 +311,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > 5. 텍스쳐를 바인딩 후 사각형을 그려서 Screen VAO에 Texture를 입힌다.
 
 > [!example]- 예제{title}
-> ```c
+> ```C
 > // FBO 생성 및 텍스처 설정 (1회 설정)
 > GLuint fbo, textureColorbuffer;
 > setupFBO(&fbo, &textureColorbuffer);  // FBO와 텍스처 설정 함수 (위 코드처럼)
@@ -357,7 +357,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > 6. FBO 바인딩 해제.
 
 > [!example]- FBO 생성 예제{title}
-> ```c
+> ```C
 >  // 1. FBO 생성 및 바인딩
 > GLuint fbo;
 > glGenFramebuffers(1, &fbo);
@@ -407,7 +407,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > 위 과정은 드로우 과정때마다 실행해야 한다..
 > 
 > 이후 VAO를 바인딩하고 그리기 전에 텍스쳐까지 바인딩해주면 됨.
-> ```c
+> ```C
 > glActiveTexture(GL_TEXTURE0);
 > glBindTexture(GL_TEXTURE_2D, texture);
 > 
@@ -423,7 +423,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > [!question]- 텍스쳐 유닛이 무엇인가?{title}
 > 텍스쳐 유니폼 변수와 순서대로 연결함.
 > 
-> ```c
+> ```C
 > glActiveTexture(GL_TEXTURE0); // 텍스쳐 유닛 1 활성화
 > glBindTexture(GL_TEXTURE_2D, textureID1); // 텍스처1을 텍스처 유닛 0에 바인딩
 > 
@@ -432,7 +432,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > ```
 > 
 > 이후 텍스쳐 유닛과 texture uniform 변수와 연결하면 된다.
-> ```c
+> ```C
 > // 텍스처 유닛 0을 'texture1' 유니폼에 설정
 > glUniform1i(glGetUniformLocation(shaderProgram, "texture1"), 0);  // 텍스처 유닛 0
 > // 텍스처 유닛 1을 'texture2' 유니폼에 설정
@@ -440,7 +440,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > ```
 > 
 > 쉐이더 코드 예시
-> ```c
+> ```C
 > uniform sampler2D texture1; // 텍스처 유닛 0과 연결 
 > uniform sampler2D texture2; // 텍스처 유닛 1과 연결
 > ```
@@ -481,7 +481,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > 	- GL_LINEAR : 인접한 텍셀의 색상을 선형 보간한다.
 
 > [!tip]- 텍스쳐 GPU로 전송 : glTexImage2D{title}
-> ```c
+> ```C
 > void glTexImage2D(
  >   GLenum target, // GL_TEXTURE_2D or GL_TEXTURE_CUBE_MAP
  >   GLint level,       // 상세도 수준(MipMap level) 지정. 보통 0.
@@ -495,10 +495,10 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > );
 > ```
 > 
-> > [!example] > > `glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, OFFSCREEN_WIDTH, OFFSCREEN_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, null);`{title}
+> > > > `glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, OFFSCREEN_WIDTH, OFFSCREEN_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, null);`
 
 > [!example]- Vertex Shader에 Position 정보만 전달하기{title}
-> ```c
+> ```C
 > GLfloat vertices[] = {
 >    0.5f,  0.5f, 0.0f,  // 첫 번째 점
 >   -0.5f, -0.5f, 0.0f,  // 두 번째 점
@@ -511,7 +511,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > ```
 
 > [!example]- Vertex Shader에 Position, Color, Normal Vector 정보 다 전달하기{title}
-> ```c
+> ```C
 > // Vertex 데이터: 위치(x, y, z), 색상(r, g, b), 법선(nx, ny, nz)
 > GLfloat vertices[] = {
 >     // Position       // Color         // Normal
@@ -533,7 +533,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > ```
 > 
 > Vertex Shader
-> ```c
+> ```C
 > #version 330 core
 > 
 > layout(location = 0) in vec3 aPosition;  // 0번 속성: 위치
@@ -554,7 +554,7 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계를 가진다. 대신, (포인터, 재귀 함수, 동적 메모리 관리, 객체지향) 기능들을 사용할 수 없는 것이 차이점이다.
 
 > [!note]- 전처리 문법{title}
-> ```c
+> ```C
 > #define MAX_LIGHTS 10
 > #define SQUARE(x) (x * x)
 > 
@@ -583,7 +583,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > 2) 내 쉐이더에 input 받아야 하는 값을 in 변수로 선언한다.
 > 3) 그 다음 쉐이더에 output할 값을 out 변수로 선언한다.
 > 
-> > [!tip] 변수의 이름을 ID로 사용한다.{title}
+> > 변수의 이름을 ID로 사용한다.
 > > 변수의 이름이 같으면, 똑같은 변수라고 본다.
 > > 
 > > 예를들어, 이전 쉐이더의 out 변수 이름과, 현재 쉐이더의 in 변수 이름이 같으면 쉐이더 끼리 데이터를 주고 받을 수 있다.
@@ -606,7 +606,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > 
 > 구조체 정의를 따로 파일로 빼내고
 > 
-> ```c
+> ```C
 > #include "common.glsl"
 > ```
 > 
@@ -615,7 +615,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > [!note]- Vector{title}
 > 
 > 1. Type
-> ```c
+> ```C
 > vec2, vec3, vec4     // 성분 타입이 float
 > dvec2, dvec3, dvec4  // 성분 타입이 double
 > bvec2, bvec3, bvec4  // 성분 타입이 bool
@@ -624,14 +624,14 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > ```
 > 
 > 2. 생성자
-> ```c
+> ```C
 > vec3 xyz = vec3(1.0, 2.0, 3.0);
 > vec3 xyz = vec3(1.0); // [1.0, 1.0, 1.0]
 > vec3 xyz = vec3(vec2(1.0), 2.0); // [1.0, 1.0, 2.0]
 > ```
 > 
 > 3. 성분 참조
-> ```c
+> ```C
 > vec4 v = vec3(1.0, 2.0, 3.0, 4.0);
 > 
 > float x = v.x; // = v.r = v.s
@@ -650,7 +650,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > stpq는 Vector가 Texture Coordinate를 담고있을 때 사용하면 좋다.
 > 
 > 4. 벡터 연산
-> ```c
+> ```C
 > vec3 v1 = vec3(1.0, 2.0, 3.0);
 > vec3 v2 = vec3(2.0, 4.0, 6.0);
 > 
@@ -662,7 +662,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > vec3 normal = normalize(v1); // OK!
 > ```
 > 
-> > [!warrning] 주의!{title}
+> > 주의!
 > > 두 벡터를 곱하는 연산은, 점곱과 크로스곱이 아니다.
 > > 두 벡터의 각 성분을 곱하는 연산이다.
 > > $$v.x = v_{0}.x * v_{1}.x$$
@@ -670,7 +670,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > > $$v.z = v_{0}.z * v_{1}.z$$
 > 
 > 5. 관련 함수
-> ```c
+> ```C
 > vec3 p = vec3(1.0, 2.0, 3.0);
 > vec3 q = vec3(2.0, 2.0, 6.0);
 > 
@@ -686,7 +686,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > ```
 > 
 > 추가: 빛 계산(Fragment Shader)에 사용하는 함수
-> ```c
+> ```C
 > vec3 N = normalize(surfaceNormal); 
 > vec3 I = normalize(eyeDirection); // 카메라(또는 광원)로부터의 방향 
 > vec3 Nref = normalize(referenceNormal); // 참조 벡터, 일반적으로 입사광과 반사광의 계산에서 사용됨
@@ -699,7 +699,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > [!NOTE]- Matrix{title}
 > 
 > 1. Type
-> ```c
+> ```C
 > mat2, mat3, mat4     // 성분 타입이 float. mat2 = mat2x2, ...
 > dmat2, dmat3, dmat4  // 성분 타입이 double
 > imat2, imat3, imat4  // 성분 타입이 int (정수)
@@ -717,19 +717,19 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > mat3 C = mat3(v1, v2);
 > ```
 > 
-> > [!tip] Identity Matrix{title}
+> > Identity Matrix
 > > 벡터의 생성자에  vec3 v = vec(1.0); 이렇게 넣으면 아래와 같이 만들어진다.
 > > $$[1, 1, 1]$$
 > > 
 > > 행렬의 생성자에 mat3 A = mat3(1.0); 이런식으로 넣으면 identity matrix가 만들어진다.
 > > $$\begin{bmatrix}1&0&0\\0&1&0\\0&0&1 \end{bmatrix}$$
 > 
-> > [!tip] column 우선으로 stored 된다.{title}
+> > column 우선으로 stored 된다.
 > > 예를들어, mat2 m = mat2(1,0, 2.0, 3.0, 4.0); 이렇게 2x2 Matrix를 생성하면 아래와 같이 행 우선으로 축적된다.
 > > $$\begin{bmatrix}1.0&3.0\\2.0&4.0\\ \end{bmatrix}$$
 > 
 > 3. 성분 참조
-> ```c
+> ```C
 > mat3 A = //...
 > 
 > float f = A[column][row];
@@ -742,7 +742,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > ```
 > 
 > 4. 행렬 연산
-> ```c
+> ```C
 > vec3 v = //...
 > mat3 A = //...
 > mat3 B = //...
@@ -752,7 +752,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > mat3 VM = v * A; // Vector-Matrix Product OK?
 > ```
 > 
-> > [!question] 벡터 행렬곱 뭔데{title}
+> > 벡터 행렬곱 뭔데
 > > 원래는 없는 연산인데, $\text{vector} \times \text{matrix}$ 곱이 가능하다.
 > > 
 > > ![Pasted image 20241006142555.png](/assets/img/posts/Pasted image 20241006142555.png)
@@ -801,19 +801,19 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > ```
 > 
 > - 절댓값, 부호
-> ```c
+> ```C
 > float ax = abs(x);
 > float sx = sign(x);  // -1, 0, 1 부호를 반환함.
 > ```
 > 
 > - min, max, clamp
-> ```c
+> ```C
 > float m0 = min(x, y);
 > float m1 = max(x, y);
 > float c = clamp(x, 0.0, 1.0);
 > ```
 > 
-> > [!question] What is Clamp?{title}
+> > What is Clamp?
 > > 주어진 값을 특정 범위 내로 제한하는 역할을 한다.
 > > 
 > > x, min, max 세 값을 입력받으며,
@@ -976,7 +976,7 @@ void main()
 
 입력은 점, 선, 삼각형(points, lines, triangles) 셋 중 하나를 입력받는다. 각각 따로따로 쉐이더를 만들어 points, lines, triangles마다 다른 로직을 적용시킬 수 있다. 이후 새로운 Primitive를 만들거나, 기존의 Primitive를 수정하여 Primitive Strip(집합)을 반환한다. 아래는 Geometrh Shader의 예제 코드다.
 
-```c
+```C
 #version 330 core
 
 layout (triangles) in; // 입력 프리미티브는 삼각형. points, lines, triangles중 하나 선택.
@@ -1035,7 +1035,7 @@ Tessellation의 의미는 '촘촘하게 나누는 것'이다. **Tessellation Con
 
 ### Tessellation Control Shader
 
-```c
+```C
 #version 400 core
 layout(vertices = 3) out; // Vertex를 3개씩 묶어서 TES로 보낸다.
 
@@ -1088,7 +1088,7 @@ gl_TessLevelInner[1] = ...
 만약 3개 이상의 Vertex를 입력받았는데 isolines를 사용한다면, Lines로 인식한다.
 5개 이상의 Vertex를 입력받았는데 triangles를 사용한다면, 3개의 삼각형으로 인식한다.
 
-```c
+```C
 #version 400 core 
 
 layout(triangles, fractional_even_spacing, ccw) in;
@@ -1108,7 +1108,7 @@ layout(triangles, fractional_even_spacing, ccw) in;
 
 원래 Primitive가 갖는 Vertex 정보와, Primitive 내의 상대 좌표를 사용하여 생성된 Vertex의 최종 위치를 결정하면 된다. 원래 Primitive의 Vertex 정보는 다음과 같이 가져올 수 있다.
 
-```c
+```C
 void main() {
 	// 선이면 2개, 삼각형이면 3개, 4각형이면 4개를 가져오면 됨.
     vec3 p0 = gl_in[0].gl_Position.xyz;
@@ -1130,7 +1130,7 @@ void main() {
 사각형은, gl_TessCoord.z를 사용하지 않아도 된다. gl_TessCoord.x는 가로 축에서 상대적인 위치를,
 gl_TessCoord.y는 세로 축에서 상대적인 위치를 나타낸다.
 `
-```c
+```C
     vec3 position = gl_TessCoord.x * p0 +
                     gl_TessCoord.y * p1 +
                     gl_TessCoord.z * p2;
