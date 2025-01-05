@@ -13,14 +13,14 @@ comments: true
 ## Computer Animation Methods
 
 1. Physic Simulation
-	1. Good 퀄리티
-	2. Many 계산량
+    1. Good 퀄리티
+    2. Many 계산량
 3. Keyframe
-	1. Simple
-	2. 아티스트에 따라 퀄리티 달라짐
+    1. Simple
+    2. 아티스트에 따라 퀄리티 달라짐
 4. Motion Capture
-	1. 키프레임을 기계가 잡아줌
-	2. 모델에 따라 키프레임을 다시 맞춰줘야 함
+    1. 키프레임을 기계가 잡아줌
+    2. 모델에 따라 키프레임을 다시 맞춰줘야 함
 
 ## How to Animation?
 
@@ -33,14 +33,14 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 
 > [!tip]- $p=P(u)$ 함수 종류 (Spline){title}
 > 1. Spline Interpolation
-> 	1. Linear Spline
-> 	2. Bezier Spline
-> 	3. Hermite Spline
-> 	4. Catmull-Rom Spline
-> 	5. B-Spline
+>     1. Linear Spline
+>     2. Bezier Spline
+>     3. Hermite Spline
+>     4. Catmull-Rom Spline
+>     5. B-Spline
 > 2. Lagrange Polynomial Interpolation : $\displaystyle P(u) = \sum_{j=0}^ky_{i} \prod _{0\leq m<k, m\neq i} \frac{% raw %}{{x-x_{m}}{% endraw %}}{x_{i}-x_{m}}$
-> 	- $p_{i}=(x_{i},y_{i})$, $\displaystyle \prod_{0\leq m<k, m\neq i}$ : $0\leq m<k, m\neq i$ 조건의 값을 모두 곱하라.
-> 	- Key가 많아질수록 오류가 커진다.
+>     - $p_{i}=(x_{i},y_{i})$, $\displaystyle \prod_{0\leq m<k, m\neq i}$ : $0\leq m<k, m\neq i$ 조건의 값을 모두 곱하라.
+>     - Key가 많아질수록 오류가 커진다.
 
 > [!tip]- $u=L^{-1}(s)$ 계산 방법 (Super Sampling){title}
 > $u=L^{-1}(s)$ 함수를 컴퓨터로 해석적으로 적분하고, 역함수를 구하는 것은 힘드므로 수치해석 방법으로 접근한다. $\displaystyle \int_{u_{0}^u} \lvert P'(u') \rvert du' \simeq \sum_{i=0}^\text{res} \lvert P(u_{i}) -P(u_{i-1}) \rvert$, $\text{res} =$ 해상도, 얼마나 잘게 쪼갤 거냐를 의미한다. 예를들어, $res=20$으로 설정 후 값을 계산하면 하나의 Table을 만들 수 있다. 테이블은 DP로 구현할 수 있을 듯.
@@ -66,9 +66,9 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 > 1. Sinusoidal : $\displaystyle S(t)= \frac{1}{2} \left( \sin\left( t \pi-\frac{\pi}{2} \right) +1 \right)$
 > 2. Single Cubic : $S(t) = -2t^3+3t^2$
 > 3. Piecewise Sinusoidal : $\displaystyle S(t) = \begin{cases} \frac{1}{f} \cdot{k_1 \frac{2}{\pi} \left(\sin\left(\frac{t \pi}{2 k_1} - \frac{\pi}{2}\right)\right)} & t \leq k_1 \\[10pt] \frac{1}{f}\left( {\frac{k_1}{\frac{\pi}{2}} + (t - k_1)} \right) & k_1 < t \leq k_2 \\[10pt] \frac{1}{f} \left( {\frac{k_1}{\frac{\pi}{2}} + k_2 - k_1 + (1 - k_2) \frac{2}{\pi} \sin\left(\frac{\pi (t - k_2)}{2 (1 - k_2)}\right)} \right) & t > k_2 \end{cases}$
-> 	- $\displaystyle f = k_1 \frac{2}{\pi} + k_2 - k_1 + (1 - k_2) \frac{2}{\pi}$
+>     - $\displaystyle f = k_1 \frac{2}{\pi} + k_2 - k_1 + (1 - k_2) \frac{2}{\pi}$
 > 4. Constant Acceleration : $\displaystyle S(t) =  \begin{cases} \frac{v_0 t^2}{2 t_1} & 0.0 < t \leq t_1 \\[10pt] v_0 \frac{t_1}{2} + v_0 (t - t_1) & t_1 < t \leq t_2 \\[10pt] v_0 \frac{t_1}{2} + v_0 (t_2 - t_1) + v_0 \left(1 - \frac{(t - t_2)}{2 (1 - t_2)}\right)(t - t_2) & t_2 < t \leq 1.0 \end{cases}$
-> 	- $t_{1}, t_{2}$는 각각 가속이 끝나는 시간, 가속이 시작되는 시간으로 임의로 설정 가능함.
+>     - $t_{1}, t_{2}$는 각각 가속이 끝나는 시간, 가속이 시작되는 시간으로 임의로 설정 가능함.
 > 
 > > [!tip]- 그래프 모양, 순서대로 1. 2. 3. 4.{title}
 > > 
@@ -111,8 +111,8 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 > 복소수는 실수 체계의 2차원 확장이고, $z=a+bi$와 같다. 쿼터니언은 실수 체계의 4차원 확장이고, $q=s+x i + y j + z k$와 같다. $i, j, k$는 각각 다른 방향의 허수 차원이며, $i^2 = j^2 = k^2 = ijk = -1$가 성립한다. 편의상 $q=s+x i + y j + z k$와 같은 쿼터니언을 $\vec{v}=(x,y,z)$ 벡터로 생각하여 $q=[\begin{matrix}s & \vec{v}\end{matrix}]$로 표기할 수 있다. 
 > 
 > 쿼터니언의 기본 연산은 다음과 같다.
-> 1. Addition : $q_{1} +q_{2} = [\begin{matrix} s_{1} + s_{2} & \vec{v}_{1} + \vec{v}_{2} \end{matrix}]$
-> 2. Multiplication : $q_{1}q_{2} = [\begin{matrix} s_{1}s_{2} - \vec{v}_{1} \cdot \vec{v}_{2} &s_{2}\vec{v}_{1} + s_{1}\vec{v}_{2} + \vec{v}_{1} \times \vec{v}_{2} \end{matrix}]$
+> 1. Addition : $q_{1} +q_{2} = [\begin{matrix} s_{1} + s_{2} & \vec{v}\_{1} + \vec{v}\_{2} \end{matrix}]$
+> 2. Multiplication : $q_{1}q_{2} = [\begin{matrix} s_{1}s_{2} - \vec{v}\_{1} \cdot \vec{v}\_{2} &s_{2}\vec{v}\_{1} + s_{1}\vec{v}\_{2} + \vec{v}\_{1} \times \vec{v}\_{2} \end{matrix}]$
 > 3. Inner Product : $q_{1} \cdot q_{2} = s_{1}s_{2} + v_{1} \cdot v_{2}$
 > 4. Length : $\lvert \lvert q \rvert \rvert = \sqrt{ q \cdot q }$
 > 5. Inverse : $\displaystyle q^{-1} = \frac{1}{\lvert \lvert q \rvert \rvert^2} [ \begin{matrix}s & -\vec{v}\end{matrix}]$
@@ -120,11 +120,11 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 > 
 > 각종 변환 공식은 다음과 같다.
 > 1) Axis, $\theta$ $\to$ Quaternion : $\displaystyle q = \cos\left( \frac{\theta}{2} \right) + \sin\left( \frac{\theta}{2} \right)(x i + yj + z k) = \left[ \begin{matrix} \cos \left( \frac{\theta}{2} \right) & \sin \left( \frac{\theta}{2} \right) \vec{v} \end{matrix} \right]$
-> 	- 이때 축을 $\lvert (x,y,z) \rvert=1$을 사용하여 Unit Quaternion으로 만드는게 좋다.
+>     - 이때 축을 $\lvert (x,y,z) \rvert=1$을 사용하여 Unit Quaternion으로 만드는게 좋다.
 > 
 > 3) Quaternion $\to$ Axis, $\theta$
-> 	- $\theta = 2 \cos^{-1}(s)$
-> 	- $\displaystyle(x,y,z) = \frac{\vec{v}}{\lvert \vec{v} \rvert}$
+>     - $\theta = 2 \cos^{-1}(s)$
+>     - $\displaystyle(x,y,z) = \frac{\vec{v}}{\lvert \vec{v} \rvert}$
 > 
 > 4) 회전 변환 행렬 $R \to$ Quaternion
 > 
@@ -135,9 +135,9 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 > 7) Quaternion -> Vector : $q_{v}' = 0 + v_{x}'i + v_{y}'j + v_{z}'j \implies \vec{v}'=(v_{x}', v_{y}', v_{z}')$
 > 
 > 8) 어떤 벡터 $\vec{v}=(v_{x}, v_{y}, v_{z})$를 쿼터니언으로 회전시키고 싶다면 다음 과정을 거치면 된다.
-> 	1. 벡터를 쿼터니언으로 변환.
-> 	2. 벡터를 회전. $q_{v}' = q \cdot q_{v} \cdot q^{-1}$
-> 	3. 회전된 쿼터니언을 다시 벡터로 변환.
+>     1. 벡터를 쿼터니언으로 변환.
+>     2. 벡터를 회전. $q_{v}' = q \cdot q_{v} \cdot q^{-1}$
+>     3. 회전된 쿼터니언을 다시 벡터로 변환.
 
 > [!question]- Lerp?{title}
 > Lerp는 선형 보간을 의미한다. 함수로 표현하면 다음과 같다.  $\text{lerp}( P_{0}, P_{1}, t ) = (1-t)P_{0} + tP_{1}$
@@ -182,17 +182,17 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 특정 frame (시간)의 object의 property를 language 형태로 지정하면 편할 것 같다. 이를 위한 여러 Animation Language가 존재한다.
 
 1. Artist-oriented animation language
-	- set position A (20, 30, 32) at frame 328
-	- change rotation B (1,1,0) by 45 from frame 328 to 350
-	- 위와 같이 스크립트를 짜서, 모든 것을 아티스트가 만드는 방법이다.
-	- 간단하지만, 만약 1000개의 Vertex를 애니메이팅해야할 경우 너무 힘들다.
+    - set position A (20, 30, 32) at frame 328
+    - change rotation B (1,1,0) by 45 from frame 328 to 350
+    - 위와 같이 스크립트를 짜서, 모든 것을 아티스트가 만드는 방법이다.
+    - 간단하지만, 만약 1000개의 Vertex를 애니메이팅해야할 경우 너무 힘들다.
 2. Full-featured programming languages for animation
-	- C 스타일로 애니메이션 스크립트를 짤 수 있고, Maya에서 이 방식을 사용한다.
-	- 한 점이 움직이면, 다른 점이 그 점을 따라서 움직이게 만들 수 있다.
-	- 또는 다양한 동적 조건들을 설정할 수 있다.
+    - C 스타일로 애니메이션 스크립트를 짤 수 있고, Maya에서 이 방식을 사용한다.
+    - 한 점이 움직이면, 다른 점이 그 점을 따라서 움직이게 만들 수 있다.
+    - 또는 다양한 동적 조건들을 설정할 수 있다.
 3. Graphical Languages
-	- 시간-위치 그래프, 시간-속도 그래프로 키프레임을 찍는 방법.
-	- 애니메이터가 가장 많이 사용하는 방법이다.
+    - 시간-위치 그래프, 시간-속도 그래프로 키프레임을 찍는 방법.
+    - 애니메이터가 가장 많이 사용하는 방법이다.
 
 ## Deformable Animation
 
@@ -228,12 +228,12 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 모양이 완전히 다른 두 Object를 보간할 수 있을까? 예를들어 구에서 원뿔 모양으로 객체를 바꾸고 싶다면, Source Object와 Target Object 사이의 Vertex Correspondence를 찾아내는 것이 가장 중요하다. Correspondence란 대응 관계를 의미한다. 다음과 같은 Methods가 존재한다.
 
 1. Case of matching topology
-	- Radial mapping : 두 물체의 Topology (위상적 모양)이 비슷한 경우 사용 가능한 방법.
+    - Radial mapping : 두 물체의 Topology (위상적 모양)이 비슷한 경우 사용 가능한 방법.
 2. Case of mapping on sphere
-	- Map to sphere
+    - Map to sphere
 3. Case of Difficult
-	- Object subdivision : Vertex의 개수가 작은 쪽을 계속 나눠서 개수가 같아질 때까지 나눈다. 이후 가까운 점끼리 mapping한다.
-	- Map the boundarie : 도형을 Convex Hull해서 Boundry를 찾는다. 이후 Boundry의 Vertex를 딱 하나를 Mapping하고, 그 Vertex를 기준으로 거리를 계산해서 거리 비율대로 가장 근처의 점을 Mapping한다.
+    - Object subdivision : Vertex의 개수가 작은 쪽을 계속 나눠서 개수가 같아질 때까지 나눈다. 이후 가까운 점끼리 mapping한다.
+    - Map the boundarie : 도형을 Convex Hull해서 Boundry를 찾는다. 이후 Boundry의 Vertex를 딱 하나를 Mapping하고, 그 Vertex를 기준으로 거리를 계산해서 거리 비율대로 가장 근처의 점을 Mapping한다.
 
 > [!question]- Radial mapping?{title}
 > 두 Object의 Center of mess 또는 Central Axis가 내부에 있고, 두 Object 모양을 겹쳤을 때 생기는 영역(kernel)이 Simple Connected하다면 사용 가능하다.
@@ -260,11 +260,11 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 두 이미지 간의 자연스러운 보간을 위한 기술. 만약 그냥 각 Pixel Color를 보간하게 되면 별로 자연스럽지 않다. Source image와 Target image의 특징을 분석하고, 두 이미지에 비슷한 특징이 존재한다면 그 특징을 자연스럽게 보간하면 자연스러운 Morphing이 가능하다. 과정으 ㄴ다음과 같다.
 
 1. Find Correspondence (대응 관계)
-	- 원본 이미지와 대상 이미지 간의 대응되는 특징 점, Feature Point이나 특징적인 라인, Feature Line을 찾는다.
-	- 사용자가 특징 점이나 특징 선을 수동으로 정의할 수 있다.
+    - 원본 이미지와 대상 이미지 간의 대응되는 특징 점, Feature Point이나 특징적인 라인, Feature Line을 찾는다.
+    - 사용자가 특징 점이나 특징 선을 수동으로 정의할 수 있다.
 2. Intermediate Image (중간 이미지)
-	- 중간 단계 이미지를 생성한다.
-	- 두 이미지 간의 Feature Point, Line를 보간하여 딱 중간값 위치와 색깔을 만들어낸다.
+    - 중간 단계 이미지를 생성한다.
+    - 두 이미지 간의 Feature Point, Line를 보간하여 딱 중간값 위치와 색깔을 만들어낸다.
 3. 원본 이미지 -> 중간 이미지 -> 최종 이미지로 보간한다.
 
 1. 중간 이미지 생성
