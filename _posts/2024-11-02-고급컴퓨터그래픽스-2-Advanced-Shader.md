@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 2. Advanced Shader"
 date: "2024-11-02"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["OpenGL", "GPU", "렌더링", "GLSL", "Vertex Shader", "Fragment Shader", "Tessellation", "Geometry Shader"]
+tags: ["OpenGL", "GLSL", "컴퓨터 그래픽스", "Vertex Shader", "Fragment Shader", "Geometry Shader", "Tessellation", "라이브러리"]
 math: true
 toc: true
 comments: true
@@ -615,6 +615,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > [!note]- Vector{title}
 > 
 > 1. Type
+>    
 > ```c
 > vec2, vec3, vec4     // 성분 타입이 float
 > dvec2, dvec3, dvec4  // 성분 타입이 double
@@ -624,6 +625,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > ```
 > 
 > 2. 생성자
+>    
 > ```c
 > vec3 xcz = vec3(1.0, 2.0, 3.0);
 > vec3 xyz = vec3(1.0); // [1.0, 1.0, 1.0]
@@ -631,6 +633,9 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > ```
 > 
 > 3. 성분 참조
+> rgba는 Vector가 Color를 담고있을 때 사용하면 좋다.
+> stpq는 Vector가 Texture Coordinate를 담고있을 때 사용하면 좋다.
+> 
 > ```c
 > vec4 v = vec3(1.0, 2.0, 3.0, 4.0);
 > 
@@ -646,10 +651,9 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > vec4 wwww = v.wwww;
 > ```
 > 
-> rgba는 Vector가 Color를 담고있을 때 사용하면 좋다.
-> stpq는 Vector가 Texture Coordinate를 담고있을 때 사용하면 좋다.
 > 
 > 4. 벡터 연산
+>    
 > ```c
 > vec3 v1 = vec3(1.0, 2.0, 3.0);
 > vec3 v2 = vec3(2.0, 4.0, 6.0);
@@ -670,6 +674,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > > $$v.z = v_{0}.z * v_{1}.z$$
 > 
 > 5. 관련 함수
+>    
 > ```c
 > vec3 p = vec3(1.0, 2.0, 3.0);
 > vec3 q = vec3(2.0, 2.0, 6.0);
@@ -686,6 +691,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > ```
 > 
 > 추가: 빛 계산(Fragment Shader)에 사용하는 함수
+> 
 > ```c
 > vec3 N = normalize(surfaceNormal); 
 > vec3 I = normalize(eyeDirection); // 카메라(또는 광원)로부터의 방향 
@@ -694,11 +700,11 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > vec3 ref = reflect(v, N); // 반사. 빛 계산에 사용함.
 > vec3 correctedNormal = faceforward(N, I, Nref); // 표면의 방향 계산. 빛 계산에 사용함.
 > ```
-> 
 
 > [!NOTE]- Matrix{title}
 > 
 > 1. Type
+>    
 > ```c
 > mat2, mat3, mat4     // 성분 타입이 float. mat2 = mat2x2, ...
 > dmat2, dmat3, dmat4  // 성분 타입이 double
@@ -711,6 +717,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > ```
 > 
 > 2. 생성자
+>    
 > ```c
 > mat3 A = mat3(1.0);  // 3x3 identity matrix
 > mat2 B = mat2(1.0, 2.0, 3.0, 4.0);
@@ -729,6 +736,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > > $$\begin{bmatrix}1.0&3.0\\2.0&4.0\\ \end{bmatrix}$$
 > 
 > 3. 성분 참조
+>    
 > ```c
 > mat3 A = //...
 > 
@@ -742,6 +750,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > ```
 > 
 > 4. 행렬 연산
+>    
 > ```c
 > vec3 v = //...
 > mat3 A = //...
@@ -758,6 +767,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > > ![Pasted image 20241006142555.png](/assets/img/posts/Pasted image 20241006142555.png)
 > 
 > 5. 관련 함수
+>    
 > ```c
 > mat3 A = //...
 > mat3 B = //...
@@ -772,6 +782,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > [!NOTE]- 수학 라이브러리 함수{title}
 > 
 > - 삼각함수
+>   
 > ```c
 > float angle = degree(3.14); // 180. Radian to Degree
 > float theta = radian(90);   // Degree to Radian
@@ -788,6 +799,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > ```
 > 
 > - 지수, 로그, 제곱근 함수
+>   
 > ```c
 > float x^y = pow(x, y);
 > float e^x = exp(x);
@@ -801,12 +813,14 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > ```
 > 
 > - 절댓값, 부호
+>   
 > ```c
 > float ax = abs(x);
 > float sx = sign(x);  // -1, 0, 1 부호를 반환함.
 > ```
 > 
 > - min, max, clamp
+>   
 > ```c
 > float m0 = min(x, y);
 > float m1 = max(x, y);
@@ -875,18 +889,21 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > 3. 쉐이더 프로그램을 자주 바꿀 시 성능에 좋지 않다. 쉐이더 프로그램을 바꿀때마다, 렌더링 파이프라인의 상태를 다시 설정하고 캐시가 초기화되기 때문에 느려진다.
 > 
 > > [!example]- 예를들어..{title}
+> > ```c
 > > glUseProgram (1); glDrawArrays( A ...); 
 > > glUseProgram (2); glDrawArrays( B ...); 
 > > glUseProgram (1); glDrawArrays( C ...); 
 > > glUseProgram (2); glDrawArrays( D ...); 
+> > ```
 > > 
 > > 보다는
 > > 
+> > ```c
 > > glUseProgram(1); glDrawArrays(A...); glDrawArrays(C... );
 > > glUseProgram(2); glDrawArrays(B...); glDrawArrays(D... );
+> > ```
 > > 
 > > 가 더 효율적이다.
-> 
 
 ## Vertex Shader
 
@@ -970,7 +987,7 @@ void main()
 >
 > 따라서, 모델에는 간단한 삼각형 정보만 표현하고, 쉐이더에서 Vertex를 추가하는 방식을 사용한다.
 > 
-> 즉, 핵심 IDEA는 다음과 같다
+> > [!note] 즉, 핵심 IDEA는 다음과 같다{title}
 > > 동물같은거 만들 때 털까지 다 Vertex로 주지 말고,
 > > Geometry Shader를 써서 멀리서 볼땐 대충 그리고 가까이서 볼 땐 자세히 그리도록 만들자.
 
@@ -1131,11 +1148,10 @@ void main() {
 gl_TessCoord.y는 세로 축에서 상대적인 위치를 나타낸다.
 `
 ```c
-    vec3 position = gl_TessCoord.x * p0 +
-                    gl_TessCoord.y * p1 +
-                    gl_TessCoord.z * p2;
+vec3 position = gl_TessCoord.x * p0 +
+				gl_TessCoord.y * p1 +
+				gl_TessCoord.z * p2;
 
-    // 생성된 정점의 최종 위치 결정.
-    gl_Position = vec4(position, 1.0);
-}
+// 생성된 정점의 최종 위치 결정.
+gl_Position = vec4(position, 1.0);
 ```
