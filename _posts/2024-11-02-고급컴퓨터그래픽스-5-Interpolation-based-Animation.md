@@ -38,7 +38,7 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 >     3. Hermite Spline
 >     4. Catmull-Rom Spline
 >     5. B-Spline
-> 2. Lagrange Polynomial Interpolation : $\displaystyle P(u) = \sum_{j=0}^ky_{i} \prod _{0\leq m<k, m\neq i} \frac{% raw %}{{x-x_{m}}{% endraw %}}{x_{i}-x_{m}}$
+> 2. Lagrange Polynomial Interpolation : $\displaystyle P(u) = \sum_{j=0}^ky_{i} \prod_{0\leq m<k, m\neq i} \frac{% raw %}{{x-x_{m}}{% endraw %}}{x_{i}-x_{m}}$
 >     - $p_{i}=(x_{i},y_{i})$, $\displaystyle \prod_{0\leq m<k, m\neq i}$ : $0\leq m<k, m\neq i$ 조건의 값을 모두 곱하라.
 >     - Key가 많아질수록 오류가 커진다.
 
@@ -53,6 +53,7 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 > | 3        | 0.15 | 0.23  |
 > | ...      | ...  | ...   |
 > | 20 (res) | 1.00 | 1.00  |
+> 
 > 이후 $s=0.10$일 때 대응하는 u를 찾고 싶다면, table에서 Binary Search하여 0.1과 가장 근접한 두 $s$값을 찾는다. 또는 Table을 Binary Tree로 구현해서 successor와 predecessor를 찾으면 된다. 이를 $s_{k}, s_{k+1}$이라고 하자. $s, s_{k}, s_{k+1}$의 비율을 계산하여 그 비율만큼 $u_{k}, u_{k+1}$ 에 곱해주면 원하는 $u$값을 찾을 수 있다. $\displaystyle u= \frac{s_{k+1}-s}{s_{k+1}-s_{k}}(u_{k+1}-u_{k}) + u_{k}$, 이 방식을 Super Sampling라고 한다.
 > 
 > ![Pasted image 20241109193651.png](/assets/img/posts/Pasted image 20241109193651.png)
@@ -207,7 +208,9 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 > - Vertex를 하나 하나 직접 다루는 것은 무지 힘들기 때문에, 점을 움직이면 주변 점이 따라오도록 하는게 좋다.
 > - 움직이는 점을 어떤 점들이 따라가야할지 정해야 한다. 보통 인접한 곳에서 거리 $D$만큼 떨어진 점들이 따라 움직이도록 한다. 또, 멀리 떨어진 점일수록 덜 움직이고, 가까이 붙은 점일수록 많이 따라오도록 한다.
 > - 많이 사용하는 Power Curve는 다음과 같다.
-> - ![Pasted image 20241215194508.png](/assets/img/posts/Pasted image 20241215194508.png)
+>   
+> ![Pasted image 20241215194508.png](/assets/img/posts/Pasted image 20241215194508.png)
+> 
 > - 모양이 어떻게 변할지 사사용자 지정하기가 어렵다. 점을 안으로 집어넣으면 주변 점이 튀어오른다던가 하는 효과 구현을 하기 어렵다.
 
 > [!question]- 2D Grid-based deforming?{title}
