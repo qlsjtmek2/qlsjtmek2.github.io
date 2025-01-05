@@ -1,6 +1,6 @@
 ---
 title: "시스템 프로그래밍 6. Inter-Process Communication (IPC)"
-date: "2025-01-05"
+date: "2024-11-02"
 categories: ["IT", "시스템 프로그래밍"]
 tags: ["IPC", "Sockets", "Pipe", "Message Queue", "Shared Memory", "Semaphore", "SysV", "POSIX"]
 math: true
