@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 4. Image Processing"
 date: "2024-11-02"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["Computer Graphics", "Image Processing", "Shader", "Post Processing", "Multi-pass Rendering", "Edge Detection", "Gaussian Blur", "Texture Analysis"]
+tags: ["컴퓨터 그래픽스", "이미지 처리", "포스트 프로세싱", "쉐이더", "텍스처 좌표", "다중 패스 렌더링", "엣지 검출", "블러 효과"]
 math: true
 toc: true
 comments: true
@@ -116,6 +116,7 @@ void main(void)
 > 예를들어, $1920 \times 1080$ 해상도면 gl_FragCoord는 $(0 \sim 1919, 0 \sim 1079)$ 값을 가질 수 있다.
 
 ### 인접한 Texel을 얻는 방법
+
 Texture의 좌표를 **texel** (텍셀)이라고 부른다.
 
 Edge Detection나 Toon Rendering 같은 거 구현하려면 텍스쳐의 주변 점까지 봐야하는데,
@@ -143,7 +144,7 @@ void main(void)
 }
 ```
 
-> [!question] Why?{title}
+> [!question]- Why?{title}
 > UV Coordinate는 (0,0) ~ (1,1)로 되어있더라도, 실제 텍스쳐 사이즈는 $1024 \times 512$일지 $256 \times 256$일지 모르는 일이다.
 > 
 > 따라서, Texture Size를 통해 다음을 계산하면 된다.
@@ -207,7 +208,6 @@ glReadPixels 함수를 사용하면 정말 느린 Bus 커맨드가 실행되고,
 > 이미지를 CPU로 가져와서 저장해야 할 때 사용하면 된다.
 > 
 > 게임과 같이 가져올 필요 없이 바로 이미지를 출력하면 되는 상황은 필요 없는 함수이다.
-
 
 ## Image Processing Example
 
@@ -351,7 +351,7 @@ Image Processing에서 유용하게 활용할 수 있는 알고리즘들을 소�
 
 흑백 이미지라고 생각하고, 색깔별로 0인 값, 1인 값, ... , 255인 값을 모아 만든 Histogram이다.
 
-> [!question] 왜 필요한가?{title}
+> [!question]- 왜 필요한가?{title}
 > 1. 우리 색깔이 잘 분포되어 있는지 알 수 있다.
 > 
 > ![Pasted image 20241011095345.png](/assets/img/posts/Pasted image 20241011095345.png)
@@ -365,8 +365,7 @@ Image Processing에서 유용하게 활용할 수 있는 알고리즘들을 소�
 >    
 >    
 
-
-> [!example] HDR Image : High Dynamic Ragne Image{title}
+> [!example]- HDR Image : High Dynamic Ragne Image{title}
 > ![Pasted image 20241011095508.png](/assets/img/posts/Pasted image 20241011095508.png)
 > 
 > 우리 눈이 볼 수 있는 범위가 검은색이면, 컴퓨터가 표현하는 색은 파란색 범위밖에 되지 않는다.
@@ -377,7 +376,7 @@ Image Processing에서 유용하게 활용할 수 있는 알고리즘들을 소�
 > 
 > ![Pasted image 20241011095731.png](/assets/img/posts/Pasted image 20241011095731.png)
 
-> [!example] Histogram Equalization{title}
+> [!example]- Histogram Equalization{title}
 > ![Pasted image 20241011100031.png](/assets/img/posts/Pasted image 20241011100031.png)
 > 
 > 한쪽으로 치우친 분포의 Histogram을 평탄하게 만들면, 색깔이 좀더 풍부해지는 효과가 있다.
@@ -396,165 +395,165 @@ Image Processing에서 유용하게 활용할 수 있는 알고리즘들을 소�
 
 각 점의 Color 값을 일관적으로 변환하는 연산자다.
 
-1. Threshold
+- Threshold
+
 ![Pasted image 20241011231014.png](/assets/img/posts/Pasted image 20241011231014.png){: width="200"}
 
 픽셀의 Color 값이 t 이상이면 1, 아니면 0. 특정 범위 이상의 색만 추출한다.
 
 ![Pasted image 20241011231826.jpg](/assets/img/posts/Pasted image 20241011231826.jpg)
 
-> [!example] example{title}
-```c
-#version 330 core
-uniform sampler2D u_Image;  // 텍스처 이미지
-uniform float u_Threshold;  // 임계값 (예: 0.5)
+> [!example]- Example Code{title}
+> ```c
+> #version 330 core
+> uniform sampler2D u_Image;  // 텍스처 이미지
+> uniform float u_Threshold;  // 임계값 (예: 0.5)
+> 
+> in vec2 v_TexCoords;        // 텍스처 좌표
+> out vec4 out_Color;         // 최종 출력 색상
+> 
+> void main() {
+>     vec4 color = texture(u_Image, v_TexCoords);  // 현재 픽셀의 색상 가져오기
+>     float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114)); // 그레이스케일 값 계산
+>     
+>     // 임계값을 기준으로 이진화 처리
+>     if (grey > u_Threshold) {
+>         out_Color = vec4(1.0, 1.0, 1.0, 1.0);  // 임계값 이상인 경우 흰색
+>     } else {
+>         out_Color = vec4(0.0, 0.0, 0.0, 1.0);  // 임계값 미만인 경우 검정색
+>     }
+> }
+> ```
 
-in vec2 v_TexCoords;        // 텍스처 좌표
-out vec4 out_Color;         // 최종 출력 색상
-
-void main() {
-    vec4 color = texture(u_Image, v_TexCoords);  // 현재 픽셀의 색상 가져오기
-    float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114)); // 그레이스케일 값 계산
-    
-    // 임계값을 기준으로 이진화 처리
-    if (grey > u_Threshold) {
-        out_Color = vec4(1.0, 1.0, 1.0, 1.0);  // 임계값 이상인 경우 흰색
-    } else {
-        out_Color = vec4(0.0, 0.0, 0.0, 1.0);  // 임계값 미만인 경우 검정색
-    }
-}
-
-```
-
-2. Window Threshold
+- Window Threshold
 ![Pasted image 20241011231141.png](/assets/img/posts/Pasted image 20241011231141.png){: width="200"}
 
 픽셀의 Color 값이 $t_{1} < t < t_{2}$  사이면 1, 아니면 0. 특정 영역만 뽑아낼 수 있다.
 
-> [!example] example{title}
-```c
-#version 330 core
-uniform sampler2D u_Image;
-uniform float u_LowerThreshold;  // 임계값 하한
-uniform float u_UpperThreshold;  // 임계값 상한
+> [!example]- Example Code{title}
+> ```c
+> #version 330 core
+> uniform sampler2D u_Image;
+> uniform float u_LowerThreshold;  // 임계값 하한
+> uniform float u_UpperThreshold;  // 임계값 상한
+> 
+> in vec2 v_TexCoords;
+> out vec4 out_Color;
+> 
+> void main() {
+>     vec4 color = texture(u_Image, v_TexCoords);
+>     float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114)); // 그레이스케일 값 계산
+> 
+>     // 두 임계값 사이에 있는지 확인
+>     if (grey > u_LowerThreshold && grey < u_UpperThreshold) {
+>         out_Color = vec4(1.0, 1.0, 1.0, 1.0);  // 범위 내의 값
+>     } else {
+>         out_Color = vec4(0.0, 0.0, 0.0, 1.0);  // 범위 외의 값
+>     }
+> }
+> ```
 
-in vec2 v_TexCoords;
-out vec4 out_Color;
 
-void main() {
-    vec4 color = texture(u_Image, v_TexCoords);
-    float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114)); // 그레이스케일 값 계산
-
-    // 두 임계값 사이에 있는지 확인
-    if (grey > u_LowerThreshold && grey < u_UpperThreshold) {
-        out_Color = vec4(1.0, 1.0, 1.0, 1.0);  // 범위 내의 값
-    } else {
-        out_Color = vec4(0.0, 0.0, 0.0, 1.0);  // 범위 외의 값
-    }
-}
-```
-
-
-3. Contrast
+- Contrast
 ![Pasted image 20241011231307.png](/assets/img/posts/Pasted image 20241011231307.png){: width="200"}
 
 어두운 부분을 없애고, 밝은 부분을 취한다.
 
-> [!example] example{title}
-```c
-#version 330 core
-uniform sampler2D u_Image;
-uniform float u_MinValue;  // 입력 이미지의 최소값
-uniform float u_MaxValue;  // 입력 이미지의 최대값
+> [!example]- Example Code{title}
+> ```c
+> #version 330 core
+> uniform sampler2D u_Image;
+> uniform float u_MinValue;  // 입력 이미지의 최소값
+> uniform float u_MaxValue;  // 입력 이미지의 최대값
+> 
+> in vec2 v_TexCoords;
+> out vec4 out_Color;
+> 
+> void main() {
+>     vec4 color = texture(u_Image, v_TexCoords);
+>     float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114)); // 그레이스케일 값 계산
+> 
+>     // 대비 확장: 최소, 최대 값을 기반으로 확장
+>     float stretchedGrey = (grey - u_MinValue) / (u_MaxValue - u_MinValue);
+>     out_Color = vec4(vec3(stretchedGrey), 1.0);
+> }
+> ```
 
-in vec2 v_TexCoords;
-out vec4 out_Color;
 
-void main() {
-    vec4 color = texture(u_Image, v_TexCoords);
-    float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114)); // 그레이스케일 값 계산
-
-    // 대비 확장: 최소, 최대 값을 기반으로 확장
-    float stretchedGrey = (grey - u_MinValue) / (u_MaxValue - u_MinValue);
-    out_Color = vec4(vec3(stretchedGrey), 1.0);
-}
-```
-
-
-4. Contrast compression
+-  Contrast compression
 ![Pasted image 20241011231408.png](/assets/img/posts/Pasted image 20241011231408.png){: width="200"}
 
 어두운 부분을 적당히 없앤다.
 
-> [!example] example{title}
-```c
-#version 330 core
-uniform sampler2D u_Image;
-
-in vec2 v_TexCoords;
-out vec4 out_Color;
-
-void main() {
-    vec4 color = texture(u_Image, v_TexCoords);
-    float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114)); // 그레이스케일 값 계산
-
-    // 로그 함수를 사용하여 대비 압축
-    float compressedGrey = log(1.0 + grey) / log(2.0);  // 대조 압축
-    out_Color = vec4(vec3(compressedGrey), 1.0);
-}
-```
+> [!example]- Example Code{title}
+> ```c
+> #version 330 core
+> uniform sampler2D u_Image;
+> 
+> in vec2 v_TexCoords;
+> out vec4 out_Color;
+> 
+> void main() {
+>     vec4 color = texture(u_Image, v_TexCoords);
+>     float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114)); // 그레이스케일 값 계산
+> 
+>     // 로그 함수를 사용하여 대비 압축
+>     float compressedGrey = log(1.0 + grey) / log(2.0);  // 대조 압축
+>     out_Color = vec4(vec3(compressedGrey), 1.0);
+> }
+> ```
 
 5. Combination
 ![Pasted image 20241011231415.png](/assets/img/posts/Pasted image 20241011231415.png){: width="200"}
 
 가운데는 흐릿하게, 어둡고 밝은 부분은 확 변하게.
 
-> [!example] example{title}
-```c
-#version 330 core
-uniform sampler2D u_Image;
-uniform float u_Threshold;
-
-in vec2 v_TexCoords;
-out vec4 out_Color;
-
-void main() {
-    vec4 color = texture(u_Image, v_TexCoords);
-    float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114)); // 그레이스케일 값 계산
-
-    // 여러 연산을 결합하여 처리
-    if (grey < 0.3) {
-        grey = grey * 2.0;  // 어두운 부분은 확장
-    } else if (grey > u_Threshold) {
-        grey = grey * 0.5;  // 임계값 이상은 축소
-    }
-    out_Color = vec4(vec3(grey), 1.0);
-}
-```
+> [!example]- Example Code{title}
+> ```c
+> #version 330 core
+> uniform sampler2D u_Image;
+> uniform float u_Threshold;
+> 
+> in vec2 v_TexCoords;
+> out vec4 out_Color;
+> 
+> void main() {
+>     vec4 color = texture(u_Image, v_TexCoords);
+>     float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114)); // 그레이스케일 값 계산
+> 
+>     // 여러 연산을 결합하여 처리
+>     if (grey < 0.3) {
+>         grey = grey * 2.0;  // 어두운 부분은 확장
+>     } else if (grey > u_Threshold) {
+>         grey = grey * 0.5;  // 임계값 이상은 축소
+>     }
+>     out_Color = vec4(vec3(grey), 1.0);
+> }
+> ```
 
 6. Contouring
 ![Pasted image 20241011231421.png](/assets/img/posts/Pasted image 20241011231421.png){: width="200"}
 
 계단식의 밝기를 준다?
 
-> [!example] example{title}
-```c
-#version 330 core
-uniform sampler2D u_Image;
-uniform float u_StepSize;  // 계단 크기
-
-in vec2 v_TexCoords;
-out vec4 out_Color;
-
-void main() {
-    vec4 color = texture(u_Image, v_TexCoords);
-    float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114)); // 그레이스케일 값 계산
-
-    // 계단식 패턴 적용 (등고선 효과)
-    float contouredGrey = floor(grey / u_StepSize) * u_StepSize;
-    out_Color = vec4(vec3(contouredGrey), 1.0);
-}
-```
+> [!example]- Example Code{title}
+> ```c
+> #version 330 core
+> uniform sampler2D u_Image;
+> uniform float u_StepSize;  // 계단 크기
+> 
+> in vec2 v_TexCoords;
+> out vec4 out_Color;
+> 
+> void main() {
+>     vec4 color = texture(u_Image, v_TexCoords);
+>     float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114)); // 그레이스케일 값 계산
+> 
+>     // 계단식 패턴 적용 (등고선 효과)
+>     float contouredGrey = floor(grey / u_StepSize) * u_StepSize;
+>     out_Color = vec4(vec3(contouredGrey), 1.0);
+> }
+> ```
 
 
 곱하기 = mask할 떄 사용
@@ -575,6 +574,7 @@ void main() {
 > 5. 하나는 원본 이미지, 하나는 Vignetting Mask 이미지를 가져와서 Vignetting 효과를 줄 수 있다.
 
 - Addition
+
 ```c
 #version 330 core
 uniform sampler2D u_ImageA;  // 첫 번째 이미지
@@ -594,6 +594,7 @@ void main() {
 ```
 
 - Subtraction
+
 ```c
 #version 330 core
 uniform sampler2D u_ImageA;  // 첫 번째 이미지
@@ -681,7 +682,6 @@ void main() {
 > 
 > 주변 점과 차이가 심한 점을 뚜렷하게 강조한다.
 
-
 ```c
 #version 330 core
 
@@ -726,21 +726,17 @@ for (int i = 0; i < variable; i++)
 }
 ```
 
-
 ### Frequency Methods
 
 Fourier Transform
 
-이미지를 푸리에 트랜스폼만 가져와서
+이미지를 푸리에 트랜스폼만 가져와서 하이패스만 가져오면 샤프닝된다.
 
-하이패스만 가져오면 샤프닝된다 경계가 매우 명확하게 나뉘는 
-
-로우패스만 가져오면 노이즈는 싹 없어지고 부드러운 이미지가 보임 (Blur)
+경계가 매우 명확하게 나뉘는 로우패스만 가져오면 노이즈는 싹 없어지고 부드러운 이미지가 보임 (Blur).
 
 푸리에 변환을 사용하면 디지털 wave를 아날로그그 파동을 결합해서 비슷하게 만드는 법
 
 ![Pasted image 20241011101424.png](/assets/img/posts/Pasted image 20241011101424.png)
-
 
 Discrete Fourier Transform 방법
 
@@ -748,8 +744,8 @@ Discrete Fourier Transform 방법
 
 중간값을 높이고싶으면 중간 주파수를 올리고, 낮은부분을 낮추고싶을떈 낮은 주파수를 낮추고 다시 복원하면 되니까 쉬워진다?
 
-
 ### Segmentation
+
 1. Point-dependent methods
 임계값(Threshold)을 기준으로 밝기가 특정 값 이상인 픽셀을 하나의 그룹으로 분리하는 방법
 
@@ -774,7 +770,6 @@ Discrete Fourier Transform 방법
 미리 정의된 템플릿(패턴)과 이미지의 부분들을 비교하여 일치하는 부분을 찾아내는 방법
 
 예를들어, 삼각형 모양을 미리 정의해두고 Templete와 곱셈을 취해 일정값 이상이면 찾았다고 친다.
-
 
 ### Texture Analsis (텍스쳐 분석)
 
