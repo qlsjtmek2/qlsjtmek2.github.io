@@ -2,7 +2,7 @@
 title: "시스템 프로그래밍 9. Multiplexed IO"
 date: "2024-11-28"
 categories: ["IT", "시스템 프로그래밍"]
-tags: ["Multiplexed I/O", "File descriptor set", "select", "pselect", "네트워크 프로그래밍", "시스템 프로그래밍", "블로킹", "클라이언트"]
+tags: ["Multiplexed I/O", "File descriptor set", "select", "pselect", "네트워크 프로그래밍", "클라이언트", "블로킹", "시스템 프로그래밍"]
 math: true
 toc: true
 comments: true
