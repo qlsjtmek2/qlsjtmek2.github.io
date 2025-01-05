@@ -2,7 +2,7 @@
 title: "알고리즘 2. Greedy Algorithm"
 date: "2024-12-28"
 categories: ["IT", "알고리즘"]
-tags: ["Greedy", "알고리즘", "Prim", "Kruskal", "Dijkstra", "최소 신장 트리", "스케줄링", "기댓값"]
+tags: ["Greedy", "Minimum Spanning Tree", "Prim Algorithm", "Kruskal Algorithm", "Dijkstra Algorithm", "Deadline Scheduling", "Job Scheduling", "Tabe Storage"]
 math: true
 toc: true
 comments: true
@@ -79,13 +79,13 @@ $n$을 노드 개수, $m$을 노드 개수라고 하면 시간 복잡도는 $O(n
 > ```c++
 > while (U != V)
 > {
-> 	// 우선순위 큐에서 엣지 하나를 뽑는다.
-> 	// 만약 엣지 양쪽에 연결된 노드가 모두 U에 들어있다면,
-> 		// 싸이클이 생긴다는 뜻. => Continue 
-> 	// 아니라면,
-> 		// U에 들어있지 않는 노드를 U에 추가하고, 
-> 		// 인접한 Edge를 우선순위 큐에 추가한다.
-> 		// 뽑은 Edge를 T에 추가한다.
+>     // 우선순위 큐에서 엣지 하나를 뽑는다.
+>     // 만약 엣지 양쪽에 연결된 노드가 모두 U에 들어있다면,
+>         // 싸이클이 생긴다는 뜻. => Continue 
+>     // 아니라면,
+>         // U에 들어있지 않는 노드를 U에 추가하고, 
+>         // 인접한 Edge를 우선순위 큐에 추가한다.
+>         // 뽑은 Edge를 T에 추가한다.
 > }
 > 
 > return (U, T);
@@ -132,30 +132,30 @@ Kruskal Algorithm은 항상 MST를 찾는다.
 > ```c++
 > Graph getMinimumSpanningTree(Graph graph)
 > {
-> 	Graph minimunSpanningTree;
-> 	DisjointsSet\<V> sets;
-> 	Verties verties = grpah.getVerties();
-> 	Edges edges = graph.getEdges();
-> 	
-> 	minimunSpanningTree.addVerties(verties);
-> 	sort(edges, weight);
-> 	
-> 	int vertexSize = verties.size();
-> 	int edgeSize = 0;
-> 	for (Edge edge : edges) {
-> 		if (edgeSize == vertexSize) break;
-> 		
-> 		Vertex leftRoot = sets.find(edge.leftNode);
-> 		Vertex rightRoot = sets.find(edge.rightNode);
-> 		int weight = edge.weight;
-> 		if (leftRoot != rightRoot) {
-> 			minimunSpanningTree.addEdge(edge);
-> 			sets.union(leftRoot, rightRoot);
-> 			edgeSize++;
-> 		}
-> 	}
-> 	
-> 	return minimunSpanningTree;
+>     Graph minimunSpanningTree;
+>     DisjointsSet\<V> sets;
+>     Verties verties = grpah.getVerties();
+>     Edges edges = graph.getEdges();
+>    
+>     minimunSpanningTree.addVerties(verties);
+>     sort(edges, weight);
+>     
+>     int vertexSize = verties.size();
+>     int edgeSize = 0;
+>     for (Edge edge : edges) {
+>         if (edgeSize == vertexSize) break;
+>         
+>         Vertex leftRoot = sets.find(edge.leftNode);
+>         Vertex rightRoot = sets.find(edge.rightNode);
+>         int weight = edge.weight;
+>         if (leftRoot != rightRoot) {
+>             minimunSpanningTree.addEdge(edge);
+>             sets.union(leftRoot, rightRoot);
+>             edgeSize++;
+>         }
+>     }
+>     
+>     return minimunSpanningTree;
 > }
 > ```
 
@@ -173,13 +173,13 @@ Source Node밖에 없으므로 Source Node로부터 인접한 노드가 모두 B
 2. Blue Sets가 Empty 될 때까지 그리디를 돌린다.
 
 시작 노드에서 출발하여 나머지 Red Nodes를 거쳐서 갈 수 있는 가장 짧은 Path를 가진 Blue Node는 Shortest Path를 찾은 것과도 같다.
-	귀류법으로 쉽게 증명 가능.
+    귀류법으로 쉽게 증명 가능.
 따라서, Min Path Weight를 갖는 Blue Node를 뽑아 Red Set로 옮긴다. ...(1)
 그리고 그 노드와 인접한 Node의 Path Weight값을 업데이트한다.
-	만약 인접한 Node가 Blue Node라면
-		현재 Red Set로 옮겨진 Node의 Path Weight + Direct Edge Weight < Adject Path Weigth 일 때 Path Weight 값을 업데이트한다. ...(2)
-	만약 인접한 노드가 아무것도 아니라면
-		Blue Set에 (Path Weight + Direct Edge Weight, Adject Node)를 추가한다.
+    만약 인접한 Node가 Blue Node라면
+        현재 Red Set로 옮겨진 Node의 Path Weight + Direct Edge Weight < Adject Path Weigth 일 때 Path Weight 값을 업데이트한다. ...(2)
+    만약 인접한 노드가 아무것도 아니라면
+        Blue Set에 (Path Weight + Direct Edge Weight, Adject Node)를 추가한다.
 
 > [!question]- (1) 왜 그냥 정답으로 봐도 될까?{title}
 > ![Pasted image 20240924103322.png](/assets/img/posts/Pasted image 20240924103322.png){: width="350"}
@@ -237,19 +237,19 @@ $n$을 node 수, $m$을 edge 수라고 하자. 만약 우선 순위 큐의 descr
 > blueSet에 startNode와 연결된 노드를 넣는다.
 > 
 > blueSet가 빌 때까지 반복
-> 	우선순위 큐인 blueSet에서 원소를 pop.
-> 	pop한 원소가 redSet에 있다면
-> 		continue.
-> 		
-> 	그 원소와 ShortestDistance 값를 redSet에 넣는다.
-> 	(ShortestDistance 값은 PQ의 weight + edge weight로 구함)
-> 	
-> 	pop한 원소와 연결되어 있는 노드들 중에
-> 		이미 redSet에 있으면 continue.
-> 		Blue Set에 있으면
-> 			값을 비교해서 업데이트 (ShorestDistance + Edge Weight < MaybeShorestDistance) ... (1)
-> 		아니면
-> 			BlueSet에 push한다. (ShortestDistance + Edge Weight, Node)
+>     우선순위 큐인 blueSet에서 원소를 pop.
+>     pop한 원소가 redSet에 있다면
+>         continue.
+>         
+>     그 원소와 ShortestDistance 값를 redSet에 넣는다.
+>     (ShortestDistance 값은 PQ의 weight + edge weight로 구함)
+>     
+>     pop한 원소와 연결되어 있는 노드들 중에
+>         이미 redSet에 있으면 continue.
+>         Blue Set에 있으면
+>             값을 비교해서 업데이트 (ShorestDistance + Edge Weight < MaybeShorestDistance) ... (1)
+>         아니면
+>             BlueSet에 push한다. (ShortestDistance + Edge Weight, Node)
 > ```
 > 
 > 1. Find One Path
@@ -302,7 +302,7 @@ $n$을 node 수, $m$을 edge 수라고 하자. 만약 우선 순위 큐의 descr
 ## Deadline Scheduling
 
 Deadline과 Profit을 갖는 Job들을 Time Schedule내에 가장 효율적으로 배치하는 방법.
-n개의 Job 존재한다. $J_{i} = \{ (D_{i}, P_{i}) | 1 \leq i \leq n \}$ Job은 Deadline과 Profit(이익)의 Tuple이다. 이때 문제 조건은 다음과 같다.
+n개의 Job 존재한다. $J_{i} = \{ (D_{i}, P_{i}) \mid 1 \leq i \leq n \}$ Job은 Deadline과 Profit(이익)의 Tuple이다. 이때 문제 조건은 다음과 같다.
 
 1. 모든 Job을 수행하는데 걸리는 시간은 1이다.
 2. Deadline 이전에 Job을 수행하면 이익 $P_{i}$를 얻고, 수행하지 못하면 이익 0.
