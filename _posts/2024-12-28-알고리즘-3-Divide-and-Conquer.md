@@ -132,8 +132,8 @@ Convex는 볼록, Hull은 외피 또는 덮개를 의미한다. Convex Hull은 �
 
 1. 임의의 두 점을 잡는다. $O(n^2)$
 2. 두 점 + 나머지 모든 점들과 CCW를 해본다.
-	1. 한쪽 방향만 나오면 Convex Hull 위의 점이므로, 두 점을 Hull Set에 추가한다.
-	2. 다른 방향이 섞여서 나오면 컷.
+    1. 한쪽 방향만 나오면 Convex Hull 위의 점이므로, 두 점을 Hull Set에 추가한다.
+    2. 다른 방향이 섞여서 나오면 컷.
 
 $O(n^2)$ 과정마다 n-2개 점을 고르므로, $O(n^3)$의 시간을 사용한다.
 
@@ -144,8 +144,8 @@ $O(n^2)$ 과정마다 n-2개 점을 고르므로, $O(n^3)$의 시간을 사용�
 ![Pasted image 20241015141536.png](/assets/img/posts/Pasted image 20241015141536.png){: width="600"}
 
 2. 이전 점, 현재 점과 모든 점에 대해 CCW를 한다. 만약 이전 점이 없다면  y좌표로 살짝 내린 임의의 점을 하나 설정하면 된다.
-	1. 방향이 오른쪽에서 왼쪽으로 가는 경우, 가장 좌회전을 덜하는 점을 고른다.
-	2. 방향이 왼쪽에서 오른쪽으로 가는 경우, 가장 우회전을 덜 하는 점을 고른다.
+    1. 방향이 오른쪽에서 왼쪽으로 가는 경우, 가장 좌회전을 덜하는 점을 고른다.
+    2. 방향이 왼쪽에서 오른쪽으로 가는 경우, 가장 우회전을 덜 하는 점을 고른다.
 3. 이걸 계속 반복
 
 n-1 점에 대해 n-1번 계산하므로 시간 복잡도는 $O(n^2)$이다.
@@ -165,31 +165,31 @@ n-1 점에 대해 n-1번 계산하므로 시간 복잡도는 $O(n^2)$이다.
 > ```c++
 > Stack\<Vertex> GrahamScan(List\<Vertex> verties)
 > {
-> 	Stack\<Vertex> convexHull;
+>     Stack\<Vertex> convexHull;
 > 
-> 	Vertex start = min_element(verties, [](Vertex a, Vertex b) {
-> 		return a.y < b.y;
-> 	});
+>     Vertex start = min_element(verties, [](Vertex a, Vertex b) {
+>         return a.y < b.y;
+>     });
 > 
-> 	verties.remove(start);
+>     verties.remove(start);
 > 
-> 	sort(verties, [start](Vertex a, Vertex b) {
-> 		return CCW(start, a, b) > 0;
-> 	});
+>     sort(verties, [start](Vertex a, Vertex b) {
+>         return CCW(start, a, b) > 0;
+>     });
 > 
-> 	convexHull.push(start);
-> 	convexHull.push(vertices.front());
-> 	vertices.pop_front();
+>     convexHull.push(start);
+>     convexHull.push(vertices.front());
+>     vertices.pop_front();
 > 
-> 	for (Vertex current : vertices)
-> 	{
-> 		while (convexHull.size() > 1 && CCW(convexHull.second(), convexHull.top(), current) < 0)
-> 			convexHull.pop();
-> 			
-> 		convexHull.push(current);
-> 	}
+>     for (Vertex current : vertices)
+>     {
+>         while (convexHull.size() > 1 && CCW(convexHull.second(), convexHull.top(), current) < 0)
+>             convexHull.pop();
+>             
+>         convexHull.push(current);
+>     }
 > 
-> 	return convexHull;
+>     return convexHull;
 > }
 > ```
 
@@ -231,7 +231,11 @@ Up Hull과 Down Hull을 x 좌표가 가장 작고 큰 점을 기준으로 위 �
 > ![Pasted image 20241015231026.png](/assets/img/posts/Pasted image 20241015231026.png){: width="350"}
 > 
 > 구하고자 하는 노드의 오른쪽 서브트리가 존재하면, 오른쪽 서브트리의 최소값을 구하면 된다.
-> $$\text{min}(\text{node}\to \text{right})$$
+> 
+> $$
+> \text{min}(\text{node}\to \text{right})
+> $$
+> 
 > 
 > 서브트리가 존재하지 않는다면, 부모 노드를 따라 올라가면서 최초로 부모 노드의 왼쪽 자식노드가 되는 경우를 찾는다. 그때의 부모노드가 Successor이다.
 > 
@@ -239,8 +243,8 @@ Up Hull과 Down Hull을 x 좌표가 가장 작고 큰 점을 기준으로 위 �
 
 2. 점이 안에 있으면, 무시한다.
 3. 점이 밖에 있으면, 
-	1. Convex Hull에 접선을 그려서 접점과 새로운 점을 잇는다.
-	2. 기존의 접점 사이에 있던 점은 다 버린다.
+    1. Convex Hull에 접선을 그려서 접점과 새로운 점을 잇는다.
+    2. 기존의 접점 사이에 있던 점은 다 버린다.
 
 > [!question]- 접점을 어떻게 구하는가?{title}
 > 1. **접점이 두개** 생기는 경우
@@ -248,7 +252,11 @@ Up Hull과 Down Hull을 x 좌표가 가장 작고 큰 점을 기준으로 위 �
 > ![Pasted image 20241015232414.png](/assets/img/posts/Pasted image 20241015232414.png){: width="350"}
 > 
 > 가장 작은 x값을 가진 점의 x값을 m, 가장 큰 x값을 M이라고 하자.
-> $$m < x < M$$
+> 
+> $$
+> m < x < M
+> $$
+> 
 > 인 경우, 접점이 두개 생긴다.
 > 
 > 1번 과정에서 구한 x좌표를 기준으로 가장 인접한 두 점을 활용한다.
@@ -267,7 +275,11 @@ Up Hull과 Down Hull을 x 좌표가 가장 작고 큰 점을 기준으로 위 �
 > 
 > ![Pasted image 20241015233041.png](/assets/img/posts/Pasted image 20241015233041.png){: width="400"}
 > 
-> $$x < m ~~~ || ~~~ x > M$$
+> 
+> $$
+> x < m ~~~ \mid\mid ~~~ x > M
+> $$
+> 
 > 인 경우, 접점이 한개 생긴다.
 > 
 > $x < m$인 경우, 
@@ -331,15 +343,15 @@ Upper Hull, Lower Hull 두개를 따로따로 구해서, 나중에 합치는 방
 ```
 while (왼쪽 조건 만족 && 오른쪽 조건 만족)
 {
-	while (오른쪽 CCW)
-	{
-		접점 위치 재설정
-	}
+    while (오른쪽 CCW)
+    {
+        접점 위치 재설정
+    }
 
-	while (왼쪽 CCW)
-	{
-		접점 위치 재설정
-	}
+    while (왼쪽 CCW)
+    {
+        접점 위치 재설정
+    }
 }
 ```
 
@@ -366,15 +378,15 @@ unsigned int가 갖는 1인 비트 개수를 빠르게 세는 방법. 예를들�
 ```c
 int bit_count(unsigned int n) 
 {
-	int count = 0;
+    int count = 0;
 
-	while (n != 0)
-	{
-		count += n & 1;
-		n >>= 1;  // right shift
-	}
+    while (n != 0)
+    {
+        count += n & 1;
+        n >>= 1;  // right shift
+    }
 
-	return count;
+    return count;
 }
 ```
 
@@ -392,15 +404,15 @@ $00100000 ~\&~ (00011111) = 00000000$
 ```c
 int bit_count2(unsigned int n) 
 {
-	int count = 0;
+    int count = 0;
 
-	while (n != 0)
-	{
-		count++;
-		n = n & (n-1);
-	}
+    while (n != 0)
+    {
+        count++;
+        n = n & (n-1);
+    }
 
-	return count;
+    return count;
 }
 ```
 
@@ -411,13 +423,13 @@ int bit_count2(unsigned int n)
 ```c
 int popcount(unsigned int n)
 {
-	n = (n >>  1 & 0x55555555) + (n & 0x55555555);
-	n = (n >>  2 & 0x33333333) + (n & 0x33333333);
-	n = (n >>  4 & 0x0F0F0F0F) + (n & 0x0F0F0F0F);
-	n = (n >>  8 & 0x00FF00FF) + (n & 0x00FF00FF);
-	n = (n >> 16 & 0x0000FFFF) + (n & 0x0000FFFF);
-	
-	return n;
+    n = (n >>  1 & 0x55555555) + (n & 0x55555555);
+    n = (n >>  2 & 0x33333333) + (n & 0x33333333);
+    n = (n >>  4 & 0x0F0F0F0F) + (n & 0x0F0F0F0F);
+    n = (n >>  8 & 0x00FF00FF) + (n & 0x00FF00FF);
+    n = (n >> 16 & 0x0000FFFF) + (n & 0x0000FFFF);
+    
+    return n;
 }
 ```
 
