@@ -111,7 +111,17 @@ Normalized Coordinate System의 좌표는 $(x,y) \in [-1,1] \times [-1,1]$에서
 > 선형 변환의 역행렬을 사용해 좌표계 변환 행렬을 적용하면 된다.
 > 
 > $T_{x}, T_{y}, T_{z}$ = Camera Position
-> $V = \begin{bmatrix}R_{x}&U_{x} & F_{x}& 0\\\R_{y}&U_{y} & F_{y} & 0 \\\R_{z} & U_{z}  & F_{z} & 0 \\\ 0 & 0 & 0 & 1\end{bmatrix}^T \cdot \begin{bmatrix}1&0 & 0& - T_{x}\\\0&1 & 0 & - T_{y} \\\0 & 0  &1 & -T_{z} \\\ 0 & 0 & 0 & 1\end{bmatrix}= \begin{bmatrix}R_{x}&R_{y} & R_{z}& 0\\\ U_{x}&U_{y} & U_{z} & 0 \\\ F_{x} & F_{y}  & F_{z} & 0 \\\ 0 & 0 & 0 & 1\end{bmatrix} \cdot \begin{bmatrix}1&0 & 0& - T_{x}\\\0&1 & 0 & - T_{y} \\\0 & 0  &1 & -T_{z} \\\ 0 & 0 & 0 & 1\end{bmatrix}$
+> 
+> 
+> $$
+> V = \begin{bmatrix}R_{x}&U_{x} & F_{x}& 0\\\R_{y}&U_{y} & F_{y} & 0 \\\R_{z} & U_{z}  & F_{z} & 0 \\\ 0 & 0 & 0 & 1\end{bmatrix}^T \cdot \begin{bmatrix}1&0 & 0& - T_{x}\\\0&1 & 0 & - T_{y} \\\0 & 0  &1 & -T_{z} \\\ 0 & 0 & 0 & 1\end{bmatrix}
+> $$
+> 
+> 
+> $$
+> = \begin{bmatrix}R_{x}&R_{y} & R_{z}& 0\\\ U_{x}&U_{y} & U_{z} & 0 \\\ F_{x} & F_{y}  & F_{z} & 0 \\\ 0 & 0 & 0 & 1\end{bmatrix} \cdot \begin{bmatrix}1&0 & 0& - T_{x}\\\0&1 & 0 & - T_{y} \\\0 & 0  &1 & -T_{z} \\\ 0 & 0 & 0 & 1\end{bmatrix}
+> $$
+> 
 > 
 
 > [!tip]- Projection Matrix 생성 방법{title}
