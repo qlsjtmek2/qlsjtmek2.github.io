@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 4. Image Processing"
 date: "2024-11-02"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["컴퓨터 그래픽스", "이미지 처리", "포스트 프로세싱", "쉐이더", "텍스처 좌표", "다중 패스 렌더링", "엣지 검출", "블러 효과"]
+tags: ["고급컴퓨터그래픽스", "이미지 처리", "포스트 프로세싱", "쉐이더", "프레임 버퍼", "텍스처", "다중 패스 렌더링", "엣지 검출"]
 math: true
 toc: true
 comments: true
@@ -18,34 +18,25 @@ comments: true
 
 사진 보정, Game Post Processing 등이 대표적인 Image Processing 이다.
 
-- [#Post Processing이 어떻게 구현되어 있을까?|Post Processing이 어떻게 구현되어 있을까?](https://qlsjtmek2.github.io/#Post-Processing이-어떻게-구현되어-있을까?|Post-Processing이-어떻게-구현되어-있을까?)
-- [#Image Processing 전용 Shader 만드는 방법|Image Processing 전용 Shader 만드는 방법](https://qlsjtmek2.github.io/#Image-Processing-전용-Shader-만드는-방법|Image-Processing-전용-Shader-만드는-방법)
-- [#Image Processing Example|Image Processing Example](https://qlsjtmek2.github.io/#Image-Processing-Example|Image-Processing-Example)
-- [#Image Processing Operations|Image Processing Operations](https://qlsjtmek2.github.io/#Image-Processing-Operations|Image-Processing-Operations)
-
 ## Post Processing이 어떻게 구현되어 있을까?
 
 > [!question] Pipeline을 거쳐 생성한 이미지를, 다시 쉐이더로 어떻게 보낼까?{title}
 
 > [!error] 이미지를 다시 픽셀 단위로 쪼개서 데이터로 보내면 되려나?{title}
-
-![Pasted image 20241011091009.png](/assets/img/posts/Pasted image 20241011091009.png){: width="500"}
-
-그렇게 하면 위와 같은 그림이 될텐데,
-CPU <-> GPU로 넘어가는 연산이 무지 느리기 떄문에, 넘어가는 연산을 최대한 줄여야 한다. 
-따라서 바람직한 방법은 아니다.
-
-
-![Pasted image 20241011091141.png](/assets/img/posts/Pasted image 20241011091141.png)
+> 
+> ![Pasted image 20241011091009.png](/assets/img/posts/Pasted image 20241011091009.png){: width="500"}
+> 
+> 그렇게 하면 위와 같은 그림이 될텐데,
+> CPU <-> GPU로 넘어가는 연산이 무지 느리기 떄문에, 넘어가는 연산을 최대한 줄여야 한다. 
+> 따라서 바람직한 방법은 아니다.
 
 > [!success] Frame Buffer 에 있는걸 바로 CPU로 아웃풋 하지말고 후처리까지 끝내서 보내면 되지 않을까? {title}
+> ![Pasted image 20241011091141.png](/assets/img/posts/Pasted image 20241011091141.png)
 
 GPU에 있는 Frame Buffer 정보를 이용해서 Texture Imgage를 GPU 내에서 생성한다.
 이 Texture와 같은 것을 Frame Buffer Obejct라고 부른다.
 
-
 이런식으로 여러 번의 Randering 과정을 거치는 것을 **Multi-pass Rendering** 기법이라 부른다.
-
 
 ## Image Processing 전용 Shader 만드는 방법
 
