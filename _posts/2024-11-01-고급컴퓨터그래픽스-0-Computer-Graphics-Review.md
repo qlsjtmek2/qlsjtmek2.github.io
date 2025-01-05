@@ -1,6 +1,6 @@
 ---
 title: "고급컴퓨터그래픽스 0. Computer Graphics Review"
-date: "2024-12-14"
+date: "2024-11-01"
 categories: ["IT", "고급컴퓨터그래픽스"]
 tags: ["컴퓨터 그래픽스", "Modeling", "Texturing", "Rendering", "Animation", "GPU Library", "Vertex Processing", "Graphic Pipeline"]
 math: true
