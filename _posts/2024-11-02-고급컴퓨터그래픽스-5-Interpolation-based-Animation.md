@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 5. Interpolation-based Animation"
 date: "2024-11-02"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["컴퓨터 애니메이션", "키프레임", "물리 시뮬레이션", "모션 캡처", "쿼터니언", "보간", "스플라인", "데이터 스무딩"]
+tags: ["고급컴퓨터그래픽스", "애니메이션", "보간", "쿼터니언", "키프레임", "물리 시뮬레이션", "스플라인", "데이터 스무딩"]
 math: true
 toc: true
 comments: true
@@ -70,26 +70,30 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 > S(t)= \frac{1}{2} \left( \sin\left( t \pi-\frac{\pi}{2} \right) +1 \right)
 > $$
 > 
+> 
 > - Single Cubic
 > 
 > $$
 > S(t) = -2t^3+3t^2
 > $$
 > 
+>   
 > - Piecewise Sinusoidal
 > 
 > $$
 > S(t) = \begin{cases} \frac{1}{f} \cdot{k_1 \frac{2}{\pi} \left(\sin\left(\frac{t \pi}{2 k_1} - \frac{\pi}{2}\right)\right)} & t \leq k_1 \\[10pt] \frac{1}{f}\left( {\frac{k_1}{\frac{\pi}{2}} + (t - k_1)} \right) & k_1 < t \leq k_2 \\[10pt] \frac{1}{f} \left( {\frac{k_1}{\frac{\pi}{2}} + k_2 - k_1 + (1 - k_2) \frac{2}{\pi} \sin\left(\frac{\pi (t - k_2)}{2 (1 - k_2)}\right)} \right) & t > k_2 \end{cases}
 > $$
 > 
->     - $\displaystyle f = k_1 \frac{2}{\pi} + k_2 - k_1 + (1 - k_2) \frac{2}{\pi}$
+> $\displaystyle f = k_1 \frac{2}{\pi} + k_2 - k_1 + (1 - k_2) \frac{2}{\pi}$
+> 
 > - Constant Acceleration
 > 
 > $$
 > \displaystyle S(t) =  \begin{cases} \frac{v_0 t^2}{2 t_1} & 0.0 < t \leq t_1 \\[10pt] v_0 \frac{t_1}{2} + v_0 (t - t_1) & t_1 < t \leq t_2 \\[10pt] v_0 \frac{t_1}{2} + v_0 (t_2 - t_1) + v_0 \left(1 - \frac{(t - t_2)}{2 (1 - t_2)}\right)(t - t_2) & t_2 < t \leq 1.0 \end{cases}
 > $$
 > 
->     - $t_{1}, t_{2}$는 각각 가속이 끝나는 시간, 가속이 시작되는 시간으로 임의로 설정 가능함.
+>   
+> $t_{1}, t_{2}$는 각각 가속이 끝나는 시간, 가속이 시작되는 시간으로 임의로 설정 가능하다.
 > 
 > > [!tip]- 그래프 모양, 순서대로 1. 2. 3. 4.{title}
 > > 
