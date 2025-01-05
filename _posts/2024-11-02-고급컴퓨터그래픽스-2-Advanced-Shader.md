@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 2. Advanced Shader"
 date: "2024-11-02"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["OpenGL", "GPU", "Shader", "Pipeline", "GLSL", "Tessellation", "Vertex", "Fragment"]
+tags: ["OpenGL", "GPU", "렌더링", "GLSL", "Vertex Shader", "Fragment Shader", "Tessellation", "Geometry Shader"]
 math: true
 toc: true
 comments: true
@@ -168,7 +168,8 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > - 위치 속성의 경우 `((void*) 0)`
 > - Color 속성의 경우  `(void*)(3 * sizeof(float))`
 >    
-> > [!example] > > ```c{title}
+> > [!example] example{title}
+> > ```c
 > > GLint positionAttribute = glGetAttribLocation(shaderProgram, "position"); 
 > > 
 > > if (positionAttribute == -1) 
@@ -493,7 +494,8 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 > );
 > ```
 > 
-> > [!example] > > `glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, OFFSCREEN_WIDTH, OFFSCREEN_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, null);`{title}
+> > [!example] example{title}
+> > `glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, OFFSCREEN_WIDTH, OFFSCREEN_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, null);`
 
 > [!example]- Vertex Shader에 Position 정보만 전달하기{title}
 > ```c
