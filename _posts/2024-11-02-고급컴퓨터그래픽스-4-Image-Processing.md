@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 4. Image Processing"
 date: "2024-11-02"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["이미지 처리", "컴퓨터 그래픽스", "포스트 프로세싱", "쉐이더", "다중 패스 렌더링", "텍스처 좌표", "필터", "엣지 검출"]
+tags: ["Computer Graphics", "Image Processing", "Shader", "Post Processing", "Multi-pass Rendering", "Edge Detection", "Gaussian Blur", "Texture Analysis"]
 math: true
 toc: true
 comments: true
@@ -63,8 +63,8 @@ out vec2 fs_TextureCoord;
 
 void main(void)
 {
-	fs_TextureCoord = TextureCoord;
-	gl_Position = vec4(Position, 1.0);
+    fs_TextureCoord = TextureCoord;
+    gl_Position = vec4(Position, 1.0);
 }
 
 // Fragment Shader
@@ -75,7 +75,7 @@ out vec4 out_Color;
 
 void main(void) 
 {
-	out_Color = texture(u_Image, fs_TextureCoord);
+    out_Color = texture(u_Image, fs_TextureCoord);
 }
 ```
 
@@ -90,7 +90,7 @@ in vec3 Position;
 
 void main(void)
 {
-	gl_Position = vec4(Position, 1.0);
+    gl_Position = vec4(Position, 1.0);
 }
 
 // Fragment Shader
@@ -101,9 +101,9 @@ out vec4 out_Color;
 
 void main(void)
 {
-	vec2 txCoord = u_inverseViewportDimensions * gl_FragCoord.xy;
-	
-	out_Color = texture(u_Image, txCoord);
+    vec2 txCoord = u_inverseViewportDimensions * gl_FragCoord.xy;
+    
+    out_Color = texture(u_Image, txCoord);
 }
 ```
 
@@ -131,15 +131,15 @@ out vec4 out_Color;
 
 void main(void) 
 {
-	vec2 delta = 1.0 / textureSize(u_Image);
-	
-	vec4 c0 = texture(u_Image, fs_TextureCoord);
-	vec4 c1 = texture(u_Image, (delta * vec2(-1.0, 0.0)));
-	vec4 c2 = texture(u_Image, (delta * vec2( 1.0, 0.0)));
-	vec4 c3 = texture(u_Image, (delta * vec2( 0.0, -1.0)));
-	vec4 c4 = texture(u_Image, (delta * vec2( 0.0, 1.0)));
+    vec2 delta = 1.0 / textureSize(u_Image);
+    
+    vec4 c0 = texture(u_Image, fs_TextureCoord);
+    vec4 c1 = texture(u_Image, (delta * vec2(-1.0, 0.0)));
+    vec4 c2 = texture(u_Image, (delta * vec2( 1.0, 0.0)));
+    vec4 c3 = texture(u_Image, (delta * vec2( 0.0, -1.0)));
+    vec4 c4 = texture(u_Image, (delta * vec2( 0.0, 1.0)));
 
-	out_Color = (c0 + c1 + c2 + c3 + c4) * 0.2;
+    out_Color = (c0 + c1 + c2 + c3 + c4) * 0.2;
 }
 ```
 
@@ -148,10 +148,18 @@ void main(void)
 > 
 > 따라서, Texture Size를 통해 다음을 계산하면 된다.
 > 바로 위 아래 텍스쳐 픽셀의 위치
-> $$\text{uv} \pm \frac{1}{\text{textureWidth}}$$
+> 
+> $$
+> \text{uv} \pm \frac{1}{\text{textureWidth}}
+> $$
+> 
 > 
 > 바로 좌우 텍스쳐 픽셀의 위치
-> $$\text{uv} \pm \frac{1}{\text{textureHeight}}$$
+> 
+> $$
+> \text{uv} \pm \frac{1}{\text{textureHeight}}
+> $$
+> 
 
 2. textureOffset 함수 사용
 
@@ -163,13 +171,13 @@ out vec4 out_Color;
 
 void main(void) 
 {
-	vec4 c0 = texture(u_Image, fs_TextureCoord);
-	vec4 c1 = textureOffset(u_Image, fs_TextureCoord, ivec2(-1, 0));
-	vec4 c2 = textureOffset(u_Image, fs_TextureCoord, ivec2(1, 0));
-	vec4 c3 = textureOffset(u_Image, fs_TextureCoord, ivec2(0, -1));
-	vec4 c4 = textureOffset(u_Image, fs_TextureCoord, ivec2(0, 1));
+    vec4 c0 = texture(u_Image, fs_TextureCoord);
+    vec4 c1 = textureOffset(u_Image, fs_TextureCoord, ivec2(-1, 0));
+    vec4 c2 = textureOffset(u_Image, fs_TextureCoord, ivec2(1, 0));
+    vec4 c3 = textureOffset(u_Image, fs_TextureCoord, ivec2(0, -1));
+    vec4 c4 = textureOffset(u_Image, fs_TextureCoord, ivec2(0, 1));
 
-	out_Color = (c0 + c1 + c2 + c3 + c4) * 0.2;
+    out_Color = (c0 + c1 + c2 + c3 + c4) * 0.2;
 }
 ```
 
@@ -217,8 +225,8 @@ out vec2 fs_TextureCoord;
 
 void main(void)
 {
-	fs_TextureCoord = TextureCoord;
-	gl_Position = vec4(Position, 1.0);
+    fs_TextureCoord = TextureCoord;
+    gl_Position = vec4(Position, 1.0);
 }
 
 // Fragment Shader
@@ -229,8 +237,8 @@ out vec4 out_Color;
 
 void main(void) 
 {
-	out_Color = texture(u_Image, fs_TextureCoord);
-	out_Color.xyz = vec3(1) - color.xyz;
+    out_Color = texture(u_Image, fs_TextureCoord);
+    out_Color.xyz = vec3(1) - color.xyz;
 }
 ```
 
@@ -264,19 +272,23 @@ out vec4 out_Color;
 
 void main(void) 
 {
-	vec4 c0 = texture(u_Image, fs_TextureCoord);
-	vec4 c1 = textureOffset(u_Image, fs_TextureCoord, ivec2(-1, 0));
-	vec4 c2 = textureOffset(u_Image, fs_TextureCoord, ivec2(1, 0));
-	vec4 c3 = textureOffset(u_Image, fs_TextureCoord, ivec2(0, -1));
-	vec4 c4 = textureOffset(u_Image, fs_TextureCoord, ivec2(0, 1));
+    vec4 c0 = texture(u_Image, fs_TextureCoord);
+    vec4 c1 = textureOffset(u_Image, fs_TextureCoord, ivec2(-1, 0));
+    vec4 c2 = textureOffset(u_Image, fs_TextureCoord, ivec2(1, 0));
+    vec4 c3 = textureOffset(u_Image, fs_TextureCoord, ivec2(0, -1));
+    vec4 c4 = textureOffset(u_Image, fs_TextureCoord, ivec2(0, 1));
 
-	out_Color = (c0 + c1 + c2 + c3 + c4) * 0.2;
+    out_Color = (c0 + c1 + c2 + c3 + c4) * 0.2;
 }
 ```
 
 
 ### Gaussian Blur
-$$G(x,y)=\frac{1}{2\pi \sigma^2}e^{ - \frac{% raw %}{{x^2 + y^2}}{% endraw %}{2\sigma^2}}  $$
+
+$$
+G(x,y)=\frac{1}{2\pi \sigma^2}e^{ - \frac{% raw %}{{x^2 + y^2}}{% endraw %}{2\sigma^2}}
+$$
+
 
 가우시안 분포를 사용해서 Blur를 만드는 방법이다.
 
@@ -284,7 +296,10 @@ $$G(x,y)=\frac{1}{2\pi \sigma^2}e^{ - \frac{% raw %}{{x^2 + y^2}}{% endraw %}{2\
 
 저 식을 사용해서 대충 근사시킨 3x3 행렬은 다음과 같다.
 
-$$\frac{1}{16} \cdot \begin{bmatrix}1&2&1\\2&4&2\\1&2&1 \end{bmatrix}$$
+$$
+\frac{1}{16} \cdot \begin{bmatrix}1&2&1\\2&4&2\\1&2&1 \end{bmatrix}
+$$
+
 
 ```c
 uniform sampler2D u_Image;
@@ -294,21 +309,21 @@ out vec4 out_Color;
 
 void main(void) 
 {
-	vec4 up_left = textureOffset(u_Image, fs_TextureCoord, ivec2(-1, 1));
-	vec4 up_mid = 2 * textureOffset(u_Image, fs_TextureCoord, ivec2(0, 1));
-	vec4 up_right = textureOffset(u_Image, fs_TextureCoord, ivec2(1, 1));
-	
-	vec4 left = 2 * textureOffset(u_Image, fs_TextureCoord, ivec2(-1, 0));
-	vec4 mid = 4 * texture(u_Image, fs_TextureCoord);
-	vec4 right = 2 * textureOffset(u_Image, fs_TextureCoord, ivec2(1, 0));
-	
-	vec4 down_left = textureOffset(u_Image, fs_TextureCoord, ivec2(-1, -1));
-	vec4 down_mid = 2 * textureOffset(u_Image, fs_TextureCoord, ivec2(0, -1));
-	vec4 down_right = textureOffset(u_Image, fs_TextureCoord, ivec2(1, -1));
+    vec4 up_left = textureOffset(u_Image, fs_TextureCoord, ivec2(-1, 1));
+    vec4 up_mid = 2 * textureOffset(u_Image, fs_TextureCoord, ivec2(0, 1));
+    vec4 up_right = textureOffset(u_Image, fs_TextureCoord, ivec2(1, 1));
+    
+    vec4 left = 2 * textureOffset(u_Image, fs_TextureCoord, ivec2(-1, 0));
+    vec4 mid = 4 * texture(u_Image, fs_TextureCoord);
+    vec4 right = 2 * textureOffset(u_Image, fs_TextureCoord, ivec2(1, 0));
+    
+    vec4 down_left = textureOffset(u_Image, fs_TextureCoord, ivec2(-1, -1));
+    vec4 down_mid = 2 * textureOffset(u_Image, fs_TextureCoord, ivec2(0, -1));
+    vec4 down_right = textureOffset(u_Image, fs_TextureCoord, ivec2(1, -1));
 
-	out_Color = (up_left + up_mid + up_right + 
-				left + mid + right + 
-				down_left + down_mid + down_right) * 0.0625;
+    out_Color = (up_left + up_mid + up_right + 
+                left + mid + right + 
+                down_left + down_mid + down_right) * 0.0625;
 }
 ```
 
@@ -388,7 +403,8 @@ Image Processing에서 유용하게 활용할 수 있는 알고리즘들을 소�
 
 ![Pasted image 20241011231826.jpg](/assets/img/posts/Pasted image 20241011231826.jpg)
 
-> [!example] ```c{title}
+> [!example] example{title}
+```c
 #version 330 core
 uniform sampler2D u_Image;  // 텍스처 이미지
 uniform float u_Threshold;  // 임계값 (예: 0.5)
@@ -415,7 +431,8 @@ void main() {
 
 픽셀의 Color 값이 $t_{1} < t < t_{2}$  사이면 1, 아니면 0. 특정 영역만 뽑아낼 수 있다.
 
-> [!example] ```c{title}
+> [!example] example{title}
+```c
 #version 330 core
 uniform sampler2D u_Image;
 uniform float u_LowerThreshold;  // 임계값 하한
@@ -443,7 +460,8 @@ void main() {
 
 어두운 부분을 없애고, 밝은 부분을 취한다.
 
-> [!example] ```c{title}
+> [!example] example{title}
+```c
 #version 330 core
 uniform sampler2D u_Image;
 uniform float u_MinValue;  // 입력 이미지의 최소값
@@ -468,7 +486,8 @@ void main() {
 
 어두운 부분을 적당히 없앤다.
 
-> [!example] ```c{title}
+> [!example] example{title}
+```c
 #version 330 core
 uniform sampler2D u_Image;
 
@@ -490,7 +509,8 @@ void main() {
 
 가운데는 흐릿하게, 어둡고 밝은 부분은 확 변하게.
 
-> [!example] ```c{title}
+> [!example] example{title}
+```c
 #version 330 core
 uniform sampler2D u_Image;
 uniform float u_Threshold;
@@ -517,7 +537,8 @@ void main() {
 
 계단식의 밝기를 준다?
 
-> [!example] ```c{title}
+> [!example] example{title}
+```c
 #version 330 core
 uniform sampler2D u_Image;
 uniform float u_StepSize;  // 계단 크기
@@ -603,22 +624,38 @@ void main() {
 주변 픽셀의 가중치를 저장한 행렬을 Filter라고 부른다.
 
 > [!example] Noise Reduction Filter{title}
-> $$\frac{1}{4} \cdot \begin{bmatrix}0&1&0\\1&0&1\\0&1&0 \end{bmatrix}$$
+> 
+> $$
+> \frac{1}{4} \cdot \begin{bmatrix}0&1&0\\1&0&1\\0&1&0 \end{bmatrix}
+> $$
+> 
 > 
 > 튀는 픽셀을 줄이고 Blur 효과를 준다.
 
 > [!example] Averaging Filter{title}
-> $$\frac{1}{4} \cdot \begin{bmatrix}1&1&1\\1&1&1\\1&1&1 \end{bmatrix}$$
+> 
+> $$
+> \frac{1}{4} \cdot \begin{bmatrix}1&1&1\\1&1&1\\1&1&1 \end{bmatrix}
+> $$
+> 
 > 
 > 노이즈를 줄이고, Blur 효과를 주변 점의 평균을 계산하는 방식을 이용한다.
 
 > [!example] Gaussian Filter{title}
-> $$\frac{1}{16} \cdot \begin{bmatrix}1&2&1\\2&4&2\\1&2&1 \end{bmatrix}$$
+> 
+> $$
+> \frac{1}{16} \cdot \begin{bmatrix}1&2&1\\2&4&2\\1&2&1 \end{bmatrix}
+> $$
+> 
 > 
 > 가우시안 분포를 사용하여 Blur 효과를 계산한다.
 
 > [!example] Sobel Filter{title}
-> $$\begin{bmatrix}-1&0&1\\-2&0&2\\-1&0&1 \end{bmatrix}$$
+> 
+> $$
+> \begin{bmatrix}-1&0&1\\-2&0&2\\-1&0&1 \end{bmatrix}
+> $$
+> 
 > 
 > 수직 방향의 Edge 검출에 사용한다. 주변 점과 -1을 곱해서 내 값에 더하는 것의 의미는..
 > 
@@ -627,12 +664,20 @@ void main() {
 > 이런 원리로 차이가 심한 부분, 즉 Edge를 검출한다.
 
 > [!example] Laplacian Filter{title}
-> $$\begin{bmatrix}0&1&0\\1&-4&1\\0&1&0 \end{bmatrix}$$
+> 
+> $$
+> \begin{bmatrix}0&1&0\\1&-4&1\\0&1&0 \end{bmatrix}
+> $$
+> 
 > 
 > 전체적인 경계선을 감지하는데 사용한다.
 
 > [!example] High Pass Filter{title}
-> $$\begin{bmatrix}-1&-1&-1\\-1&9&-1\\-1&-1&-1 \end{bmatrix}$$
+> 
+> $$
+> \begin{bmatrix}-1&-1&-1\\-1&9&-1\\-1&-1&-1 \end{bmatrix}
+> $$
+> 
 > 
 > 주변 점과 차이가 심한 점을 뚜렷하게 강조한다.
 
@@ -677,7 +722,7 @@ void main() {
 
 for (int i = 0; i < variable; i++)
 {
-	// ...
+    // ...
 }
 ```
 
