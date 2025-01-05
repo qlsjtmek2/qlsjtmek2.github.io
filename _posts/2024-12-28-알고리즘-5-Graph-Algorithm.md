@@ -2,7 +2,7 @@
 title: "알고리즘 5. Graph Algorithm"
 date: "2024-12-28"
 categories: ["IT", "알고리즘"]
-tags: ["그래프", "Traversal", "DFS", "BFS", "Cut Vertex", "Strongly Connected Component", "Biconnected Graph", "Topological Sort"]
+tags: ["알고리즘", "그래프", "DFS", "BFS", "Traversal", "Cut Vertex", "Strongly Connected Component", "Topological Sort"]
 math: true
 toc: true
 comments: true
@@ -24,10 +24,10 @@ comments: true
 아무 노드에서 시작해서 O(1)
 시작 노드를 자료구조에 넣는다. O(1)
 자료구조가 빌때까지 반복한다. O(n)
-	자료구조에서 노드를 꺼내서 (자료구조에 따라 다르다. O(1), O(logn), ...)
-	어떤 계산을 처리하고 (상황에 따라 다르다.)
-	Visit 처리 후 O(1)
-	인접한 노드를 자료구조에 넣는다. (한 노드에서 많이 추가되면 다른 노드에서는 시간을 덜 쓰게 된다. 총 +O(m))
+    자료구조에서 노드를 꺼내서 (자료구조에 따라 다르다. O(1), O(logn), ...)
+    어떤 계산을 처리하고 (상황에 따라 다르다.)
+    Visit 처리 후 O(1)
+    인접한 노드를 자료구조에 넣는다. (한 노드에서 많이 추가되면 다른 노드에서는 시간을 덜 쓰게 된다. 총 +O(m))
 ```
 
 Traversal의 최소 시간 복잡도는 $O(n+m)$이다.
@@ -60,11 +60,11 @@ Traversal을 재귀적으로 구현하면 다음과 같다.
 ```
 RDFS(Node s)
 {
-	s가 Visit(Mark) 되어있으면 return.
-	s를 Visit
-	여기서 작업하면 BFS (Preorder)
-	RDFS(모든 인접한 노드)
-	여기서 작업하면 DFS (Postorder)
+    s가 Visit(Mark) 되어있으면 return.
+    s를 Visit
+    여기서 작업하면 BFS (Preorder)
+    RDFS(모든 인접한 노드)
+    여기서 작업하면 DFS (Postorder)
 }
 ```
 
