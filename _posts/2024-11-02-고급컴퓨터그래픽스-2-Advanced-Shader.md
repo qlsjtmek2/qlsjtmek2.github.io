@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 2. Advanced Shader"
 date: "2024-11-02"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["OpenGL", "GLSL", "컴퓨터 그래픽스", "Vertex Shader", "Fragment Shader", "Geometry Shader", "Tessellation", "라이브러리"]
+tags: ["OpenGL", "GPU", "렌더링", "Vertex Shader", "Fragment Shader", "Tessellation", "Geometry Shader", "GLSL"]
 math: true
 toc: true
 comments: true
@@ -614,7 +614,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 
 > [!note]- Vector{title}
 > 
-> 1. Type
+> - Type
 >    
 > ```c
 > vec2, vec3, vec4     // 성분 타입이 float
@@ -624,7 +624,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > uvec2, uvec3, uvec4  // 성분 타입이 unsigned int
 > ```
 > 
-> 2. 생성자
+> - 생성자
 >    
 > ```c
 > vec3 xcz = vec3(1.0, 2.0, 3.0);
@@ -632,7 +632,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > vec3 xyz = vec3(vec2(1.0), 2.0); // [1.0, 1.0, 2.0]
 > ```
 > 
-> 3. 성분 참조
+> - 성분 참조
 > rgba는 Vector가 Color를 담고있을 때 사용하면 좋다.
 > stpq는 Vector가 Texture Coordinate를 담고있을 때 사용하면 좋다.
 > 
@@ -652,7 +652,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > ```
 > 
 > 
-> 4. 벡터 연산
+> - 벡터 연산
 >    
 > ```c
 > vec3 v1 = vec3(1.0, 2.0, 3.0);
@@ -673,7 +673,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > > $$v.y = v_{0}.y * v_{1}.y$$
 > > $$v.z = v_{0}.z * v_{1}.z$$
 > 
-> 5. 관련 함수
+> - 관련 함수
 >    
 > ```c
 > vec3 p = vec3(1.0, 2.0, 3.0);
@@ -703,7 +703,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 
 > [!NOTE]- Matrix{title}
 > 
-> 1. Type
+> - Type
 >    
 > ```c
 > mat2, mat3, mat4     // 성분 타입이 float. mat2 = mat2x2, ...
@@ -716,7 +716,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > matmxn  // column이 m개, row가 n개인 행렬.
 > ```
 > 
-> 2. 생성자
+> - 생성자
 >    
 > ```c
 > mat3 A = mat3(1.0);  // 3x3 identity matrix
@@ -735,7 +735,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > > 예를들어, mat2 m = mat2(1,0, 2.0, 3.0, 4.0); 이렇게 2x2 Matrix를 생성하면 아래와 같이 행 우선으로 축적된다.
 > > $$\begin{bmatrix}1.0&3.0\\2.0&4.0\\ \end{bmatrix}$$
 > 
-> 3. 성분 참조
+> - 성분 참조
 >    
 > ```c
 > mat3 A = //...
@@ -749,7 +749,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > A[1] = vec3(2.0); // 두번째 Column의 내용을 모두 2.0으로 변경.
 > ```
 > 
-> 4. 행렬 연산
+> - 행렬 연산
 >    
 > ```c
 > vec3 v = //...
@@ -766,7 +766,7 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > > 
 > > ![Pasted image 20241006142555.png](/assets/img/posts/Pasted image 20241006142555.png)
 > 
-> 5. 관련 함수
+> - 관련 함수
 >    
 > ```c
 > mat3 A = //...
@@ -1148,9 +1148,7 @@ void main() {
 gl_TessCoord.y는 세로 축에서 상대적인 위치를 나타낸다.
 `
 ```c
-vec3 position = gl_TessCoord.x * p0 +
-				gl_TessCoord.y * p1 +
-				gl_TessCoord.z * p2;
+vec3 position = gl_TessCoord.x * p0 + gl_TessCoord.y * p1 + gl_TessCoord.z * p2;
 
 // 생성된 정점의 최종 위치 결정.
 gl_Position = vec4(position, 1.0);
