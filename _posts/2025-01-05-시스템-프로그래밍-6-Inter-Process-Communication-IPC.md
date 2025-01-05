@@ -2,7 +2,7 @@
 title: "시스템 프로그래밍 6. Inter-Process Communication (IPC)"
 date: "2025-01-05"
 categories: ["IT", "시스템 프로그래밍"]
-tags: ["IPC", "Pipe", "Message Queue", "Shared Memory", "Semaphore", "Sockets", "Blocking Mode", "SysV", "POSIX"]
+tags: ["IPC", "Sockets", "Pipe", "Message Queue", "Shared Memory", "Semaphore", "SysV", "POSIX"]
 math: true
 toc: true
 comments: true
@@ -65,10 +65,10 @@ Sockets은 같은 컴퓨팅 노드 사이의 통신에도 사용할 순 있지�
 
 - `int pipe(int pipefd[2])`
 - `int pipe(int pipefd[2], int flags)
-	- **Flags**
-		- `O_CLOEXEC` : 자식 프로세스가 `exec()` 계열 함수를 호출할 때, fd가 자동으로 닫히게 합니다,
-		- `O_DIRECT` : 버퍼링 없이 바로 디스크 I/O를 수행하기 위한 플래그다. 파이프에서 사용하지는 않는다.
-		- `O_NONBLOCK` : 읽을 바이트가 없어도, read가 바로 return됩니다.
+    - **Flags**
+        - `O_CLOEXEC` : 자식 프로세스가 `exec()` 계열 함수를 호출할 때, fd가 자동으로 닫히게 합니다,
+        - `O_DIRECT` : 버퍼링 없이 바로 디스크 I/O를 수행하기 위한 플래그다. 파이프에서 사용하지는 않는다.
+        - `O_NONBLOCK` : 읽을 바이트가 없어도, read가 바로 return됩니다.
 
 pipe read를 위한 Descriptor, pipe write를 위한 Descriptor 총 두개를 반환받는다. `빈 배열을 넣으면, pipe 함수가 디스크립터를 생성하여 채워준다.`
 
@@ -187,11 +187,11 @@ pipe read를 위한 Descriptor, pipe write를 위한 Descriptor 총 두개를 �
 #### 1.  Message Queue의 Id 값을 얻어온다.
 
 - `int msgget(key_t key, int flag)`
-	- **Flags**
-		- `IPC_CREAT` : key에 대응하는 Queue가 존재하지 않으면, 큐를 생성한다.
-		- `IPC_EXCL` : 큐가 이미 존재할 경우, Queue의 ID값이 아닌 오류를 반환한다.
-		- `0xxx` : 메세지 큐의 접근 권한을 설정한다.
-			- ex) IPC_CREAT | IPC_EXCL | 0666
+    - **Flags**
+        - `IPC_CREAT` : key에 대응하는 Queue가 존재하지 않으면, 큐를 생성한다.
+        - `IPC_EXCL` : 큐가 이미 존재할 경우, Queue의 ID값이 아닌 오류를 반환한다.
+        - `0xxx` : 메세지 큐의 접근 권한을 설정한다.
+            - ex) IPC_CREAT | IPC_EXCL | 0666
 
 key값에 대응하는 Message Queue가 존재하면, Message Queue의 ID 값을 반환한다.
 
@@ -219,17 +219,17 @@ key값에 대응하는 Message Queue가 존재하면, Message Queue의 ID 값을
 #### 2. Message Queue에 데이터를 보낸다.
 
 - `int msgsnd(int msgid, const void *ptr, size_t nbytes, int flag)`
-	- `msgid` : Message Queue의 ID.
-	- `void* ptr` : 전송할 메시지를 담은 `struct msgbuf`의 포인터.
-	- `size_t nbytes` : 전송할 메세지의 Byte 크기.
-	- **Flags**
-		- `0` : 메세지 큐가 가득 차있으면, 전송될 때까지 Blocking한다.
-		- `IPC_NOWAIT` : 메세지 큐가 가득 차면, -1가 즉시 반환된다.
+    - `msgid` : Message Queue의 ID.
+    - `void* ptr` : 전송할 메시지를 담은 `struct msgbuf`의 포인터.
+    - `size_t nbytes` : 전송할 메세지의 Byte 크기.
+    - **Flags**
+        - `0` : 메세지 큐가 가득 차있으면, 전송될 때까지 Blocking한다.
+        - `IPC_NOWAIT` : 메세지 큐가 가득 차면, -1가 즉시 반환된다.
 
 ```c
 struct msgbuf {
-	long mtype;
-	char mtext[N];
+    long mtype;
+    char mtext[N];
 }
 ```
 
@@ -244,19 +244,19 @@ msgsnd(id, &msg, sizeof(msg.mtext))
 #### 3. 다른 쪽에선, Message Queue에서 데이터를 받는다.
 
 - `int msgrcv(int msgid, void *ptr, size_t nbytes, long type, int flag)`
-	- `msgid` : Message Queue의 ID.
-	- `void* ptr` : 수신받을 struct msgbuf 변수의 주소. 수신받으면, 이 변수에 msgbuf 값이 담겨서 온다.
-	- `nbytes` : 수신할 메세지의 최대 크기.
-	- `type`
-		- `0` : mtype 값에 관계없이, 큐에 있는 다음 메세지를 가져온다.
-		- `> 0` : 지정한 mtype과 동일한 값을 가진 다음 메세지를 가져온다.
-			- 만약 mtype과 동일한 값의 메세지가 없을 경우,
-			- 플래그에 따라, 동일한 값을 가진 메세지가 들어올때까지 Blocking되거나, 바로 -1를 반환한다.
-		- `< 0` : mtype의 절댓값보다 작거나 같은 다음 메세지를 가져온다.
-	- `flag`
-		- `0` : 메세지가 도착할 때까지 Blocking한다.
-		- `IPC_NOWAIT` : 받을 메세지가 없으면, 바로 -1를 리턴한다.
-		- `MSG_NOERROR` : 메세지를 버퍼에 다 담을 수 없으면, 나머지 부분을 버리고 그냥 받아라.
+    - `msgid` : Message Queue의 ID.
+    - `void* ptr` : 수신받을 struct msgbuf 변수의 주소. 수신받으면, 이 변수에 msgbuf 값이 담겨서 온다.
+    - `nbytes` : 수신할 메세지의 최대 크기.
+    - `type`
+        - `0` : mtype 값에 관계없이, 큐에 있는 다음 메세지를 가져온다.
+        - `> 0` : 지정한 mtype과 동일한 값을 가진 다음 메세지를 가져온다.
+            - 만약 mtype과 동일한 값의 메세지가 없을 경우,
+            - 플래그에 따라, 동일한 값을 가진 메세지가 들어올때까지 Blocking되거나, 바로 -1를 반환한다.
+        - `< 0` : mtype의 절댓값보다 작거나 같은 다음 메세지를 가져온다.
+    - `flag`
+        - `0` : 메세지가 도착할 때까지 Blocking한다.
+        - `IPC_NOWAIT` : 받을 메세지가 없으면, 바로 -1를 리턴한다.
+        - `MSG_NOERROR` : 메세지를 버퍼에 다 담을 수 없으면, 나머지 부분을 버리고 그냥 받아라.
 
 수신이 성공하면, 가져온 메세지의 바이트 수를 반환한다. 실패시, -1를 반환한다.
 
@@ -277,8 +277,8 @@ SysV에선 따로 Close하는 System Call을 제공하지 않는다. 따라서, 
 ```c
 if (msgctl(msqid, IPC_RMID, NULL) == -1) 
 { 
-	perror("메시지 큐 삭제 실패"); 
-//	exit(1); 
+    perror("메시지 큐 삭제 실패"); 
+//    exit(1); 
 }
 ```
 
@@ -307,37 +307,37 @@ ipcrm -q <msqid>
 > 
 > int main(void)
 > {
-> 	struct {
-> 		long id;
-> 		int value;
-> 	} myMsg;
-> 	
-> 	// MsgQueue Unique Id 생성 (Hash 함수와 비슷)
-> 	key_t ipcKey = ftok("./tmp/foo", 1946);
-> 	
-> 	// MsgQueue 생성
-> 	int msgqId = msgget(ipcKey, IPC_CREAT | 0600);
-> 	
-> 	if (msgqId < 0)
-> 	{
-> 		perror("msgget()");
-> 		exit(0);
-> 	}
-> 	
-> 	for (int i = 0; i <= MAX_ID; i++)
-> 	{
-> 		myMsg.id = i + 1;
-> 		myMsg.value = i * 3;
-> 		
-> 		printf(“Sending a message (val: %d, id: %ld)\n”, mymsg.value, mymsg.id);
-> 		
-> 		// MsgQueue에 Queue 보내기. 구조체를 사용해 보냄.
-> 		if (msgsnd(mqdes, &myMsg, buf_len, 0) == -1)
-> 		{ 
-> 			perror(“msgsnd()”); 
-> 			exit(0); 
-> 		}
-> 	}
+>     struct {
+>         long id;
+>         int value;
+>     } myMsg;
+>     
+>     // MsgQueue Unique Id 생성 (Hash 함수와 비슷)
+>     key_t ipcKey = ftok("./tmp/foo", 1946);
+>     
+>     // MsgQueue 생성
+>     int msgqId = msgget(ipcKey, IPC_CREAT | 0600);
+>     
+>     if (msgqId < 0)
+>     {
+>         perror("msgget()");
+>         exit(0);
+>     }
+>     
+>     for (int i = 0; i <= MAX_ID; i++)
+>     {
+>         myMsg.id = i + 1;
+>         myMsg.value = i * 3;
+>         
+>         printf(“Sending a message (val: %d, id: %ld)\n”, mymsg.value, mymsg.id);
+>         
+>         // MsgQueue에 Queue 보내기. 구조체를 사용해 보냄.
+>         if (msgsnd(mqdes, &myMsg, buf_len, 0) == -1)
+>         { 
+>             perror(“msgsnd()”); 
+>             exit(0); 
+>         }
+>     }
 > }
 > ```
 
@@ -356,19 +356,19 @@ ipcrm -q <msqid>
 #### 1. name 이름을 갖는 Message Queue를 Open한다.
 
 - `mqd_t mq_open(const char *name, int oflag, /* mode_t mode, struct mq_attr *attr */)`
-	- `mqd = message queue descriptor`
-	- `oflag`
-		- 접근 모드 설정 Flags
-			- O_RDONLY
-			- O_WRONLY
-			- O_RDWR
-		- 옵션 Flags
-			- O_CREAT
-			- O_EXCL
-			- O_NONBLOCK : Open한 Message Queue를 사용할 떄, Read Write 과정에서 Blocking하지 않고 바로바로 -1를 반환하도록 한다.
-	- `mode` : (`O_CREAT` 사용 시) 메세지 큐의 접근 권한을 설정함. ex) 0664
-		- 이는 oflag에서 설정한 O_RDONLY와 다르다. Message Queue를 생성할 때 자체의 권한을 설정해주는 값. oflag의 O_RDONLY는 Message Queue를 Open할 때, READ ONLY 전용으로 Open하는 플래그.
-	- `attr` : (`O_CREAT` 사용 시) Message의 속성을 지정한다.
+    - `mqd = message queue descriptor`
+    - `oflag`
+        - 접근 모드 설정 Flags
+            - O_RDONLY
+            - O_WRONLY
+            - O_RDWR
+        - 옵션 Flags
+            - O_CREAT
+            - O_EXCL
+            - O_NONBLOCK : Open한 Message Queue를 사용할 떄, Read Write 과정에서 Blocking하지 않고 바로바로 -1를 반환하도록 한다.
+    - `mode` : (`O_CREAT` 사용 시) 메세지 큐의 접근 권한을 설정함. ex) 0664
+        - 이는 oflag에서 설정한 O_RDONLY와 다르다. Message Queue를 생성할 때 자체의 권한을 설정해주는 값. oflag의 O_RDONLY는 Message Queue를 Open할 때, READ ONLY 전용으로 Open하는 플래그.
+    - `attr` : (`O_CREAT` 사용 시) Message의 속성을 지정한다.
 
 ```c
 struct mq_attr {
@@ -386,10 +386,10 @@ mqd_t Type의 Message Queue ID를 반환한다.
 #### 2. Message Queue에 데이터를 보낸다.
 
 - `mqd_t mq_send( mqd_t mqdes, const char *msg_ptr, size_t msg_len, unsigned prio)`
-	- `mqdes` : Message Queue의 Descriptor.
-	- `msg_ptr` : 보낼 메세지가 담겨있는 버퍼.
-	- `msg_len` : 메세지의 길이.
-	- `prio` : 우선순위.
+    - `mqdes` : Message Queue의 Descriptor.
+    - `msg_ptr` : 보낼 메세지가 담겨있는 버퍼.
+    - `msg_len` : 메세지의 길이.
+    - `prio` : 우선순위.
 
 메세지는 우선순위가 높은 순서대로 정렬한다.
 prio 값이 높을수록 우선순위가 높고, 낮을 수록 우선순위가 낮다.
@@ -397,10 +397,10 @@ prio 값이 높을수록 우선순위가 높고, 낮을 수록 우선순위가 �
 #### 3. 다른 곳에선, Message Queue에서 값을 Read한다.
 
 - `ssize_t mq_receive( mqd_t mqdes, char *msg_ptr, size_t msg_len, unsigned *msg_prio)`
-	- `mqdes` : Message Queue의 Descriptor.
-	- `msg_ptr` : 메세지를 담을 버퍼. 이곳에 메세지가 담겨서 반환된다.
-	- `msg_len` : 버퍼의 크기
-	- `msg_prio` : 메세지의 우선순위. 빈 포인터 변수를 넘겨주면, 받아온 메세지의 우선순위가 담긴다.
+    - `mqdes` : Message Queue의 Descriptor.
+    - `msg_ptr` : 메세지를 담을 버퍼. 이곳에 메세지가 담겨서 반환된다.
+    - `msg_len` : 버퍼의 크기
+    - `msg_prio` : 메세지의 우선순위. 빈 포인터 변수를 넘겨주면, 받아온 메세지의 우선순위가 담긴다.
 
 #### 4. 다 사용한 Message Queue는 Close한다.
 
