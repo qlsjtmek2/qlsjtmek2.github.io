@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 6. Hierarchical Animation"
 date: "2024-12-14"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["고급컴퓨터그래픽스", "Hierarchical Object", "Forward Kinematics", "Inverse Kinematics", "End Effector", "Pose Vector", "Jacobian", "Cyclic Coordinate Descent"]
+tags: ["고급컴퓨터그래픽스", "Hierarchical Object", "Parent-Child 구조", "Forward Kinematics", "Inverse Kinematics", "자코비안", "Numeric Solution", "Cyclic Coordinate Descent"]
 math: true
 toc: true
 comments: true
@@ -56,9 +56,19 @@ IK의 부모 관절 각도를 계산하기 위해 해석적인 방법과 수치�
 
 ### Numeric Solution? : Jacobian
 
-$X=[x,y,z]$, $\theta=[\theta_{1},\theta_{2},\dots,\theta_{n}]$이라고 하자. $\Delta X$를 통해 $\Delta \theta$를 구해내고 싶다. 두 변화량은 어떤 변환 행렬로 연결되어 있으며, 그 행렬은 자코비안이다. $\Delta X=J\Delta \theta$, $J=\left[ \begin{matrix} \frac{% raw %}{{\partial x}}{% endraw %}{\partial \theta_{1}} & \frac{% raw %}{{\partial x}}{% endraw %}{\partial \theta_{2}} & \dots \\\ \frac{% raw %}{{\partial y}}{% endraw %}{\partial \theta_{1}} & \frac{% raw %}{{\partial y}}{% endraw %}{\partial \theta_{2}} & \dots \\\ \frac{% raw %}{{\partial z}}{% endraw %}{\partial \theta_{1}} & \frac{% raw %}{{\partial z}}{% endraw %}{\partial \theta_{2}} & \dots \end{matrix} \right]$, 따라서  $\Delta \theta=J^{-1} \Delta X$로 관절 값을 알아낼 수 있다.
+$X=[x,y,z]$, $\theta=[\theta_{1},\theta_{2},\dots,\theta_{n}]$이라고 하자. $\Delta X$를 통해 $\Delta \theta$를 구해내고 싶다. 두 변화량은 어떤 변환 행렬로 연결되어 있으며, 그 행렬은 자코비안이다.
 
-하지만 자코비안의 역을 계산할 수 없을 경우, $\Delta \theta = J^+ \Delta X$ 수도 역행렬을 사용한다. 
+$$
+\Delta X=J\Delta \theta
+$$
+
+
+$$
+J=\left[ \begin{matrix} \frac{% raw %}{{\partial x}}{% endraw %}{\partial \theta_{1}} & \frac{% raw %}{{\partial x}}{% endraw %}{\partial \theta_{2}} & \dots \\\ \frac{% raw %}{{\partial y}}{% endraw %}{\partial \theta_{1}} & \frac{% raw %}{{\partial y}}{% endraw %}{\partial \theta_{2}} & \dots \\\ \frac{% raw %}{{\partial z}}{% endraw %}{\partial \theta_{1}} & \frac{% raw %}{{\partial z}}{% endraw %}{\partial \theta_{2}} & \dots \end{matrix} \right]
+$$
+
+
+따라서  $\Delta \theta=J^{-1} \Delta X$로 관절 값을 알아낼 수 있다. 하지만 자코비안의 역을 계산할 수 없을 경우, $\Delta \theta = J^+ \Delta X$ 수도 역행렬을 사용한다. 
 
 $$
 (J^T J)^{-1} J^T = J^+
