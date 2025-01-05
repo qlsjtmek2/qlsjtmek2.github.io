@@ -1,6 +1,6 @@
 ---
 title: "시스템 프로그래밍 11. IO Redirection"
-date: "2024-11-28"
+date: "2024-11-29"
 categories: ["IT", "시스템 프로그래밍"]
 tags: ["I/O Redirection", "Standard Output", "Standard Error", "Duplication", "File Descriptors", "Command", "Redirection Operators", "System Programming"]
 math: true

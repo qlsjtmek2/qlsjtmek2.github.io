@@ -1,6 +1,6 @@
 ---
 title: "시스템 프로그래밍 10. Memory Mapped IO"
-date: "2024-11-28"
+date: "2024-11-29"
 categories: ["IT", "시스템 프로그래밍"]
 tags: ["Memory Mapped I/O", "mmap", "munmap", "File Descriptor", "Page Size", "PROT_READ", "MAP_SHARED", "System Call"]
 math: true
