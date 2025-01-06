@@ -2,7 +2,7 @@
 title: "수리물리학 5. Vector Calculus"
 date: "2024-11-28"
 categories: ["Math", "수리물리학"]
-tags: ["선적분", "면적분", "기울기", "회전", "발산", "그린 정리", "스톡스 정리", "보존 벡터 필드"]
+tags: ["선적분", "면적분", "기울기", "회전", "발산", "그린정리", "스토크스정리", "보존벡터장"]
 math: true
 toc: true
 comments: true
@@ -12,7 +12,7 @@ Mathematical Methods in the Physical Sciences, Mary L. Boas의 5장 내용입니
 
 ## Line Integral
 
-open path는 시작과 끝점이 있는 path, close path는 경로가 닫힌 path를 의미한다. 선적분을 하기 위해 $$[a,b]\to C$$로 가는 변환 함수 $$\vec{r} = \vec{r}(t) = (x(t),y(t),z(t))$$라는걸 반드시 찾아야 함. 만약 곡선 $$C$$가 $$x=y^2$$ 위의 곡선이라면 $$\vec{r}(t)=(t^2,t)$$어야 저 조건을 만족하므로 이런 매개변수방정식을 만들어 공간을 변환할 수 있다. 만약 찾기 무지 어려우면 Spline^[[고급컴퓨터그래픽스 1. Curves](https://qlsjtmek2.github.io/[고급컴퓨터그래픽스-1.-Curves)]으로 근사 곡선을 찾을 수도 있겠다.
+open path는 시작과 끝점이 있는 path, close path는 경로가 닫힌 path를 의미한다. 선적분을 하기 위해 $$[a,b]\to C$$로 가는 변환 함수 $$\vec{r} = \vec{r}(t) = (x(t),y(t),z(t))$$라는걸 반드시 찾아야 함. 만약 곡선 $$C$$가 $$x=y^2$$ 위의 곡선이라면 $$\vec{r}(t)=(t^2,t)$$어야 저 조건을 만족하므로 이런 매개변수방정식을 만들어 공간을 변환할 수 있다. 만약 찾기 무지 어려우면 Spline^[[고급컴퓨터그래픽스 1. Curves](https://qlsjtmek2.github.io/고급컴퓨터그래픽스-1-Curves)]으로 근사 곡선을 찾을 수도 있겠다.
 
 $$
 \int_{C} \vec{A}(\vec{r}) \cdot d\vec{r} = \int^{t_{1}}_{t_{0}} \vec{A} (\vec{r}(t)) \cdot \frac{d\vec{r}}{dt} dt = \int^{t_{1}}_{t_{0}} \vec{A}(\vec{r}(t)) \cdot\vec{r}'(t) dt
@@ -98,7 +98,7 @@ Curl은 벡터장이 돌아가는지 아닌지 작은 네모가 감지해내는 
 > $$
 > 
 > 
-> 위 과정에서 '[구간이 아주 작은 적분은, 그냥 dx를 곱한것과 같다.](https://qlsjtmek2.github.io/구간이-아주-작은-적분은,-그냥-dx를-곱한것과-같다.)' 를 사용한다. 따라서 $$\displaystyle \oint_{\Box} \mathbf{F} \cdot d\mathbf{r} = \left(\frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}\right) \, dx \, dy$$
+> 위 과정에서 '[구간이 아주 작은 적분은, 그냥 dx를 곱한것과 같다.](https://qlsjtmek2.github.io/구간이-아주-작은-적분은-그냥-dx를-곱한것과-같다)' 를 사용한다. 따라서 $$\displaystyle \oint_{\Box} \mathbf{F} \cdot d\mathbf{r} = \left(\frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}\right) \, dx \, dy$$
 > 결론을 얻는다.
 > 
 > ![Pasted image 20241206180000.png](/assets/img/posts/Pasted image 20241206180000.png){: width="400"}
