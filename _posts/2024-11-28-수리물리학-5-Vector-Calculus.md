@@ -2,7 +2,7 @@
 title: "수리물리학 5. Vector Calculus"
 date: "2024-11-28"
 categories: ["Math", "수리물리학"]
-tags: ["선적분", "면적분", "기울기", "회전", "발산", "그린 정리", "스톡스 정리", "보존 벡터장"]
+tags: ["선적분", "면적분", "기울기", "회전", "발산", "그린 정리", "스톡스 정리", "보존 벡터 필드"]
 math: true
 toc: true
 comments: true
@@ -41,12 +41,12 @@ $$
 ## Gradiant
 
 $$
-\text{Gradiant}~f = \nabla f = \displaystyle (\frac{{\partial f}}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z})
+\text{Gradiant}~f = \nabla f = \displaystyle (\frac{% raw %}{{\partial f}}{% endraw %}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z})
 $$
 
 스칼라 함수 $$f$$를 넣으면 그 지점에서 함수값이 가장 가파르게 증가하거나 감소하는 방향을 가리키는 기울기 벡터를 반환한다.
 
-$$df$$는 함수 $$f$$의 각각의 축 방향으로 찔끔씩 변화한 양의 합, 즉 $$\displaystyle \frac{{\partial f}}{\partial x} dx + \frac{{\partial f}}{\partial y} dy + \frac{{\partial f}}{\partial z} dz$$ 와 같으므로 일반적인 함수의 미소 변화량은 $$df=\nabla f \cdot d\vec{r}$$로 나타낼 수 있다는 중요한 성질이 있다.
+$$df$$는 함수 $$f$$의 각각의 축 방향으로 찔끔씩 변화한 양의 합, 즉 $$\displaystyle \frac{% raw %}{{\partial f}}{% endraw %}{\partial x} dx + \frac{% raw %}{{\partial f}}{% endraw %}{\partial y} dy + \frac{% raw %}{{\partial f}}{% endraw %}{\partial z} dz$$ 와 같으므로 일반적인 함수의 미소 변화량은 $$df=\nabla f \cdot d\vec{r}$$로 나타낼 수 있다는 중요한 성질이 있다.
 
 $$\nabla f$$를 통해 얻어낼 수 있는 정보는 두가지가 있다.
 1. $$\nabla f$$는 $$f$$의 Level Curve, Surface의 수직 방향이다.
@@ -94,7 +94,7 @@ Curl은 벡터장이 돌아가는지 아닌지 작은 네모가 감지해내는 
 > 
 > 
 > $$
-> \int_{\mathrm{II}} + \int_{\mathrm{IV}} = \int_y^{y+'\Delta' y} \big(F_y(x+d x, y') - F_y(x, y')\big) \, dy'= \int_y^{y+d y} \frac{\partial F_y}{\partial x} \, dx \, dy' = \frac{{\partial F_{y}}}{\partial x}dxdy
+> \int_{\mathrm{II}} + \int_{\mathrm{IV}} = \int_y^{y+'\Delta' y} \big(F_y(x+d x, y') - F_y(x, y')\big) \, dy'= \int_y^{y+d y} \frac{\partial F_y}{\partial x} \, dx \, dy' = \frac{% raw %}{{\partial F_{y}}{% endraw %}}{\partial x}dxdy
 > $$
 > 
 > 
@@ -214,7 +214,7 @@ $$\vec{A} = \nabla f$$를 만족하는 어떤 Scalar Field $$f$$가 존재하면
 Divergence란 Vector Field의 발산량을 감지하는 도구다. 어떤 Vector Field에 DIvergence를 취한다는 것은, 어떤 지점 $$\vec{r}$$에서 $$\vec{A}$$가 얼마나 발산하는지를 나타내는 스칼라를 반환하는 함수를 얻어내는 것과 같다. 계산은 다음과 같이 가능하다. 
 
 $$
-\nabla \cdot \vec{A}= \left( \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z} \right) \cdot (A_{x}, A_{y}, A_{z}) = \frac{{\partial A_{x}}}{\partial x} + \frac{{\partial A_{y}}}{\partial z} + \frac{{\partial A_z}}{\partial z}
+\nabla \cdot \vec{A}= \left( \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z} \right) \cdot (A_{x}, A_{y}, A_{z}) = \frac{% raw %}{{\partial A_{x}}{% endraw %}}{\partial x} + \frac{% raw %}{{\partial A_{y}}{% endraw %}}{\partial z} + \frac{% raw %}{{\partial A_z}}{% endraw %}{\partial z}
 $$
 
 
@@ -273,7 +273,7 @@ $$
 > 
 > 
 > $$
-> \Phi_{yz} = \int^{z+\frac{dz}{2}}_{z-\frac{dz}{2}} \int^{y+\frac{dy}{2}}_{y-\frac{dy}{2}} \frac{{\partial A_{x}(x,y',z')}}{\partial x} dx dy'dz'
+> \Phi_{yz} = \int^{z+\frac{dz}{2}}_{z-\frac{dz}{2}} \int^{y+\frac{dy}{2}}_{y-\frac{dy}{2}} \frac{% raw %}{{\partial A_{x}(x,y',z')}}{% endraw %}{\partial x} dx dy'dz'
 > $$
 > 
 > 
@@ -292,7 +292,7 @@ $$
 > 
 > 
 > $$
-> \therefore ~ \iint_{\partial V} \vec{A} \cdot d\vec{s} = \left( \frac{{\partial A_{x}}}{\partial x} + \frac{{\partial A_{y}}}{\partial y} + \frac{{\partial A_{z}}}{\partial z} \right)dxdydz = (\nabla \cdot \vec{A})dV
+> \therefore ~ \iint_{\partial V} \vec{A} \cdot d\vec{s} = \left( \frac{% raw %}{{\partial A_{x}}{% endraw %}}{\partial x} + \frac{% raw %}{{\partial A_{y}}{% endraw %}}{\partial y} + \frac{% raw %}{{\partial A_{z}}{% endraw %}}{\partial z} \right)dxdydz = (\nabla \cdot \vec{A})dV
 > $$
 > 
 > 위 식이 성립한다.

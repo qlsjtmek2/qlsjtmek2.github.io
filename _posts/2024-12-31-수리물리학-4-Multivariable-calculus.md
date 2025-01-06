@@ -2,7 +2,7 @@
 title: "수리물리학 4. Multivariable calculus"
 date: "2024-12-31"
 categories: ["Math", "수리물리학"]
-tags: ["연속성", "편미분", "테일러 전개", "정지점", "라그랑주 승수법", "다중 적분", "가우시안 적분", "미소 입체각"]
+tags: ["연속성", "편미분", "테일러 전개", "정지점", "라그랑주 승수법", "극값", "다중 적분", "가우시안 적분"]
 math: true
 toc: true
 comments: true
@@ -18,10 +18,10 @@ Mathematical Methods in the Physical Sciences, Mary L. Boas의 4장 내용입니
 편미분의 정의는 다음과 같다.
 
 $$
-\frac{{\partial f(x,y)}}{\partial x} = \lim_{ \Delta x \to 0 } \frac{{ f(x+\Delta x, y) - f(x,y) }}{\Delta x}
+\frac{% raw %}{{\partial f(x,y)}}{% endraw %}{\partial x} = \lim_{ \Delta x \to 0 } \frac{% raw %}{{ f(x+\Delta x, y) - f(x,y) }}{% endraw %}{\Delta x}
 $$
 
-표기의 편의성을 위해 편미분 기호는 $$\displaystyle \frac{{\partial f}}{\partial x} = \partial_{x}f$$로 쓸 수 있다고 약속하자. 연속함수의 경우 미분의 순서는 상관이 없다. 
+표기의 편의성을 위해 편미분 기호는 $$\displaystyle \frac{% raw %}{{\partial f}}{% endraw %}{\partial x} = \partial_{x}f$$로 쓸 수 있다고 약속하자. 연속함수의 경우 미분의 순서는 상관이 없다. 
 
 $$
 \partial_{x} \partial_yf = \partial_{y} \partial_{x} f
@@ -91,13 +91,13 @@ $$
 $$\Delta x\to  0$$인 경우 $$df(x) = f'(x_{0})dx = 0$$인 지점, $$f'(x_{0})=0$$인 $$x=x_{0}$$가 바로 정지점이 되는 위치다. 2변수 함수 이상의 경우도 똑같다.
 
 $$
-f(x,y)=f(x_{0},y_{0})+\left( \frac{{\partial }}{\partial x} \Delta x + \frac{\partial}{\partial y} \Delta y\right)f\mid_{(x_{0},y_{0})} + \dots
+f(x,y)=f(x_{0},y_{0})+\left( \frac{% raw %}{{\partial }}{% endraw %}{\partial x} \Delta x + \frac{\partial}{\partial y} \Delta y\right)f\mid_{(x_{0},y_{0})} + \dots
 $$
 
 와 같이 근사 가능하므로, 
 
 $$
-\Delta f(x,y)=f(x,y)-f(x_{0},y_{0})=\left( \frac{{\partial }}{\partial x} \Delta x + \frac{\partial}{\partial y} \Delta y\right)f\mid_{(x_{0},y_{0})}+\frac{1}{2!}\left( \frac{{\partial }}{\partial x} \Delta x + \frac{\partial}{\partial y} \Delta y\right)^2f\mid_{(x_{0},y_{0})}+\dots
+\Delta f(x,y)=f(x,y)-f(x_{0},y_{0})=\left( \frac{% raw %}{{\partial }}{% endraw %}{\partial x} \Delta x + \frac{\partial}{\partial y} \Delta y\right)f\mid_{(x_{0},y_{0})}+\frac{1}{2!}\left( \frac{% raw %}{{\partial }}{% endraw %}{\partial x} \Delta x + \frac{\partial}{\partial y} \Delta y\right)^2f\mid_{(x_{0},y_{0})}+\dots
 $$
 
 와 같다. 정지점은, $$df(x,y)=0 \implies f_{x}(x_{0},y_{0})dx + f_{y}(x_{0},y_{0})dy = 0$$인 지점을 찾으면 된다.
