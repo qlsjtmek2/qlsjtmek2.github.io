@@ -2,7 +2,7 @@
 title: "수리물리학 4. Multivariable calculus"
 date: "2024-12-31"
 categories: ["Math", "수리물리학"]
-tags: ["연속성", "편미분", "테일러 전개", "정지점", "라그랑주 승수법", "극값", "다중 적분", "가우시안 적분"]
+tags: ["연속성", "편미분", "테일러 전개", "정지점", "라그랑주 승수법", "극값", "다변수 적분", "가우시안 적분"]
 math: true
 toc: true
 comments: true
