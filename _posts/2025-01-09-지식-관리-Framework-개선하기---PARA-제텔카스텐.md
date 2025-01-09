@@ -2,7 +2,7 @@
 title: "지식 관리 Framework 개선하기 - PARA, 제텔카스텐"
 date: "2025-01-09"
 categories: ["Life"]
-tags: ["지식 관리", "프레임워크", "PARA", "ACE", "제텔카스텐", "GTD", "MOC", "블로그 포스트"]
+tags: ["지식 관리", "프레임워크", "PARA", "ACE", "제텔카스텐", "GTD", "MOC", "블로그 포스팅"]
 math: true
 toc: true
 comments: true
@@ -148,11 +148,11 @@ Journal은 두가지 경로로 작성될 수 있습니다.
 - Brief에 임시 노트를 작성하고, 이를 토대로 영구 노트를 작성합니다.
 - MOC를 보고 좋은 글감이 있다면, 하나의 블로그 포스트로 작성합니다.
 
-**기존 Workflow:**
+**기존 폴더 구조:**
 
 ![Pasted image 20250109144706.png](/assets/img/posts/Pasted image 20250109144706.png)
 
-**개선 후 Workflow:**
+**개선 후 폴더 구조:**
 
 ![Pasted image 20250109152139.png](/assets/img/posts/Pasted image 20250109152139.png)
 
