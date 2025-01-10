@@ -2,7 +2,7 @@
 title: "Obsidian과 Git Blog 연동하기"
 date: "2025-01-10"
 categories: ["Github Pages"]
-tags: ["Jekyll", "Chirpy", "옵시디언", "플러그인", "Git", "자동화", "코드", "AI 코딩"]
+tags: ["Jekyll Chirpy", "옵시디언", "플러그인", "자동화", "Git", "커뮤니티 플러그인", "코드", "AI 코딩"]
 math: true
 toc: true
 comments: true
@@ -14,11 +14,11 @@ comments: true
 
 ## 플러그인 설명
 
-- https://github.com/qlsjtmek2/jekyll-chirpy-git-exporter
+- [Jekyll Chirpt Git Exporter - Obsidian Plugin](https://github.com/qlsjtmek2/jekyll-chirpy-git-exporter)
 
-설치 방법과 사용법은 위 깃허브 링크에서 설명되어 있습니다. 현재 Obsidian에 커뮤니티 플러그인 등록 요청만 해놓은 상태이고 아직 등록되지 않았습니다. 따라서 직접 깃에서 다운로드 받아 옵시디언 Valut 내의 `/.plugin` 폴더에 직접 플러그인 파일을 넣어야 합니다. 만약 등록이 된다면, 옵시디언에서 커뮤니티 플러그인 탐색에 `Jekyll Chirpy Git Exporter`로 검색하시면 찾아볼 수 있을 것입니다.
+**설치 방법**과 **사용법**은 위 **깃허브 링크**에서 설명되어 있습니다. 현재 Obsidian에 커뮤니티 플러그인 등록 요청만 해놓은 상태이고 아직 등록되지 않았습니다. 따라서 직접 깃에서 다운로드 받아 옵시디언 Valut 내의 `/.plugin` 폴더에 직접 플러그인 파일을 넣어야 합니다. 만약 등록이 된다면, 옵시디언에서 커뮤니티 플러그인 탐색에 `Jekyll Chirpy Git Exporter`로 검색하시면 찾아볼 수 있을 것입니다.
 
-플러그인 동작 원리는 간단합니다.
+플러그인 **동작 원리**는 간단합니다.
 
 1. 옵시디언의 파일을 Export 요청을 보내면
 2. 옵시디언 문법을 Jekyll 문법에 맞게 전처리하고,
