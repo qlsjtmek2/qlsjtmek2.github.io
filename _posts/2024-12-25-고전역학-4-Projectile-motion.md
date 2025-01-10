@@ -2,7 +2,7 @@
 title: "고전역학 4. Projectile motion"
 date: "2024-12-25"
 categories: ["Physics", "고전역학"]
-tags: ["포사체 운동", "미분 방정식", "초기 속도", "중력", "공기 저항", "경로", "사정거리", "지구 회전 효과"]
+tags: ["포사체 운동", "공기 저항", "미분 방정식", "사정거리", "지구 회전 효과", "초기 속도", "포물선", "좌표계"]
 math: true
 toc: true
 comments: true
@@ -19,17 +19,17 @@ $$\mathbf{r}=\mathbf{i}v_{0}\cos \alpha  + \mathbf{k}\left( v_{0}\sin \alpha- \f
 
 포사체 운동에서 우리가 가장 알고싶은 값은, $$z_{max}$$, $$x_{max}$$, $$x-z$$의 관계(`공간상에서 경로`) 이다.
 
-- $$x-z$$의 관계(`공간상에서 경로`)
-	- $$x=v_{0}\cos \alpha t$$이므로 $$t=\frac{x}{v_{0}\cos \alpha}$$를 $$z(t)$$에 넣으면 다음과 같다.
-	- $$\displaystyle z=\tan \alpha x- \frac{g}{2v_{0}^2\cos^2\alpha}x^2$$
+- \$$x-z$$의 관계(`공간상에서 경로`)
+	- \$$x=v_{0}\cos \alpha t$$이므로 $$t=\frac{x}{v_{0}\cos \alpha}$$를 $$z(t)$$에 넣으면 다음과 같다.
+	- \$$\displaystyle z=\tan \alpha x- \frac{g}{2v_{0}^2\cos^2\alpha}x^2$$
 	- 따라서 공간의서의 경로는 포물선을 그린다.
-- $$z_{max}$$
+- \$$z_{max}$$
 	- z성분의 속도가 0일 때 시간을 구해서, $$z(t)$$에 대입한다.
-	- $$\displaystyle \dot{\mathbf{r}}=\mathbf{i} v_{0}\cos \alpha+ \mathbf{k}(v_{0}\sin \alpha-gt) \implies v_{0}\sin \alpha-gt_{high}=0 \implies t_{high}=\frac{% raw %}{{v_{0}\sin \alpha}}{% endraw %}{g}$$
-	- $$\displaystyle z_{max}=z(t_{high})=v_{0}\sin \alpha\left( \frac{% raw %}{{v_{0}\sin \alpha}}{% endraw %}{g} \right)-\frac{1}{2}g\left( \frac{% raw %}{{v_{0}\sin \alpha}}{% endraw %}{g} \right)^2= \frac{% raw %}{{v_{0}^2\sin^2\alpha}}{% endraw %}{2g}$$
-- $$x_{max}$$
+	- \$$\displaystyle \dot{\mathbf{r}}=\mathbf{i} v_{0}\cos \alpha+ \mathbf{k}(v_{0}\sin \alpha-gt) \implies v_{0}\sin \alpha-gt_{high}=0 \implies t_{high}=\frac{% raw %}{{v_{0}\sin \alpha}}{% endraw %}{g}$$
+	- \$$\displaystyle z_{max}=z(t_{high})=v_{0}\sin \alpha\left( \frac{% raw %}{{v_{0}\sin \alpha}}{% endraw %}{g} \right)-\frac{1}{2}g\left( \frac{% raw %}{{v_{0}\sin \alpha}}{% endraw %}{g} \right)^2= \frac{% raw %}{{v_{0}^2\sin^2\alpha}}{% endraw %}{2g}$$
+- \$$x_{max}$$
 	- 경로가 포물선이므로, 지면에서 출발해서 지면으로 도달한 시간은 정확히 $$t_{high}$$의 두배다.
-	- $$\displaystyle x_{max}=x(2t_{high})=v_{0}\cos \alpha \cdot \frac{2v_{0}\sin \alpha}{g}= \frac{v_{0}^2\sin 2\alpha}{g}$$
+	- \$$\displaystyle x_{max}=x(2t_{high})=v_{0}\cos \alpha \cdot \frac{2v_{0}\sin \alpha}{g}= \frac{v_{0}^2\sin 2\alpha}{g}$$
 	- 따라서 $$\alpha$$가 45도일 때, $$x_{max}$$는 최대값을 갖는다.
 
 ## Damped projectile motion
@@ -41,26 +41,26 @@ $$\dot{x}$$, $$\dot{y}$$는 바로 $$\dot{x}=\dot{x_{0}}e^{-\gamma t}$$, $$\dot{
 $$\displaystyle \int ^{x}_{x_{0}} \, dx = \int ^t_{0} \dot{x_{0}}e^{-\gamma t} \, dt \implies x-x_{0}= \frac{\dot{x_{0}}}{\gamma}(1-e^{-\gamma t})$$
 $$x_{0}=0$$, $$\dot{y}=0$$으로 잡았으므로, $$x_{0}$$과 $$y$$항은 무시할 수 있다. $$z$$도 똑같이 미분하면 최종적으로 다음 결과를 얻는다.
 
-- $$\displaystyle z(t)=\left(  \frac{\dot{z_{0}}}{\gamma} + \frac{g}{\gamma^2} \right)(1-e^{-\gamma t})-\frac{g}{\gamma}t$$
-- $$\displaystyle x(t)= \frac{\dot{x_{0}}}{\gamma}(1-e^{-\gamma t})$$
-- $$\displaystyle \mathbf{r}(t)=(x(t), 0, z(t))$$
+- \$$\displaystyle z(t)=\left(  \frac{\dot{z_{0}}}{\gamma} + \frac{g}{\gamma^2} \right)(1-e^{-\gamma t})-\frac{g}{\gamma}t$$
+- \$$\displaystyle x(t)= \frac{\dot{x_{0}}}{\gamma}(1-e^{-\gamma t})$$
+- \$$\displaystyle \mathbf{r}(t)=(x(t), 0, z(t))$$
 
 ### 사정거리 $$x_{max}$$
 
 사정거리 $$x_{max}$$은 $$z(t_{max})=0$$일 때 식과 $$x(t_{max})=x_{max}$$일 때 식을 잘 연립해서 $$x_{max}$$에 대해 방정식을 풀면 구할 수 있다. 그 미분 방정식은 $$\displaystyle \left( \dot{\frac{z_{0}}{\gamma}} + \frac{g}{\gamma^2}\right){\frac{\gamma x_{max}}{\dot{x_{0}}}}+\frac{g}{\gamma^2}\ln(1- {\frac{\gamma x_{max}}{\dot{x_{0}}}})=0$$ 이다. $$\ln(1-u)=-u - \frac{u^2}{2} - \frac{u^3}{3} - \dots$$ 테일러 급수를 사용해서 급수전개하면 해를 구할 수 있다. 계산 팁은, 한번에 구하려 하지 말고 2차 근사를 하고, 그 결과를 3차 근사에 이용하고, 그 결과를 4차 근사에 이용하고, 이런 재귀적인 방법으로 해에 점점 다가가야 한다.
 
 1. 2차 근사
-	- $$\displaystyle \left( \dot{\frac{z_{0}}{\gamma}} + \frac{g}{\gamma^2}\right){\frac{\gamma x_{max}}{\dot{x_{0}}}}+\frac{g}{\gamma^2}\left( - \frac{% raw %}{{\gamma x_{max}}{% endraw %}}{\dot{x_{0}}} - \frac{1}{2} \left(\frac{% raw %}{{\gamma x_{max}}{% endraw %}}{\dot{x_{0}}}\right)^2 + O(\gamma^3)\right)=0$$
-	- $$O(\gamma^3)$$은 $$\gamma^3$$항을 의미한다.
-	- $$\displaystyle \frac{% raw %}{{2 \dot{z_{0}}{% endraw %} \dot{x_{0}}}}{g} - x_{max} + O(\gamma) = 0 \implies x_{max} = \frac{% raw %}{{2 \dot{z_{0}}{% endraw %} \dot{x_{0}}}}{g} + O(\gamma)$$
+	- \$$\displaystyle \left( \dot{\frac{z_{0}}{\gamma}} + \frac{g}{\gamma^2}\right){\frac{\gamma x_{max}}{\dot{x_{0}}}}+\frac{g}{\gamma^2}\left( - \frac{% raw %}{{\gamma x_{max}}{% endraw %}}{\dot{x_{0}}} - \frac{1}{2} \left(\frac{% raw %}{{\gamma x_{max}}{% endraw %}}{\dot{x_{0}}}\right)^2 + O(\gamma^3)\right)=0$$
+	- \$$O(\gamma^3)$$은 $$\gamma^3$$항을 의미한다.
+	- \$$\displaystyle \frac{% raw %}{{2 \dot{z_{0}}{% endraw %} \dot{x_{0}}}}{g} - x_{max} + O(\gamma) = 0 \implies x_{max} = \frac{% raw %}{{2 \dot{z_{0}}{% endraw %} \dot{x_{0}}}}{g} + O(\gamma)$$
 2. 3차 근사
-	- $$\displaystyle \left( \dot{\frac{z_{0}}{\gamma}} + \frac{g}{\gamma^2}\right){\frac{\gamma x_{max}}{\dot{x_{0}}}}+\frac{g}{\gamma^2}\left( - \frac{% raw %}{{\gamma x_{max}}{% endraw %}}{\dot{x_{0}}} - \frac{1}{2} \left(\frac{% raw %}{{\gamma x_{max}}{% endraw %}}{\dot{x_{0}}}\right)^2 - \frac{1}{3} \left(\frac{% raw %}{{\gamma x_{max}}{% endraw %}}{\dot{x_{0}}}\right)^3+ O(\gamma^4)\right)=0$$
-	- $$\displaystyle \dot{\frac{z_{0}}{ g }} - \frac{x_{max} }{ 2\dot{x_{0}} }- \frac{x_{max}^2 }{ 3\dot{x_{0}}^2 } \gamma + O(\gamma^2)=0$$
+	- \$$\displaystyle \left( \dot{\frac{z_{0}}{\gamma}} + \frac{g}{\gamma^2}\right){\frac{\gamma x_{max}}{\dot{x_{0}}}}+\frac{g}{\gamma^2}\left( - \frac{% raw %}{{\gamma x_{max}}{% endraw %}}{\dot{x_{0}}} - \frac{1}{2} \left(\frac{% raw %}{{\gamma x_{max}}{% endraw %}}{\dot{x_{0}}}\right)^2 - \frac{1}{3} \left(\frac{% raw %}{{\gamma x_{max}}{% endraw %}}{\dot{x_{0}}}\right)^3+ O(\gamma^4)\right)=0$$
+	- \$$\displaystyle \dot{\frac{z_{0}}{ g }} - \frac{x_{max} }{ 2\dot{x_{0}} }- \frac{x_{max}^2 }{ 3\dot{x_{0}}^2 } \gamma + O(\gamma^2)=0$$
 	- 여기서, 2차 근사에서 얻었던 $$\displaystyle x_{max} = \frac{% raw %}{{2 \dot{z_{0}}{% endraw %} \dot{x_{0}}}}{g} + O(\gamma)$$ 값을 대입한다.
-	- $$\displaystyle \dot{\frac{z_{0}}{ g }} - \frac{ 1}{ 2\dot{x_{0}} } \left( \frac{% raw %}{{2 \dot{z_{0}}{% endraw %} \dot{x_{0}}}}{g} + O(\gamma) \right) - \frac{1 }{ 3\dot{x_{0}}^2 } \left(\frac{% raw %}{{2 \dot{z_{0}}{% endraw %} \dot{x_{0}}}}{g} + O(\gamma)\right)^2 \gamma + O(\gamma^2)=0$$
-	- $$\displaystyle O(\gamma)=- \frac{% raw %}{{8 \dot{x_{0}}{% endraw %} \dot{z_{0}}^2}}{3g^2} + O(\gamma^2)$$
+	- \$$\displaystyle \dot{\frac{z_{0}}{ g }} - \frac{ 1}{ 2\dot{x_{0}} } \left( \frac{% raw %}{{2 \dot{z_{0}}{% endraw %} \dot{x_{0}}}}{g} + O(\gamma) \right) - \frac{1 }{ 3\dot{x_{0}}^2 } \left(\frac{% raw %}{{2 \dot{z_{0}}{% endraw %} \dot{x_{0}}}}{g} + O(\gamma)\right)^2 \gamma + O(\gamma^2)=0$$
+	- \$$\displaystyle O(\gamma)=- \frac{% raw %}{{8 \dot{x_{0}}{% endraw %} \dot{z_{0}}^2}}{3g^2} + O(\gamma^2)$$
 	- 구한 값을 활용하여, 해를 더 정교하게 근사한다.
-	- $$\therefore ~ \displaystyle x_{max} = \frac{% raw %}{{2 \dot{z_{0}}{% endraw %} \dot{x_{0}}}}{g} - \frac{% raw %}{{8 \dot{x_{0}}{% endraw %} \dot{z_{0}}^2}}{3g^2}r + O(\gamma^2)$$
+	- \$$\therefore ~ \displaystyle x_{max} = \frac{% raw %}{{2 \dot{z_{0}}{% endraw %} \dot{x_{0}}}}{g} - \frac{% raw %}{{8 \dot{x_{0}}{% endraw %} \dot{z_{0}}^2}}{3g^2}r + O(\gamma^2)$$
 3. 4차 근사, 5차 근사, .... 를 반복하면 더 정교한 해를 얻는다.
 
 ## 지구 회전 효과까지 고려하는 경우
@@ -73,8 +73,8 @@ $$x_{0}=0$$, $$\dot{y}=0$$으로 잡았으므로, $$x_{0}$$과 $$y$$항은 무�
 
 지구의 좌표를 효과적으로 분석하기 위해, 지구의 중심을 원점으로, 지구 각속도의 방향을 z축으로, x축을 영국의 그리니티 천문대를 지나도록 하는 구면 좌표계를 설정해보자.
 
-- $$\theta$$, $$\phi$$ : 각각 **위도, 경도**
-	- $$\theta$$와 $$\phi$$는 0~180도만 올 수 있으며, $$+\theta$$ = **북위**, $$-\theta$$ = **남위**, $$+\phi$$ = **동경**, $$-\phi$$ = **서경** 이라고 부름.
+- \$$\theta$$, $$\phi$$ : 각각 **위도, 경도**
+	- \$$\theta$$와 $$\phi$$는 0~180도만 올 수 있으며, $$+\theta$$ = **북위**, $$-\theta$$ = **남위**, $$+\phi$$ = **동경**, $$-\phi$$ = **서경** 이라고 부름.
 	- 즉 지구상의 $$(r_{e}, -37, 128)$$ 좌표는 남위 37도, 동경 128도라고 부른다.
 - **적도** : x, y 평면과 지구가 만나는 선.
 - **본초 자오선** : x, z 평면과 지구가 만나는 선.
@@ -89,6 +89,7 @@ $$x_{0}=0$$, $$\dot{y}=0$$으로 잡았으므로, $$x_{0}$$과 $$y$$항은 무�
 ![image.jpg](/assets/img/posts/image.jpg){: width="400"}
 
 $$(r, \theta, \phi)$$ 좌표에서 병진 + 회전하는 비관성 좌표계의 원점을 설정하고, 그 좌표계 원점에서 미사일을 발사하여 어느 좌표에 떨어질 지 계산해내면 된다. 회전좌표계를 잡을 때, 위 그림과 같이 z축은 곡면과 수직하게, x축은 적도와 평행하고 +방향, y축은 본초 자오선과 평행하고, +방향으로 잡는게 직관적이다. 
+
 
 $$
 \mathbf{a}=\mathbf{a}'+\mathbf{\dot{\omega}} \times \mathbf{r}' + 2 \mathbf{\omega} \times \mathbf{v}' + \mathbf{\omega} \times (\mathbf{\omega} \times \mathbf{r}') + \mathbf{A_{0}}
@@ -131,9 +132,13 @@ $$\mathbf{a}'= \ddot{r}'$$, $$\mathbf{v}'=\dot{r}'$$, $$\mathbf{r}'=(x',y',z')$$
 > $$\ddot{y}'$$와 $$\ddot{z}'$$의 양 변을 각각 t에 대해 미분해서, $$\ddot{x}'$$ 방정식에 대입한다.
 > 
 > 
+> 
 > $$
+> 
 > \dot{y}'- \dot{y_{0}}'=-2\omega \sin \lambda x'
+> 
 > $$
+> 
 > 
 > 
 > $$
@@ -143,9 +148,13 @@ $$\mathbf{a}'= \ddot{r}'$$, $$\mathbf{v}'=\dot{r}'$$, $$\mathbf{r}'=(x',y',z')$$
 > $$x_{0}'=0$$이라고 가정함.
 > 
 > 
+> 
 > $$
+> 
 > \ddot{x}'=-2w(\cos \lambda (-gt + 2\omega \cos \lambda x' + \dot{z_{0}}') - \sin \lambda (-2\omega \sin \lambda x' + \dot{y_{0}}'))
+> 
 > $$
+> 
 > 
 > 이때, $$\omega^2 \simeq 0$$이므로, 소거하고 정리한다.
 > 
@@ -167,9 +176,13 @@ $$\mathbf{a}'= \ddot{r}'$$, $$\mathbf{v}'=\dot{r}'$$, $$\mathbf{r}'=(x',y',z')$$
 > 이제 이 값을, $$\dot{y}'- \dot{y_{0}}'=-2\omega \sin \lambda x'$$와 $$\dot{z}' - \dot{z_{0}}' = -gt + 2\omega \cos \lambda x'$$에 넣어주고 $$\omega^2$$항을 소거하고 t에 대해 적분하면 $$y'$$와 $$z'$$도 t에 대한 함수 꼴로 구할 수 있다.
 > 
 > 
+> 
 > $$
+> 
 > y'(t)= \dot{y_{0}}'t - \omega \sin \lambda \dot{x_{0}}' t^2 + y_{0}'
+> 
 > $$
+> 
 > 
 > 
 > $$
