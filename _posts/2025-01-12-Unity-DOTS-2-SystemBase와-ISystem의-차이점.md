@@ -2,7 +2,7 @@
 title: "Unity DOTS 2. SystemBase와 ISystem의 차이점"
 date: "2025-01-12"
 categories: ["Unity", "DOTS"]
-tags: ["SystemBase", "ISystem", "관리형 데이터", "비관리형 데이터", "가비지 컬렉터", "멀티스레딩", "최적화", "BurstCompile"]
+tags: ["SystemBase", "ISystem", "관리형 데이터", "비관리형 데이터", "가비지 컬렉터", "멀티스레딩", "최적화", "Unity"]
 math: true
 toc: true
 comments: true
@@ -56,13 +56,8 @@ using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
 
-[BurstCompile]
 public partial struct RotationSystem : ISystem
 {
-    public void OnCreate(ref SystemState state) { }
-
-    public void OnDestroy(ref SystemState state) { }
-
 	[BurstCompile]
     public void OnUpdate(ref SystemState state)
     {
@@ -77,7 +72,6 @@ public partial struct RotationSystem : ISystem
     }
 }
 
-[BurstCompile]
 public partial struct RotationJob : IJobEntity
 {
     public float DeltaTime;
@@ -94,3 +88,7 @@ public partial struct RotationJob : IJobEntity
 - 멀티스레딩, BurstCompile 사용이 가능하다.
 - 최적화가 중요한 System에 적합하다.
 - 비관리형 데이터만 사용 가능하다.
+
+## Reference
+
+- https://www.youtube.com/watch?v=t2S9-pC05hs
