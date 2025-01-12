@@ -64,8 +64,9 @@ Sparse Set와 Archetype를 이해하기 전에 먼저 **ECS**를 이해할 필�
 > ```c#
 > public struct Transform : IComponentData
 > {
-> 	public float x, y, z;
-> 	public quaternion Quaternion;
+> 	public float3 Position;
+> 	public float3 Scale;
+> 	public quaternion Rotation;
 > }
 > 
 > public struct Shooter : IComponentData
