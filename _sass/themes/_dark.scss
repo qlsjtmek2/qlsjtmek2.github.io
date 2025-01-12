@@ -111,6 +111,34 @@
   --clipboard-checked-color: #2bcc2b;
   --filepath-text-color: #cacaca;
 
+  /* Callout colors */
+  --callout-border-color: rgba(255, 255, 255, 0.1);
+  --callout-shadow: rgb(21, 21, 21, 0.72) 0 6px 18px 0;
+  --callout-default-bg: rgba(248, 249, 250, 0.05);
+  --callout-default-border: rgba(226, 227, 229, 0.1);
+  --callout-default-color: #d1d3d6;
+  --callout-info-bg: rgba(240, 250, 255, 0.05);
+  --callout-info-border: rgba(209, 236, 241, 0.1);
+  --callout-info-color: #a8d4e6;
+  --callout-tip-bg: rgba(235, 255, 246, 0.05);
+  --callout-tip-border: rgba(215, 243, 227, 0.1);
+  --callout-tip-color: #a8e6c9;
+  --callout-warning-bg: rgba(255, 251, 230, 0.05);
+  --callout-warning-border: rgba(255, 243, 205, 0.1);
+  --callout-warning-color: #ffe5a8;
+  --callout-danger-bg: rgba(255, 247, 248, 0.05);
+  --callout-danger-border: rgba(248, 215, 218, 0.1);
+  --callout-danger-color: #ffa8a8;
+  --callout-bug-bg: rgba(255, 245, 247, 0.05);
+  --callout-bug-border: rgba(252, 231, 243, 0.1);
+  --callout-bug-color: #ffa8c6;
+  --callout-example-bg: rgba(248, 240, 252, 0.05);
+  --callout-example-border: rgba(233, 216, 253, 0.1);
+  --callout-example-color: #d5a8ff;
+  --callout-quote-bg: rgba(243, 244, 246, 0.05);
+  --callout-quote-border: rgba(229, 231, 235, 0.1);
+  --callout-quote-color: #d1d5db;
+
   .light {
     display: none;
   }

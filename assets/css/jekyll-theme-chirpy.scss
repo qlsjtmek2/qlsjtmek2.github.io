@@ -13,9 +13,8 @@
   margin: 1.4em 0;
   padding: 1em 1.2em;
   border-radius: 8px;
-  border: 1px solid rgba(0,0,0,0.06);
-  background-color: var(--callout-bg);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid var(--callout-border-color);
+  box-shadow: var(--callout-shadow);
   transition: all 0.2s ease;
   overflow: hidden;
 
@@ -83,9 +82,9 @@
 
   // Abstract/Summary/TLDR
   &.abstract, &.summary, &.tldr {
-    background-color: #f8f9fa;
-    color: #383d41;
-    border-color: #e2e3e5;
+    background-color: var(--callout-default-bg);
+    color: var(--callout-default-color);
+    border-color: var(--callout-default-border);
 
     &::before {
       background-color: #6c757d;
@@ -99,9 +98,9 @@
 
   // Info
   &.info {
-    background-color: #f0faff;
-    color: #0b4659;
-    border-color: #d1ecf1;
+    background-color: var(--callout-info-bg);
+    color: var(--callout-info-color);
+    border-color: var(--callout-info-border);
 
     &::before {
       background-color: #2196f3;
@@ -131,9 +130,9 @@
 
   // Tip/Hint/Important
   &.tip, &.hint, &.important {
-    background-color: #ebfff6;
-    color: #105742;
-    border-color: #d7f3e3;
+    background-color: var(--callout-tip-bg);
+    color: var(--callout-tip-color);
+    border-color: var(--callout-tip-border);
 
     &::before {
       background-color: #4caf50;
@@ -179,9 +178,9 @@
 
   // Warning/Caution/Attention
   &.warning, &.caution, &.attention {
-    background-color: #fffbe6;
-    color: #8a6d3b;
-    border-color: #fff3cd;
+    background-color: var(--callout-warning-bg);
+    color: var(--callout-warning-color);
+    border-color: var(--callout-warning-border);
 
     &::before {
       background-color: #ffcc00;
@@ -211,9 +210,9 @@
 
   // Danger/Error
   &.danger, &.error {
-    background-color: #fff7f8;
-    color: #b71c1c;
-    border-color: #f8d7da;
+    background-color: var(--callout-danger-bg);
+    color: var(--callout-danger-color);
+    border-color: var(--callout-danger-border);
 
     &::before {
       background-color: #f44336;
@@ -227,9 +226,9 @@
 
   // Bug
   &.bug {
-    background-color: #fff5f7;
-    color: #9d174d;
-    border-color: #fce7f3;
+    background-color: var(--callout-bug-bg);
+    color: var(--callout-bug-color);
+    border-color: var(--callout-bug-border);
 
     &::before {
       background-color: #e83e8c;
@@ -243,9 +242,9 @@
 
   // Example
   &.example {
-    background-color: #f8f0fc;
-    color: #6b46c1;
-    border-color: #e9d8fd;
+    background-color: var(--callout-example-bg);
+    color: var(--callout-example-color);
+    border-color: var(--callout-example-border);
 
     &::before {
       background-color: #9f7aea;
@@ -259,9 +258,9 @@
 
   // Quote/Cite
   &.quote, &.cite {
-    background-color: #f3f4f6;
-    color: #1f2937;
-    border-color: #e5e7eb;
+    background-color: var(--callout-quote-bg);
+    color: var(--callout-quote-color);
+    border-color: var(--callout-quote-border);
 
     &::before {
       background-color: #6b7280;
@@ -275,87 +274,15 @@
 
   // 다크 모드
   @media (prefers-color-scheme: dark) {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-
-    // 각 타입별 다크모드 스타일
-    &.abstract, &.summary, &.tldr {
-      background-color: rgba(248, 249, 250, 0.05);
-      color: #d1d3d6;
-      border-color: rgba(226, 227, 229, 0.1);
-    }
-
-    &.info {
-      background-color: rgba(240, 250, 255, 0.05);
-      color: #a8d4e6;
-      border-color: rgba(209, 236, 241, 0.1);
-    }
-
-    &.todo {
-      background-color: rgba(248, 249, 250, 0.05);
-      color: #d1d3d6;
-      border-color: rgba(226, 227, 229, 0.1);
-    }
-
-    &.tip, &.hint, &.important {
-      background-color: rgba(235, 255, 246, 0.05);
-      color: #a8e6c9;
-      border-color: rgba(215, 243, 227, 0.1);
-    }
-
-    &.success, &.check, &.done {
-      background-color: rgba(237, 253, 245, 0.05);
-      color: #a8e6c2;
-      border-color: rgba(212, 237, 218, 0.1);
-    }
-
-    &.question, &.help, &.faq {
-      background-color: rgba(255, 248, 243, 0.05);
-      color: #ffd5a8;
-      border-color: rgba(255, 229, 208, 0.1);
-    }
-
-    &.warning, &.caution, &.attention {
-      background-color: rgba(255, 251, 230, 0.05);
-      color: #ffe5a8;
-      border-color: rgba(255, 243, 205, 0.1);
-    }
-
-    &.failure, &.fail, &.missing {
-      background-color: rgba(253, 242, 242, 0.05);
-      color: #e6a8a8;
-      border-color: rgba(245, 198, 203, 0.1);
-    }
-
-    &.danger, &.error {
-      background-color: rgba(255, 247, 248, 0.05);
-      color: #ffa8a8;
-      border-color: rgba(248, 215, 218, 0.1);
-    }
-
-    &.bug {
-      background-color: rgba(255, 245, 247, 0.05);
-      color: #ffa8c6;
-      border-color: rgba(252, 231, 243, 0.1);
-    }
-
-    &.example {
-      background-color: rgba(248, 240, 252, 0.05);
-      color: #d5a8ff;
-      border-color: rgba(233, 216, 253, 0.1);
-    }
-
-    &.quote, &.cite {
-      background-color: rgba(243, 244, 246, 0.05);
-      color: #d1d5db;
-      border-color: rgba(229, 231, 235, 0.1);
-    }
-
-    // 아이콘 색상도 다크모드에 맞게 조정
     .callout-icon::before {
       opacity: 0.8;
     }
+  }
+
+  // 중첩된 Callout을 위한 스타일
+  .callout {
+    margin: 0.7em 0;
+    background-color: var(--main-bg);
   }
 }
 
