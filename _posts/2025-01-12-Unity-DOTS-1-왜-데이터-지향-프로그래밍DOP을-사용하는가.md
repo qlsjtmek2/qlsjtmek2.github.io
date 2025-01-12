@@ -32,7 +32,7 @@ for (int i = 0; i < 50; i++)
 
 ## CPU Cache
 
-![Pasted image 20250112142507.png](/assets/img/posts/Pasted image 20250112142507.png)
+![Pasted image 20250112142507.png](/assets/img/posts/Pasted image 20250112142507.png){: .shadow}
 
 아이디어는 다음과 같다. 메모리에서 데이터를 가져올 때, 필요한 데이터만 가져오는 것이 아니라 메모리 주소 주변에 있는 데이터까지 한번에 가져오는 것이다. 가져온 데이터를 CPU 내부에 있는 Cache에 저장한다. CPU에는 L1, L2, L3 캐시가 존재한다. L1 캐시가 제일 빠르고 용량이 작다. L3 캐시가 가장 느리지만 용량이 크다. 
 
@@ -50,7 +50,7 @@ for (int i = 0; i < 50; i++)
 
 ### Entity, Component, System
 
-![Pasted image 20250110204612.png](/assets/img/posts/Pasted image 20250110204612.png)
+![Pasted image 20250110204612.png](/assets/img/posts/Pasted image 20250110204612.png){: .shadow}
 
 Sparse Set와 Archetype를 이해하기 전에 먼저 **ECS**를 이해할 필요가 있다. 개념은 간단하다.
 - **Entity**는 단순히 고유의 ID를 갖는 Component의 집합이다.
