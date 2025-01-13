@@ -2,7 +2,7 @@
 title: "Unity DOTS 1. 왜 데이터 지향 프로그래밍(DOP)을 사용하는가"
 date: "2025-01-12"
 categories: ["Unity", "DOTS"]
-tags: ["DOP", "CPU", "Cache", "Sparse Set", "Archetype", "ECS", "메모리 효율", "게임 엔진"]
+tags: ["DOP", "CPU", "메모리", "캐시", "Sparse Set", "Archetype", "ECS", "데이터 효율성"]
 math: true
 toc: true
 comments: true
@@ -24,7 +24,7 @@ int sum;
 
 for (int i = 0; i < 50; i++)
 {
-sum += array[i];
+    sum += array[i];
 }
 ```
 
@@ -64,26 +64,26 @@ Sparse Set와 Archetype를 이해하기 전에 먼저 **ECS**를 이해할 필�
 > ```c#
 > public struct Transform : IComponentData
 > {
-> public float3 Position;
-> public float3 Scale;
-> public quaternion Rotation;
+>     public float3 Position;
+>     public float3 Scale;
+>     public quaternion Rotation;
 > }
 > 
 > public struct Shooter : IComponentData
 > {
-> public float Damage;
-> public float Speed;
+>     public float Damage;
+>     public float Speed;
 > }
 > 
 > public struct Monster : IComponentData
 > {
-> public float Health;
+>     public float Health;
 > }
 > 
 > public struct Player : IComponentData
 > {
-> public float Health;
-> public float MoveSpeed;
+>     public float Health;
+>     public float MoveSpeed;
 > }
 > ```
 > 
@@ -92,23 +92,23 @@ Sparse Set와 Archetype를 이해하기 전에 먼저 **ECS**를 이해할 필�
 > ```
 > Entity ID=1
 > {
-> Transform,
-> Shooter,
-> Monster
+>     Transform,
+>     Shooter,
+>     Monster
 > }
 > 
 > Entity ID=2
 > {
-> Transform,
-> Shooter,
-> Monster
+>     Transform,
+>     Shooter,
+>     Monster
 > }
 > 
 > Entity ID=3
 > {
-> Transform,
-> Shooter,
-> Player
+>     Transform,
+>     Shooter,
+>     Player
 > }
 > ```
 > 
@@ -117,16 +117,16 @@ Sparse Set와 Archetype를 이해하기 전에 먼저 **ECS**를 이해할 필�
 > ```c#
 > public partial struct ShooterSystem : ISystem
 > {
-> public void OnUpdate(ref SystemState state)
-> {
-> foreach (var (shooter) in SystemAPI.Query<RefRO<Shooter>>())
-> {
-> var damage = shooter.ValueRO.Damage;
-> var speed = shooter.ValueRO.Speed;
-> 
-> /* 이곳에서 로직을 구현한다. */
-> }
-> }
+>     public void OnUpdate(ref SystemState state)
+>     {
+>         foreach (var (shooter) in SystemAPI.Query<RefRO<Shooter>>())
+>         {
+>             var damage = shooter.ValueRO.Damage;
+>             var speed = shooter.ValueRO.Speed;
+>             
+>             /* 이곳에서 로직을 구현한다. */
+>         }
+>     }
 > }
 > ```
 
@@ -188,10 +188,10 @@ Sparse Set에 컴포넌트를 Insert, Delete하는 연산 또한 $$O(1)$$에 수
 
 ### Reference
 
-- https://velog.io/@wejaan/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-stack-pointer-and-program-counter
-- https://chunsubyeong.tistory.com/73
-- https://microelectronics.tistory.com/20
-- https://www.youtube.com/watch?v=7UphiG8UtTg
-- https://www.youtube.com/watch?v=LVjb_fQs2J8
-- https://www.geeksforgeeks.org/sparse-set/
-- https://usingsystem.tistory.com/539
+- <https://velog.io/@wejaan/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-stack-pointer-and-program-counter>
+- <https://chunsubyeong.tistory.com/73>
+- <https://microelectronics.tistory.com/20>
+- <https://www.youtube.com/watch?v=7UphiG8UtTg>
+- <https://www.youtube.com/watch?v=LVjb_fQs2J8>
+- <https://www.geeksforgeeks.org/sparse-set/>
+- <https://usingsystem.tistory.com/539>
