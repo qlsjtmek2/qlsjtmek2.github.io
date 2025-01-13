@@ -2,7 +2,7 @@
 title: "수리물리학 5. Vector Calculus"
 date: "2024-11-28 11:05:19"
 categories: ["Math", "수리물리학"]
-tags: ["선적분", "면적분", "기울기", "Curl", "발산", "그린 정리", "스톡스 정리", "보존 벡터장"]
+tags: ["선적분", "면적분", "기울기", "회전", "발산", "그린 정리", "스톡스 정리", "보존 벡터 필드"]
 math: true
 toc: true
 comments: true
@@ -103,7 +103,7 @@ Curl은 벡터장이 돌아가는지 아닌지 작은 네모가 감지해내는 
 > $$
 > 
 > 
-> 위 과정에서 '[Essentials/구간이 아주 작은 적분은, 그냥 dx를 곱한것과 같다.](https://qlsjtmek2.github.io/posts/Essentials%EA%B5%AC%EA%B0%84%EC%9D%B4-%EC%95%84%EC%A3%BC-%EC%9E%91%EC%9D%80-%EC%A0%81%EB%B6%84%EC%9D%80-%EA%B7%B8%EB%83%A5-dx%EB%A5%BC-%EA%B3%B1%ED%95%9C%EA%B2%83%EA%B3%BC-%EA%B0%99%EB%8B%A4/)' 를 사용한다. 따라서 $$\displaystyle \oint_{\Box} \mathbf{F} \cdot d\mathbf{r} = \left(\frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}\right) \, dx \, dy$$
+> 위 과정에서 '구간이 아주 작은 적분은, 그냥 dx를 곱한것과 같다.' 를 사용한다. 따라서 $$\displaystyle \oint_{\Box} \mathbf{F} \cdot d\mathbf{r} = \left(\frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}\right) \, dx \, dy$$
 > 결론을 얻는다.
 > 
 > ![Pasted image 20241206180000.png](/assets/img/posts/Pasted image 20241206180000.png){: width="400" .shadow}
@@ -271,7 +271,7 @@ $$
 > $$
 > 
 > 
-> $$f(x,y,z)$$를 테일러 전개하면 $$\displaystyle f(x,y,z) = f(x_{0},y_{0},z_{0})+(d\vec{r} \cdot \nabla)f(\vec{r})|_{\vec{r}=\vec{r}_{0}}+\frac{1}{2!}\dots$$ 이므로
+> $$f(x,y,z)$$를 테일러 전개하면 $$\displaystyle f(x,y,z) = f(x_{0},y_{0},z_{0})+(d\vec{r} \cdot \nabla)f(\vec{r})\mid_{\vec{r}=\vec{r}_{0}}+\frac{1}{2!}\dots$$ 이므로
 > 
 > $$
 > f\left( x+\frac{dx}{2},y,z \right) = f(\vec{r}_{0}) + (\frac{dx}{2} \frac{\partial}{\partial x}) f(\vec{r})\mid_{\vec{r}=\vec{r}_{0}}+ \dots
