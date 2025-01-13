@@ -2,7 +2,7 @@
 title: "알고리즘 4. Dynamic Programming"
 date: "2024-12-28 20:02:59"
 categories: ["IT", "알고리즘"]
-tags: ["동적 프로그래밍", "메모이제이션", "테이블", "최적화", "알고리즘", "경로 수 계산", "문자열 매칭", "최대 부분 수열"]
+tags: ["다이나믹 프로그래밍", "메모이제이션", "점화식", "최적화", "알고리즘", "경로계산", "부분수열", "문자열 매칭"]
 math: true
 toc: true
 comments: true
@@ -12,7 +12,7 @@ comments: true
 
 ## Dynamic Programing
 
-Dynamic Programing의 본질은 '기록하며 풀기'와 같다. [Essentials/알고리즘이란 문제의 모든 경우를 일반적으로 해결하는 방법이다.](https://qlsjtmek2.github.io/posts/Essentials%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%B4%EB%9E%80-%EB%AC%B8%EC%A0%9C%EC%9D%98-%EB%AA%A8%EB%93%A0-%EA%B2%BD%EC%9A%B0%EB%A5%BC-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95%EC%9D%B4%EB%8B%A4/) 따라서 문제를 해결하기 위해 모든 경우를 다 따져봐야 하는데, 그 과정에서 중복되는 계산이 많이 생기면 배열과 같은 곳에 저장했다가 값을 재활용할 수 있다. 다이나믹 프로그래밍이 뜻하는 것은 그저 위의 사실이다.
+Dynamic Programing의 본질은 '기록하며 풀기'와 같다. **알고리즘이란 문제의 모든 경우를 일반적으로 해결하는 방법이다.** 따라서 문제를 해결하기 위해 모든 경우를 다 따져봐야 하는데, 그 과정에서 중복되는 계산이 많이 생기면 배열과 같은 곳에 저장했다가 값을 재활용할 수 있다. 다이나믹 프로그래밍이 뜻하는 것은 그저 위의 사실이다.
 
 문제가 재귀로 Top-down으로 풀린다면, Memoization 방법으로 최적화할 수 있다. 문제가 Bottom-up으로 풀린다면, Tabulation 방법으로 최적화할 수 있다.
 
@@ -72,7 +72,7 @@ int Fibonacci(int n)
 > 
 > 하루마다 일했을 때 얻을 수 있는 이익 $$P[i]$$가 주어지고, 연속으로 일할 수 없다. 이때 가장 돈을 많이 벌 수 있는 스케쥴을 찾는 방법.
 > 
-> [Essentials/알고리즘이란 문제의 모든 경우를 일반적으로 해결하는 방법이다.](https://qlsjtmek2.github.io/posts/Essentials%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%B4%EB%9E%80-%EB%AC%B8%EC%A0%9C%EC%9D%98-%EB%AA%A8%EB%93%A0-%EA%B2%BD%EC%9A%B0%EB%A5%BC-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95%EC%9D%B4%EB%8B%A4/) 따라서 모든 경우를 다 따져보면 된다. 각 날마다 '일을 하는 경우'와 '일을 하지 않는 경우'가 존재한다. max(전날에 일을 했을 때 최대 이익, 전날에 일을 안했을 떄 최대 이익) 중 큰 것을 고르면 될 것 같다.
+> **알고리즘이란 문제의 모든 경우를 일반적으로 해결하는 방법이다.** 따라서 모든 경우를 다 따져보면 된다. 각 날마다 '일을 하는 경우'와 '일을 하지 않는 경우'가 존재한다. max(전날에 일을 했을 때 최대 이익, 전날에 일을 안했을 떄 최대 이익) 중 큰 것을 고르면 될 것 같다.
 > 
 > 만약 Profit Array가 $$[3, 5, 1, 2, 5]$$와 같이 주어지고, $$W[i]$$ : i번째 날 일을 했을 때 최대 이익, $$N[i]$$ : i번째 날 일을 안했을 때 최대 이익이라고 정의하면 다음과 같다.
 > 스케쥴이 1일일 때
@@ -203,7 +203,6 @@ int Fibonacci(int n)
 > 
 > 곱하는 행렬을 $$A_{1}, A_{2}, \dots, A_{n}$$라고 하고, $$A_{i}$$ 행렬의 사이즈를 $$d_{i-1} \times d_{i}$$로 정의하자. 실질적인 입력값은 $$d_{0}, d_{1}, d_{2}, \dots, d_{n}$$이다. 모든 경우를 다 따져보면 된다. (i~i+1, i+2~j), (i~i+2, i+3~j), ... (i~j-2, j-1~j) 행렬을 곱했을 때 결과가 가장 작으면 된다. 점화식으로 표현하면, $$DP[i][j] = min(DP[i][i+k] + DP[j-k][j]), ~~(1\leq k\leq j-i)$$를 계산하면 됨.
 > 
-> [!example]- Code{title}
 > ```c++
 > int minCalculationCount(int d[], int n)
 > {
@@ -442,15 +441,15 @@ int Fibonacci(int n)
 
 > [!example]- Longest Increasing Subsequence (LIS){title}
 > 숫자 배열이 입력될 때, 증가하는 가장 긴 Subsequence를 찾는 방법.
-> 
-> [!error]- 시행착오{title}
-> 함수 자체를 숫자 배열과 배열의 크기를 입력하면, 가장 긴 Subsequence의 길이와 가장 큰 숫자를 반환하면 됨. 재귀적으로 LIS(n-1) 값을 얻어내서 $$LIS(n-1).max < A[n]$$이 성립하면 $$LIS(n-1).len+1$$ 반환하면 되는거고 아니면 그대로 $$LIS(n-1)$$ 값을 반환하면 된다.
+>
+> > [!error] 시행착오{title}
+> > 함수 자체를 숫자 배열과 배열의 크기를 입력하면, 가장 긴 Subsequence의 길이와 가장 큰 숫자를 반환하면 됨. 재귀적으로 LIS(n-1) 값을 얻어내서 $$LIS(n-1).max < A[n]$$이 성립하면 $$LIS(n-1).len+1$$ 반환하면 되는거고 아니면 그대로 $$LIS(n-1)$$ 값을 반환하면 된다.
 > 
 > 어 그런데 단순히 딱 -1인 경우만 되는게 아니라 다른 모든 경우와 비교해봐야하는데? 즉 1부터 i-1까지 Loop도는 Index를 j라고 하면, $$A[j]<A[i]$$일 때 $$LIS[i] = max(LIS[i], LIS[j]+1)$$을 모두 체크해봐야 함. 이 방법은 $$O(n^2)$$의 시간이 걸린다.
 > 
 > ![Pasted image 20241112095933.png](/assets/img/posts/Pasted image 20241112095933.png){: width="400" .shadow}
 > 
-> DP 최적화란, DP로 문제를 일단 풀어보고 저장된 데이터들의 값의 패턴을 분석하여 더 빠르게 최적화하는 기법이다. LIS의 DP Table을 분석하여 DP 결과를 최적화 해볼 수 있다. 위 Table은 1행이 Value값이고, 2행이 DP Table에 저장된 최장 Subsequence 길이다. 가만 들여다보면 패턴을 찾을 수 있다. "나보다 작고, 가장 가까운 Value값의 LIS 값만 알면 된다." 예를들어 3의 경우 '나보다 작고 가장 가까운 Value'값은 2고, 2의 LIS값이 1이므로 1+1=2가 저장된다.
+> DP 최적화란, DP로 문제를 일단 풀어보고 저장된 데이터들의 값의 패턴을 분석하여 더 빠르게 최적화하는 기법이다. LIS의 DP Table을 분석하여 DP 결과를 최적화 해볼 수 있다. 위 Table은 1행이 Value값이고, 2행이 DP Table에 저장된 최장 Subsequence 길이다. 가만 들여다보면 패턴을 찾을 수 있다. **나보다 작고, 가장 가까운 Value값의 LIS 값만 알면 된다.** 예를들어 3의 경우 '나보다 작고 가장 가까운 Value'값은 2고, 2의 LIS값이 1이므로 1+1=2가 저장된다.
 > 
 > 각 길이값마다 가장 작고, 가장 최신인 Value 값만 알고있으면 된다. 따라서 길이 값이 Index이고, Value는 가장 최신으로 갱신된 Value 값을 저장하는 Array를 하나 정의한다. 이것을 Remember Array라고 부르자. 이 Array는 Index가 클 수록 더 큰 Value값이 올 수 밖에 없다. 만약 Index가 더 작은데 더 큰 Value값이 왔다고 가정해보자. 현재 Index값은 "해당 Value값 위치에서 가장 긴 Subsequence의 길이"를 뜻한다. 8과 10이 어느 순서로 배치되어 있었는지 알 수 없다. 따라서 8이 먼저 오는 경우, 10이 먼저 오는 경우 둘다 따져보자.
 > 
@@ -493,7 +492,7 @@ String Matching이란, 주어진 문자열에서 특정 문자열이 존재하�
 > [!example]- Minimum Edit Distance{title}
 > 한 문자열을 다른 문자열로 변경하는 경우의 수는 무지하게 많다. 예를들어, ab를 abb로 바꾸기 위해 abc->abcc->abc->abb 와 같은 Case도 가능하기 때문이다. 하지만 우리가 필요한건 최소 Edit Distance다. 따라서 최소 Edit Distance를 찾는 알고리즘을 찾아야 한다.
 > 
-> Source 문자열의 길이를 $$n$$,  Target 문자열의 길이를 $$m$$이라고 할 때 Source 문자열을 $$S[1 .. n]$$, Target 문자열을 $$T[1 .. m]$$이라고 정의한다. 시간 복잡도가 $$O(nm)$$이면 괜찮을 것 같다. 입력이 $$nm$$이기 때문이다. [Essentials/알고리즘이란 문제의 모든 경우를 일반적으로 해결하는 방법이다.](https://qlsjtmek2.github.io/posts/Essentials%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%B4%EB%9E%80-%EB%AC%B8%EC%A0%9C%EC%9D%98-%EB%AA%A8%EB%93%A0-%EA%B2%BD%EC%9A%B0%EB%A5%BC-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95%EC%9D%B4%EB%8B%A4/) 따라서 모든 케이스를 따져보자. 재귀적으로 풀어보면, Case가 총 4가지다. 만약 $$S[n] \neq T[m]$$이라면 (1) Source 문자열에서 하나를 빼거나, (2) Source 문자열에서 하나를 더하거나, (3) Source 문자열을 바꾸는 경우가 있다. $$S[n] = T[m]$$이라면, (4) 아무것도 하지 않아도 된다. 따라서 $$F(n-1, m) + 1$$, $$F(n,m-1) + 1$$, $$F(n-1,m-1)$$, $$F(n-1, m-1) + 1$$ 중 최솟값을 취하면 된다. 이 재귀 코드는 입력값이 같으면 출력값이 같다. 따라서 DP를 사용해서 계산 결과를 재활용하면 되겠다.
+> Source 문자열의 길이를 $$n$$,  Target 문자열의 길이를 $$m$$이라고 할 때 Source 문자열을 $$S[1 .. n]$$, Target 문자열을 $$T[1 .. m]$$이라고 정의한다. 시간 복잡도가 $$O(nm)$$이면 괜찮을 것 같다. 입력이 $$nm$$이기 때문이다. **알고리즘이란 문제의 모든 경우를 일반적으로 해결하는 방법이다.** 따라서 모든 케이스를 따져보자. 재귀적으로 풀어보면, Case가 총 4가지다. 만약 $$S[n] \neq T[m]$$이라면 (1) Source 문자열에서 하나를 빼거나, (2) Source 문자열에서 하나를 더하거나, (3) Source 문자열을 바꾸는 경우가 있다. $$S[n] = T[m]$$이라면, (4) 아무것도 하지 않아도 된다. 따라서 $$F(n-1, m) + 1$$, $$F(n,m-1) + 1$$, $$F(n-1,m-1)$$, $$F(n-1, m-1) + 1$$ 중 최솟값을 취하면 된다. 이 재귀 코드는 입력값이 같으면 출력값이 같다. 따라서 DP를 사용해서 계산 결과를 재활용하면 되겠다.
 > 
 > ```c++
 > if (S[i] == T[j])
@@ -523,7 +522,7 @@ String Matching이란, 주어진 문자열에서 특정 문자열이 존재하�
 
 ## 최대 공백 직사각형
 
-`잘 모르겠다다`
+`잘 모르겠다`
 
  ![Pasted image 20241107095810.png](/assets/img/posts/Pasted image 20241107095810.png){: width="300" .shadow}
 
