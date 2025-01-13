@@ -2,7 +2,7 @@
 title: "수리물리학 4. Multivariable calculus"
 date: "2024-12-31"
 categories: ["Math", "수리물리학"]
-tags: ["연속성", "편미분", "테일러 전개", "정지점", "라그랑주 승수법", "극값", "다변수 적분", "가우시안 적분"]
+tags: ["연속성", "편미분", "테일러 전개", "정지점", "라그랑주 승수법", "최적화", "다중 적분", "가우시안 적분"]
 math: true
 toc: true
 comments: true
@@ -153,13 +153,13 @@ $$
 4. 
 만약 $$f_{xy}=0$$인 경우는 훨씬 편하다. $$\displaystyle \Delta f=\frac{1}{2}f_{x x}\Delta x^2 + \frac{1}{2}f_{yy}\Delta y^2$$이므로 $$f_{ x x}$$, $$f_{ y y}$$의 부호만 비교해주면 된다. $$f_{ x x} \cdot f_{ yy} < 0$$인 경우 아래 그림과 같은 **Saddle Point**이다.
 
-![Pasted image 20241115115521.png](/assets/img/posts/Pasted image 20241115115521.png)
+![Pasted image 20241115115521.png](/assets/img/posts/Pasted image 20241115115521.png){: .shadow}
 
 ## Multiple integral
 
 임의의 도메인 D에 대해 다변수 함수 $$f(x,y)$$를 적분하는 것은 $$\displaystyle \iint_{D} f(x,y)dxdy$$와 같고, 이를 도메인을 입력으로 받는 함수 $$F(D)$$로 생각할 수 있다.
 
-![Pasted image 20241120212139.png](/assets/img/posts/Pasted image 20241120212139.png){: width="400"}
+![Pasted image 20241120212139.png](/assets/img/posts/Pasted image 20241120212139.png){: width="400" .shadow}
 
 이론적으로, Multiple integral는 변수 하나를 고정시켜 다른 하나를 먼저 적분하는 방법으로 계산할 수 있다. 예를 들어, y를 고정시키고 x부터 적분하면 $$\displaystyle \int f(x,y)dx$$다. 적분 범위는, y가 변함에 따라 달라지므로 y에 대한 함수가 적분 범위어야 한다. $$\displaystyle \int^{x_{2}(y)}_{x_{1}(y)}f(x,y)dx$$, y의 최대 최소 범위는 상수값이므로 $$\displaystyle F(D)=\int^{y_{2}}_{y_{1}}\int^{x_{1}(y)}_{x_{2}(y)}f(x,y)dxdy$$로 기술된다. 일반적으로 이 적분 범위를 찾는 것이 매우 어려워, 좌표 변환을 통해 적분 구간을 간단히 하고자 하는 시도가 많다.
 
