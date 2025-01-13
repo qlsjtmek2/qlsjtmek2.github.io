@@ -2,7 +2,7 @@
 title: "수리물리학 5. Vector Calculus"
 date: "2024-11-28"
 categories: ["Math", "수리물리학"]
-tags: ["선적분", "면적분", "기울기", "회전", "발산", "그린 정리", "스톡스 정리", "보존 벡터 필드"]
+tags: ["선적분", "면적분", "기울기", "회전", "발산", "그린 정리", "스토크스 정리", "보존 벡터장"]
 math: true
 toc: true
 comments: true
