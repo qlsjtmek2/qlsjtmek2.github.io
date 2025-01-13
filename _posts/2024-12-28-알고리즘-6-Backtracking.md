@@ -2,7 +2,7 @@
 title: "알고리즘 6. Backtracking"
 date: "2024-12-28 20:02:59"
 categories: ["IT", "알고리즘"]
-tags: ["Backtracking", "DP", "State Space", "N-Queen", "Traveling Salesman Problem", "A Star Algorithm", "Heuristic", "Subset Sum Problem"]
+tags: ["Backtracking", "DP", "알고리즘", "State Space", "N-Queen", "Traveling Salesman Problem", "A Star Algorithm", "Subset Sum Problem"]
 math: true
 toc: true
 comments: true
@@ -19,7 +19,7 @@ comments: true
 > 
 > 예를들어, 길이가 2일 때 가치가 4고, 4일 때 가치가 1이면 4를 2, 2로 쪼개는 것이 최대 가치로 나눈 결과이다.
 > 
-> [Essentials/알고리즘이란 문제의 모든 경우를 일반적으로 해결하는 방법이다.](https://qlsjtmek2.github.io/posts/Essentials%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%B4%EB%9E%80-%EB%AC%B8%EC%A0%9C%EC%9D%98-%EB%AA%A8%EB%93%A0-%EA%B2%BD%EC%9A%B0%EB%A5%BC-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95%EC%9D%B4%EB%8B%A4/) 따라서 다 해보면 된다. 길이 N개인 막대가 주어지면, (0, N), (1, N-1), (2, N-2), ..., (N-1, 1), (N, 0)이다. 그렇게 쪼갰을 때, 쪼갠 막대를 또 재귀적으로 부분 막대의 최대 길이를 구하여 그중 가장 가치가 높은 케이스를 선택하면 된다.
+> **알고리즘이란 문제의 모든 경우를 일반적으로 해결하는 방법이다.** 따라서 다 해보면 된다. 길이 N개인 막대가 주어지면, (0, N), (1, N-1), (2, N-2), ..., (N-1, 1), (N, 0)이다. 그렇게 쪼갰을 때, 쪼갠 막대를 또 재귀적으로 부분 막대의 최대 길이를 구하여 그중 가장 가치가 높은 케이스를 선택하면 된다.
 > 
 > 막대 N에서 N-4 막대의 최대 가치를 계산하나, 막대 N-2에서 N-4 막대의 최대 가치를 계산하나 결과가 똑같다. 따라서 중복되는 연산이 많으므로 DP를 적용하여 연산을 최적화할 수 있겠다. 
 > 
@@ -33,7 +33,7 @@ comments: true
 > [!example]- 정수 쪼개기{title}
 > 0부터 N까지 정수 K개를 더해서 그 합이 N이 되는 경우의 수를 구하는 방법. 숫자를 중복해서 사용이 가능하다.
 > 
-> [Essentials/알고리즘이란 문제의 모든 경우를 일반적으로 해결하는 방법이다.](https://qlsjtmek2.github.io/posts/Essentials%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%B4%EB%9E%80-%EB%AC%B8%EC%A0%9C%EC%9D%98-%EB%AA%A8%EB%93%A0-%EA%B2%BD%EC%9A%B0%EB%A5%BC-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95%EC%9D%B4%EB%8B%A4/) 따라서 다 해보면 된다. 예를들어, 0부터 5까지 정수 3개를 더해서 그 합이 5가 만들게 하고싶다면
+> **알고리즘이란 문제의 모든 경우를 일반적으로 해결하는 방법이다.** 따라서 다 해보면 된다. 예를들어, 0부터 5까지 정수 3개를 더해서 그 합이 5가 만들게 하고싶다면
 > 1. 0부터 5까지 정수 2개를 더해서 그 합이 4가 되게 하는 경우의 수를 찾고, 1을 더한다.
 > 2. 0부터 5까지 정수 2개를 더해서 그 합이 3이 되게 하는 경우의 수를 찾고, 2를 더한다.
 > 3. ...
@@ -46,7 +46,7 @@ comments: true
 > [!example]- N-Queen{title}
 > N × N인 체스판 위에 퀸 N개를 서로 공격할 수 없게 놓는 문제이다. 퀸을 놓는 방법의 수를 구하시오.
 > 
-> [Essentials/알고리즘이란 문제의 모든 경우를 일반적으로 해결하는 방법이다.](https://qlsjtmek2.github.io/posts/Essentials%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%B4%EB%9E%80-%EB%AC%B8%EC%A0%9C%EC%9D%98-%EB%AA%A8%EB%93%A0-%EA%B2%BD%EC%9A%B0%EB%A5%BC-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95%EC%9D%B4%EB%8B%A4/) 따라서 다 해보면 된다. 예를들어서, 5 x 5 체스판 위에 퀸 5개를 둔다고 가정하자. 첫번째 행에 첫번째 칸에 두었다면, 다음 기물은 1행, 1열, 그리고 (1, 1)을 포함하는 대각선에는 둘 수 없다. 그것을 기록한다. 그 다음 두번째 행에 세번째 칸에 두었다면, 다음 기물은 2행, 3열, 그리고 (2, 3)을 포함하는 대각선에는 둘 수 없다. 그것을 기록한다. 그 다음 칸이 둘 수 있는 칸이면 두고, 둘 수 없는 칸이면 Skip한다. 이것을 반복하여 5개의 체스 기물을 모두 뒀다면 경우의 수를 1 증가시킨다. 이것은 재귀 + Backtracing을 사용한 알고리즘이다. 
+> **알고리즘이란 문제의 모든 경우를 일반적으로 해결하는 방법이다.** 따라서 다 해보면 된다. 예를들어서, 5 x 5 체스판 위에 퀸 5개를 둔다고 가정하자. 첫번째 행에 첫번째 칸에 두었다면, 다음 기물은 1행, 1열, 그리고 (1, 1)을 포함하는 대각선에는 둘 수 없다. 그것을 기록한다. 그 다음 두번째 행에 세번째 칸에 두었다면, 다음 기물은 2행, 3열, 그리고 (2, 3)을 포함하는 대각선에는 둘 수 없다. 그것을 기록한다. 그 다음 칸이 둘 수 있는 칸이면 두고, 둘 수 없는 칸이면 Skip한다. 이것을 반복하여 5개의 체스 기물을 모두 뒀다면 경우의 수를 1 증가시킨다. 이것은 재귀 + Backtracing을 사용한 알고리즘이다. 
 
 ## State Space
 
@@ -76,7 +76,7 @@ comments: true
 > 
 > 양의 정수 집합에서 원소를 선택하는 것을 State라고 생각하여 State Space Tree를 그릴 수 있다. 아무 정수를 선택하지 않은 상태를 Root Node로 잡으면, 그 아래 상태는 $$a_{1}$$를 선택한 상태, 선택하지 않은 상태로 나뉜다. 또 그 아래는 $$a_{2}$$를 선택한 상태, 선택하지 않은 상태로 나뉘고 이를 반복하면 총 트리 노드의 개수는 $$2^n$$개이다. 경우가 너무 많으므로, 의미없는 경우는 Cutoff를 해야한다. 
 > 
-> 현재까지 경로를 타고 왔을 때 원소의 합을 $$C$$라고 하자. $$C>S$$이거나, $$\displaystyle C + \sum_{j=i+1}^na_{j} < S$$이면 그 Path는 더이상 보지 않아도 된다. $$\displaystyle C+\sum_{j=i+1}^na_{j}<S$$는 앞으로 남은 원소들을 다 더해도 S를 만들지 못하는 경우를 의미한다.
+> 현재까지 경로를 타고 왔을 때 원소의 합을 $$C$$라고 하자. $$C>S$$이거나, $$\displaystyle C + \sum_{j=i+1}^{n}a_{j} < S$$이면 그 Path는 더이상 보지 않아도 된다. $$\displaystyle C+\sum_{j=i+1}^{n}a_{j}<S$$는 앞으로 남은 원소들을 다 더해도 S를 만들지 못하는 경우를 의미한다.
 
 > [!example]- Traveling Salesman Problem{title}
 > Weight Graph와 시작 노드 s가 주어진다. s에서 시작하여 모든 노드를 한번씩 방문하고 다시 s로 돌아올 때, Weight가 최소가 되는 경로를 구하라.
