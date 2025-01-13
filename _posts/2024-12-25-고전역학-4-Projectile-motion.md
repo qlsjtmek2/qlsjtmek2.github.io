@@ -2,7 +2,7 @@
 title: "고전역학 4. Projectile motion"
 date: "2024-12-25 12:25:21"
 categories: ["Physics", "고전역학"]
-tags: ["포사체 운동", "공기 저항", "미분 방정식", "최대 높이", "사정거리", "지구 회전", "좌표계", "경로 분석"]
+tags: ["포사체 운동", "공기 저항", "미분 방정식", "사정거리", "지구 회전", "초기 속도", "포물선", "경로 분석"]
 math: true
 toc: true
 comments: true
@@ -66,7 +66,7 @@ $$
 \dot{p}=-\gamma p \implies p= p_{0}e^{-\gamma t}
 $$
 
-이때 $$\displaystyle p_{0}=\dot{z_{0}}-\frac{g}{\gamma}$$이므로 $$\displaystyle \dot{z}-\frac{g}{\gamma}=(\dot{z_{0}}-\frac{g}{\gamma})e^{-\gamma t}$$ 이다. $$\displaystyle \dot{x}=\dot{x_{0}}e^{-\gamma t} \implies \frac{dx}{dt} = \dot{x_{0}}e^{-\gamma t}$$ 이므로, $$dt$$를 우변으로 넘기고 $0$부터 $$t$$까지 적분하면 다음과 같다.
+이때 $$\displaystyle p_{0}=\dot{z_{0}}-\frac{g}{\gamma}$$이므로 $$\displaystyle \dot{z}-\frac{g}{\gamma}=(\dot{z_{0}}-\frac{g}{\gamma})e^{-\gamma t}$$ 이다. $$\displaystyle \dot{x}=\dot{x_{0}}e^{-\gamma t} \implies \frac{dx}{dt} = \dot{x_{0}}e^{-\gamma t}$$ 이므로, $$dt$$를 우변으로 넘기고 $$0$$부터 $$t$$까지 적분하면 다음과 같다.
 
 $$
 \int ^{x}_{x_{0}} \, dx = \int ^t_{0} \dot{x_{0}}e^{-\gamma t} \, dt \implies x-x_{0}= \frac{\dot{x_{0}}}{\gamma}(1-e^{-\gamma t})
