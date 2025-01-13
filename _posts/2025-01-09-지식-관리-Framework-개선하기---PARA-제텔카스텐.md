@@ -2,7 +2,7 @@
 title: "지식 관리 Framework 개선하기 - PARA, 제텔카스텐"
 date: "2025-01-09"
 categories: ["Life"]
-tags: ["지식 관리", "프레임워크", "영구 노트", "임시 노트", "MOC", "블로그 포스트", "작업 흐름", "Dataview Plugin"]
+tags: ["지식 관리", "프레임워크", "임시 노트", "영구 노트", "MOC", "블로그 포스팅", "Dataview Plugin", "작업 흐름"]
 math: true
 toc: true
 comments: true
@@ -103,14 +103,14 @@ comments: true
 
 MOC를 담는 공간입니다. MOC는 Obsidian의 Dataview Plugin으로 구현합니다.
 
-![Pasted image 20250109200505.png](/assets/img/posts/Pasted image 20250109200505.png)
+![Pasted image 20250109200505.png](/assets/img/posts/Pasted image 20250109200505.png){: .shadow}
 
 아래는 Dataview를 사용하는 Query문 입니다.
 
 ```
 TABLE WITHOUT 
-	id tags as "Tag", 
-	rows.file.link as "Notes"
+    id tags as "Tag", 
+    rows.file.link as "Notes"
 FROM "Essentials"
 WHERE contains(tags, "지식관리")
 FLATTEN tags
@@ -130,13 +130,13 @@ Journal은 두가지 경로로 작성될 수 있습니다.
 
 해야할 일을 담는 공간입니다. Todo List라고 보시면 됩니다. **Assignment**는 기한이 정해진 할 일을 모아두는 공간이고, **Current**, **Next**, **Sleeping**은 모두 기한이 정해지지 않은 할 일을 모아 우선 순위대로 배치하는 공간입니다. 완료된 작업은 **Tackeled**로 이동하게 됩니다.
 
-![Pasted image 20250109200815.png](/assets/img/posts/Pasted image 20250109200815.png)
+![Pasted image 20250109200815.png](/assets/img/posts/Pasted image 20250109200815.png){: .shadow}
 
 ### Reference
 
 다른 옵시디언 파일에서 **참조**하기 위한 파일을 모아두는 공간입니다. 단일 개념, 이미지 파일, PDF 파일 등이 될 수 있습니다.
 
-![Pasted image 20250109200916.png](/assets/img/posts/Pasted image 20250109200916.png)
+![Pasted image 20250109200916.png](/assets/img/posts/Pasted image 20250109200916.png){: .shadow}
 
 ### Storage
 
@@ -150,11 +150,11 @@ Journal은 두가지 경로로 작성될 수 있습니다.
 
 **기존 폴더 구조:**
 
-![Pasted image 20250109144706.png](/assets/img/posts/Pasted image 20250109144706.png)
+![Pasted image 20250109144706.png](/assets/img/posts/Pasted image 20250109144706.png){: .shadow}
 
 **개선 후 폴더 구조:**
 
-![Pasted image 20250109152139.png](/assets/img/posts/Pasted image 20250109152139.png)
+![Pasted image 20250109152139.png](/assets/img/posts/Pasted image 20250109152139.png){: .shadow}
 
 ## 결론
 

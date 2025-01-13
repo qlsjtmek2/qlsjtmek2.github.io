@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 6. Hierarchical Animation"
 date: "2024-12-14"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["고급컴퓨터그래픽스", "Hierarchical Object", "Parent-Child 구조", "Forward Kinematics", "Inverse Kinematics", "자코비안", "Numeric Solution", "Cyclic Coordinate Descent"]
+tags: ["Hierarchical Object", "Parent-Child 구조", "Forward Kinematics", "Inverse Kinematics", "End Effector", "Jacobian", "Numeric Solution", "Cyclic Coordinate Descent"]
 math: true
 toc: true
 comments: true
@@ -34,14 +34,18 @@ IK의 부모 관절 각도를 계산하기 위해 해석적인 방법과 수치�
 
 > [!question]- Analytic Solution?{title}
 > 
-> ![Pasted image 20241215105714.png](/assets/img/posts/Pasted image 20241215105714.png)
+> ![Pasted image 20241215105714.png](/assets/img/posts/Pasted image 20241215105714.png){: .shadow}
 > 
-> 2개의 팔과 2개의 관절(어깨, 팔꿈치 부위)만 갖는 단순한 로봇 팔의 경우 해석적 Solution이 존재한다. 루트 노드를 원점으로 하고, End Effector의 목표 지점을 $(x,y)$, 각각의 팔 길이를 $l_{1}, l_{2}$, $d=\sqrt{ x^2+y^2 }$, 첫번째 관절 각도와 두번째 관절 각도를 $\theta_{1}, \theta_{2}$라고 하자. 구해야 하는 값은 바로 $\theta_{1}, \theta_{2}$ 값이다. 다음과 같은 Solution이 존재한다.
+> 2개의 팔과 2개의 관절(어깨, 팔꿈치 부위)만 갖는 단순한 로봇 팔의 경우 해석적 Solution이 존재한다. 루트 노드를 원점으로 하고, End Effector의 목표 지점을 $$(x,y)$$, 각각의 팔 길이를 $$l_{1}, l_{2}$$, $$d=\sqrt{ x^2+y^2 }$$, 첫번째 관절 각도와 두번째 관절 각도를 $$\theta_{1}, \theta_{2}$$라고 하자. 구해야 하는 값은 바로 $$\theta_{1}, \theta_{2}$$ 값이다. 다음과 같은 Solution이 존재한다.
+> 
 > 
 > 
 > $$
+> 
 > \displaystyle \theta_{2}= \cos^{-1}\left(- \frac{l_{1}^2 + l_{2}^2 - d^2}{2 l_{1} l_{2}} \right)
+> 
 > $$
+> 
 > 
 > 
 > $$
@@ -56,7 +60,7 @@ IK의 부모 관절 각도를 계산하기 위해 해석적인 방법과 수치�
 
 ### Numeric Solution? : Jacobian
 
-$X=[x,y,z]$, $\theta=[\theta_{1},\theta_{2},\dots,\theta_{n}]$이라고 하자. $\Delta X$를 통해 $\Delta \theta$를 구해내고 싶다. 두 변화량은 어떤 변환 행렬로 연결되어 있으며, 그 행렬은 자코비안이다.
+$$X=[x,y,z]$$, $$\theta=[\theta_{1},\theta_{2},\dots,\theta_{n}]$$이라고 하자. $$\Delta X$$를 통해 $$\Delta \theta$$를 구해내고 싶다. 두 변화량은 어떤 변환 행렬로 연결되어 있으며, 그 행렬은 자코비안이다.
 
 $$
 \Delta X=J\Delta \theta
@@ -64,11 +68,11 @@ $$
 
 
 $$
-J=\left[ \begin{matrix} \frac{% raw %}{{\partial x}}{% endraw %}{\partial \theta_{1}} & \frac{% raw %}{{\partial x}}{% endraw %}{\partial \theta_{2}} & \dots \\\ \frac{% raw %}{{\partial y}}{% endraw %}{\partial \theta_{1}} & \frac{% raw %}{{\partial y}}{% endraw %}{\partial \theta_{2}} & \dots \\\ \frac{% raw %}{{\partial z}}{% endraw %}{\partial \theta_{1}} & \frac{% raw %}{{\partial z}}{% endraw %}{\partial \theta_{2}} & \dots \end{matrix} \right]
+J=\left[ \begin{matrix} \frac{% raw %}{{\partial x}}{% endraw %}{\partial \theta_{1}} & \frac{% raw %}{{\partial x}}{% endraw %}{\partial \theta_{2}} & \dots \\ \frac{% raw %}{{\partial y}}{% endraw %}{\partial \theta_{1}} & \frac{% raw %}{{\partial y}}{% endraw %}{\partial \theta_{2}} & \dots \\ \frac{% raw %}{{\partial z}}{% endraw %}{\partial \theta_{1}} & \frac{% raw %}{{\partial z}}{% endraw %}{\partial \theta_{2}} & \dots \end{matrix} \right]
 $$
 
 
-따라서  $\Delta \theta=J^{-1} \Delta X$로 관절 값을 알아낼 수 있다. 하지만 자코비안의 역을 계산할 수 없을 경우, $\Delta \theta = J^+ \Delta X$ 수도 역행렬을 사용한다. 
+따라서  $$\Delta \theta=J^{-1} \Delta X$$로 관절 값을 알아낼 수 있다. 하지만 자코비안의 역을 계산할 수 없을 경우, $$\Delta \theta = J^+ \Delta X$$ 수도 역행렬을 사용한다. 
 
 $$
 (J^T J)^{-1} J^T = J^+

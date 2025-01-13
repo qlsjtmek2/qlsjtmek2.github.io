@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 4. Image Processing"
 date: "2024-11-02"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["고급컴퓨터그래픽스", "이미지 처리", "쉐이더", "텍스처", "포스트 프로세싱", "멀티패스 렌더링", "엣지 검출", "가우시안 블러"]
+tags: ["이미지 처리", "컴퓨터 그래픽스", "포스트 프로세싱", "쉐이더", "텍스쳐", "다중 패스 렌더링", "엣지 검출", "블러"]
 math: true
 toc: true
 comments: true
@@ -24,14 +24,14 @@ comments: true
 
 > [!error] 이미지를 다시 픽셀 단위로 쪼개서 데이터로 보내면 되려나?{title}
 > 
-> ![Pasted image 20241011091009.png](/assets/img/posts/Pasted image 20241011091009.png){: width="500"}
+> ![Pasted image 20241011091009.png](/assets/img/posts/Pasted image 20241011091009.png){: width="500" .shadow}
 > 
 > 그렇게 하면 위와 같은 그림이 될텐데,
 > CPU <-> GPU로 넘어가는 연산이 무지 느리기 떄문에, 넘어가는 연산을 최대한 줄여야 한다. 
 > 따라서 바람직한 방법은 아니다.
 
 > [!success] Frame Buffer 에 있는걸 바로 CPU로 아웃풋 하지말고 후처리까지 끝내서 보내면 되지 않을까? {title}
-> ![Pasted image 20241011091141.png](/assets/img/posts/Pasted image 20241011091141.png)
+> ![Pasted image 20241011091141.png](/assets/img/posts/Pasted image 20241011091141.png){: .shadow}
 
 GPU에 있는 Frame Buffer 정보를 이용해서 Texture Imgage를 GPU 내에서 생성한다.
 이 Texture와 같은 것을 Frame Buffer Obejct라고 부른다.
@@ -100,11 +100,11 @@ void main(void)
 
 > [!question] What is u_inverseViewportDimensions, gl_FragCoord?{title}
 > u_inverseViewportDimensions: 
-> 해상도의 역수 벡터. 예를들어, $1920 \times 1080$ 해상도면 이 벡터의 값은 $\left( \frac{1}{1920}, \frac{1}{1080} \right)$이 되겠다.
+> 해상도의 역수 벡터. 예를들어, $$1920 \times 1080$$ 해상도면 이 벡터의 값은 $$\left( \frac{1}{1920}, \frac{1}{1080} \right)$$이 되겠다.
 > 
 > gl_FragCoord: 
 > 현재 Fragment의 화면 공간 좌표를 제공함. Viewport의 범위를 갖는다.
-> 예를들어, $1920 \times 1080$ 해상도면 gl_FragCoord는 $(0 \sim 1919, 0 \sim 1079)$ 값을 가질 수 있다.
+> 예를들어, $$1920 \times 1080$$ 해상도면 gl_FragCoord는 $$(0 \sim 1919, 0 \sim 1079)$$ 값을 가질 수 있다.
 
 ### 인접한 Texel을 얻는 방법
 
@@ -136,7 +136,7 @@ void main(void)
 ```
 
 > [!question]- Why?{title}
-> UV Coordinate는 (0,0) ~ (1,1)로 되어있더라도, 실제 텍스쳐 사이즈는 $1024 \times 512$일지 $256 \times 256$일지 모르는 일이다.
+> UV Coordinate는 (0,0) ~ (1,1)로 되어있더라도, 실제 텍스쳐 사이즈는 $$1024 \times 512$$일지 $$256 \times 256$$일지 모르는 일이다.
 > 
 > 따라서, Texture Size를 통해 다음을 계산하면 된다.
 > 바로 위 아래 텍스쳐 픽셀의 위치
@@ -204,7 +204,7 @@ glReadPixels 함수를 사용하면 정말 느린 Bus 커맨드가 실행되고,
 
 ### Negative Color
 
-![Pasted image 20241011221144.png](/assets/img/posts/Pasted image 20241011221144.png)
+![Pasted image 20241011221144.png](/assets/img/posts/Pasted image 20241011221144.png){: .shadow}
 
 색깔을 반전한다.
 
@@ -235,13 +235,13 @@ void main(void)
 
 ### Edge Detection
 
-![Pasted image 20241011221135.png](/assets/img/posts/Pasted image 20241011221135.png)
+![Pasted image 20241011221135.png](/assets/img/posts/Pasted image 20241011221135.png){: .shadow}
 
 주변 점들과 색깔 차이가 많이 나면 Line을 남기고, 색깔 차이가 적게 나면 색을 없앤다.
 
 ### Toon Rendering
 
-![Pasted image 20241011221152.png](/assets/img/posts/Pasted image 20241011221152.png)
+![Pasted image 20241011221152.png](/assets/img/posts/Pasted image 20241011221152.png){: .shadow}
 
 색 범위가 연속적인 분포로 0 ~ 255 이렇게 있다고 치면,
 
@@ -255,7 +255,7 @@ void main(void)
 
 주변 점의 텍스쳐 색깔을 다 더해서 평균을 낸다.
 
-```C
+```c
 uniform sampler2D u_Image;
 
 in vec2 fs_TextureCoord;
@@ -283,12 +283,13 @@ $$
 
 가우시안 분포를 사용해서 Blur를 만드는 방법이다.
 
-![Pasted image 20241011094333.png](/assets/img/posts/Pasted image 20241011094333.png)
+![Pasted image 20241011094333.png](/assets/img/posts/Pasted image 20241011094333.png){: .shadow}
 
 저 식을 사용해서 대충 근사시킨 3x3 행렬은 다음과 같다.
 
+
 $$
-\frac{1}{16} \cdot \begin{bmatrix}1&2&1\\2&4&2\\1&2&1 \end{bmatrix}
+\frac{1}{16} \cdot \begin{bmatrix}1&2&1 \\ 2&4&2 \\ 1&2&1 \end{bmatrix}
 $$
 
 
@@ -345,34 +346,34 @@ Image Processing에서 유용하게 활용할 수 있는 알고리즘들을 소�
 > [!question]- 왜 필요한가?{title}
 > 1. 우리 색깔이 잘 분포되어 있는지 알 수 있다.
 > 
-> ![Pasted image 20241011095345.png](/assets/img/posts/Pasted image 20241011095345.png)
+> ![Pasted image 20241011095345.png](/assets/img/posts/Pasted image 20241011095345.png){: .shadow}
 > 
 > 셋 중에서, 가장 좋은 분포는 B이다.
 > A는 너무 어둡고, C는 너무 밝다.
 > 
 > 2. 영역을 구분할 수 있다.
 >    
-> ![Pasted image 20241011095909.png](/assets/img/posts/Pasted image 20241011095909.png)
+> ![Pasted image 20241011095909.png](/assets/img/posts/Pasted image 20241011095909.png){: .shadow}
 >    
 >    
 
 > [!example]- HDR Image : High Dynamic Ragne Image{title}
-> ![Pasted image 20241011095508.png](/assets/img/posts/Pasted image 20241011095508.png)
+> ![Pasted image 20241011095508.png](/assets/img/posts/Pasted image 20241011095508.png){: .shadow}
 > 
 > 우리 눈이 볼 수 있는 범위가 검은색이면, 컴퓨터가 표현하는 색은 파란색 범위밖에 되지 않는다.
 > 
-> ![Pasted image 20241011095636.png](/assets/img/posts/Pasted image 20241011095636.png)
+> ![Pasted image 20241011095636.png](/assets/img/posts/Pasted image 20241011095636.png){: .shadow}
 > 
 > 실제 색깔 분포를 옮기면 양쪽 끝에 색깔이 몰려있게 되는데, 이걸 균형있게 옮기는 기술이 HDR이다.
 > 
-> ![Pasted image 20241011095731.png](/assets/img/posts/Pasted image 20241011095731.png)
+> ![Pasted image 20241011095731.png](/assets/img/posts/Pasted image 20241011095731.png){: .shadow}
 
 > [!example]- Histogram Equalization{title}
-> ![Pasted image 20241011100031.png](/assets/img/posts/Pasted image 20241011100031.png)
+> ![Pasted image 20241011100031.png](/assets/img/posts/Pasted image 20241011100031.png){: .shadow}
 > 
 > 한쪽으로 치우친 분포의 Histogram을 평탄하게 만들면, 색깔이 좀더 풍부해지는 효과가 있다.
 > 
-> ![Pasted image 20241011100100.png](/assets/img/posts/Pasted image 20241011100100.png)
+> ![Pasted image 20241011100100.png](/assets/img/posts/Pasted image 20241011100100.png){: .shadow}
 > 
 > 이걸 쉐이더에서 바로 구현하기는 힘들다.
 > 
@@ -388,11 +389,11 @@ Image Processing에서 유용하게 활용할 수 있는 알고리즘들을 소�
 
 - Threshold
 
-![Pasted image 20241011231014.png](/assets/img/posts/Pasted image 20241011231014.png){: width="200"}
+![Pasted image 20241011231014.png](/assets/img/posts/Pasted image 20241011231014.png){: width="200" .shadow}
 
 픽셀의 Color 값이 t 이상이면 1, 아니면 0. 특정 범위 이상의 색만 추출한다.
 
-![Pasted image 20241011231826.jpg](/assets/img/posts/Pasted image 20241011231826.jpg)
+![Pasted image 20241011231826.jpg](/assets/img/posts/Pasted image 20241011231826.jpg){: .shadow}
 
 > [!example]- Example Code{title}
 > ```c
@@ -418,9 +419,9 @@ Image Processing에서 유용하게 활용할 수 있는 알고리즘들을 소�
 
 - Window Threshold
 
-![Pasted image 20241011231141.png](/assets/img/posts/Pasted image 20241011231141.png){: width="200"}
+![Pasted image 20241011231141.png](/assets/img/posts/Pasted image 20241011231141.png){: width="200" .shadow}
 
-픽셀의 Color 값이 $t_{1} < t < t_{2}$  사이면 1, 아니면 0. 특정 영역만 뽑아낼 수 있다.
+픽셀의 Color 값이 $$t_{1} < t < t_{2}$$  사이면 1, 아니면 0. 특정 영역만 뽑아낼 수 있다.
 
 > [!example]- Example Code{title}
 > ```c
@@ -448,7 +449,7 @@ Image Processing에서 유용하게 활용할 수 있는 알고리즘들을 소�
 
 - Contrast
 
-![Pasted image 20241011231307.png](/assets/img/posts/Pasted image 20241011231307.png){: width="200"}
+![Pasted image 20241011231307.png](/assets/img/posts/Pasted image 20241011231307.png){: width="200" .shadow}
 
 어두운 부분을 없애고, 밝은 부분을 취한다.
 
@@ -475,7 +476,7 @@ Image Processing에서 유용하게 활용할 수 있는 알고리즘들을 소�
 
 -  Contrast compression
 
-![Pasted image 20241011231408.png](/assets/img/posts/Pasted image 20241011231408.png){: width="200"}
+![Pasted image 20241011231408.png](/assets/img/posts/Pasted image 20241011231408.png){: width="200" .shadow}
 
 어두운 부분을 적당히 없앤다.
 
@@ -499,7 +500,7 @@ Image Processing에서 유용하게 활용할 수 있는 알고리즘들을 소�
 
 - Combination
 
-![Pasted image 20241011231415.png](/assets/img/posts/Pasted image 20241011231415.png){: width="200"}
+![Pasted image 20241011231415.png](/assets/img/posts/Pasted image 20241011231415.png){: width="200" .shadow}
 
 가운데는 흐릿하게, 어둡고 밝은 부분은 확 변하게.
 
@@ -528,7 +529,7 @@ Image Processing에서 유용하게 활용할 수 있는 알고리즘들을 소�
 
 - Contouring
 
-![Pasted image 20241011231421.png](/assets/img/posts/Pasted image 20241011231421.png){: width="200"}
+![Pasted image 20241011231421.png](/assets/img/posts/Pasted image 20241011231421.png){: width="200" .shadow}
 
 계단식의 밝기를 준다?
 
@@ -624,7 +625,7 @@ void main() {
 > [!example] Noise Reduction Filter{title}
 > 
 > $$
-> \frac{1}{4} \cdot \begin{bmatrix}0&1&0\\1&0&1\\0&1&0 \end{bmatrix}
+> \frac{1}{4} \cdot \begin{bmatrix}0&1&0 \\ 1&0&1 \\ 0&1&0 \end{bmatrix}
 > $$
 > 
 > 
@@ -633,7 +634,7 @@ void main() {
 > [!example] Averaging Filter{title}
 > 
 > $$
-> \frac{1}{4} \cdot \begin{bmatrix}1&1&1\\1&1&1\\1&1&1 \end{bmatrix}
+> \frac{1}{4} \cdot \begin{bmatrix}1&1&1 \\ 1&1&1 \\ 1&1&1 \end{bmatrix}
 > $$
 > 
 > 
@@ -642,7 +643,7 @@ void main() {
 > [!example] Gaussian Filter{title}
 > 
 > $$
-> \frac{1}{16} \cdot \begin{bmatrix}1&2&1\\2&4&2\\1&2&1 \end{bmatrix}
+> \frac{1}{16} \cdot \begin{bmatrix}1&2&1 \\ 2&4&2 \\ 1&2&1 \end{bmatrix}
 > $$
 > 
 > 
@@ -651,7 +652,7 @@ void main() {
 > [!example] Sobel Filter{title}
 > 
 > $$
-> \begin{bmatrix}-1&0&1\\-2&0&2\\-1&0&1 \end{bmatrix}
+> \begin{bmatrix}-1&0&1 \\ -2&0&2 \\ -1&0&1 \end{bmatrix}
 > $$
 > 
 > 
@@ -664,7 +665,7 @@ void main() {
 > [!example] Laplacian Filter{title}
 > 
 > $$
-> \begin{bmatrix}0&1&0\\1&-4&1\\0&1&0 \end{bmatrix}
+> \begin{bmatrix}0&1&0 \\ 1&-4&1 \\ 0&1&0 \end{bmatrix}
 > $$
 > 
 > 
@@ -673,7 +674,7 @@ void main() {
 > [!example] High Pass Filter{title}
 > 
 > $$
-> \begin{bmatrix}-1&-1&-1\\-1&9&-1\\-1&-1&-1 \end{bmatrix}
+> \begin{bmatrix}-1&-1&-1 \\ -1&9&-1 \\ -1&-1&-1 \end{bmatrix}
 > $$
 > 
 > 
@@ -733,7 +734,7 @@ Fourier Transform
 
 푸리에 변환을 사용하면 디지털 wave를 아날로그그 파동을 결합해서 비슷하게 만드는 법
 
-![Pasted image 20241011101424.png](/assets/img/posts/Pasted image 20241011101424.png)
+![Pasted image 20241011101424.png](/assets/img/posts/Pasted image 20241011101424.png){: .shadow}
 
 Discrete Fourier Transform 방법
 

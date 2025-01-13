@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 8. Animating Human"
 date: "2024-12-14"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["H-Aim", "Virtual Human", "Rigging", "Skinning", "Upper Body Motion", "Grasping", "Lower Body Motion", "Facial Animation"]
+tags: ["H-Aim", "Virtual Human", "Rigging", "Grasping", "IK", "Facial Animation", "Upper Body Motion", "Lower Body Motion"]
 math: true
 toc: true
 comments: true

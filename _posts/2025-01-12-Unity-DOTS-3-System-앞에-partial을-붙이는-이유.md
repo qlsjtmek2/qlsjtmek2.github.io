@@ -2,7 +2,7 @@
 title: "Unity DOTS 3. System 앞에 partial을 붙이는 이유"
 date: "2025-01-12"
 categories: ["Unity", "DOTS"]
-tags: ["partial", "namespace", "클래스", "자동 생성 코드", "메서드", "컴파일", "개발자", "C#"]
+tags: ["partial", "namespace", "클래스", "메서드", "자동 생성 코드", "컴파일", "런타임", "개발자"]
 math: true
 toc: true
 comments: true
@@ -50,15 +50,15 @@ namespace MyNamespace
 // After compile
 public class MyClass
 {
-	public void MethodA()
-	{
-		Console.WriteLine("MethodA");
-	}
-	
-	public void MethodB()
-	{
-		Console.WriteLine("MethodB");
-	}
+    public void MethodA()
+    {
+        Console.WriteLine("MethodA");
+    }
+    
+    public void MethodB()
+    {
+        Console.WriteLine("MethodB");
+    }
 }
 ```
 
@@ -68,11 +68,11 @@ public class MyClass
 
 partial 키워드는 보통 **자동 생성되는 코드**가 있을 때 사용한다. 실제로 `Project -> Temp -> GeneratedCode -> Assembly-CSharp`를 확인해보면 자동으로 생성된 코드들을 확인할 수 있다.
 
-![Pasted image 20250112214521.png](/assets/img/posts/Pasted image 20250112214521.png)
+![Pasted image 20250112214521.png](/assets/img/posts/Pasted image 20250112214521.png){: .shadow}
 
 또는 여러명의 개발자가 한 클래스를 구현해야 할 때 partial 키워드가 유용하게 사용될 수 있다.
 
 ## Reference
 
-- https://www.youtube.com/watch?v=t2S9-pC05hs
-- https://storycompiler.tistory.com/215?utm_source=chatgpt.com
+- <https://www.youtube.com/watch?v=t2S9-pC05hs>
+- <https://storycompiler.tistory.com/215?utm_source=chatgpt.com>

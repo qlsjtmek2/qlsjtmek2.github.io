@@ -2,7 +2,7 @@
 title: "고전역학 4. Projectile motion"
 date: "2024-12-25"
 categories: ["Physics", "고전역학"]
-tags: ["포사체 운동", "공기 저항", "미분 방정식", "경로", "사정거리", "지구 회전 효과", "초기 속도", "포물선"]
+tags: ["포사체 운동", "공기 저항", "미분 방정식", "최대 높이", "사정거리", "지구 회전", "좌표계", "미사일 발사"]
 math: true
 toc: true
 comments: true
@@ -103,7 +103,7 @@ $$x_{0}=0$$, $$\dot{y}=0$$으로 잡았으므로, $$x_{0}$$과 $$y$$항은 무�
 
 ### 용어
 
-![Pasted image 20240607112445.png](/assets/img/posts/Pasted image 20240607112445.png){: width="400"}
+![Pasted image 20240607112445.png](/assets/img/posts/Pasted image 20240607112445.png){: width="400" .shadow}
 
 지구의 좌표를 효과적으로 분석하기 위해, 지구의 중심을 원점으로, 지구 각속도의 방향을 z축으로, x축을 영국의 그리니티 천문대를 지나도록 하는 구면 좌표계를 설정해보자.
 
@@ -120,7 +120,7 @@ $$x_{0}=0$$, $$\dot{y}=0$$으로 잡았으므로, $$x_{0}$$과 $$y$$항은 무�
 
 결국 지구 스케일에서 우리가 가장 원하는 작업은 미사일을 발사했을 때 어디 지점에 떨어질 지 예측하는 것과 같다. 즉, 어느 좌표에서 어떤 질량의 물체를 어떤 초기 속도로 발사하면, 어느 지점에 떨어질까? 를 예측하는 문제가 된다.
 
-![image.jpg](/assets/img/posts/image.jpg){: width="400"}
+![image.jpg](/assets/img/posts/image.jpg){: width="400" .shadow}
 
 $$(r, \theta, \phi)$$ 좌표에서 병진 + 회전하는 비관성 좌표계의 원점을 설정하고, 그 좌표계 원점에서 미사일을 발사하여 어느 좌표에 떨어질 지 계산해내면 된다. 회전좌표계를 잡을 때, 위 그림과 같이 z축은 곡면과 수직하게, x축은 적도와 평행하고 +방향, y축은 본초 자오선과 평행하고, +방향으로 잡는게 직관적이다. 
 
@@ -142,7 +142,7 @@ $$
 $$
 
 
-![Pasted image 20240607133453.png](/assets/img/posts/Pasted image 20240607133453.png){: width="350"}
+![Pasted image 20240607133453.png](/assets/img/posts/Pasted image 20240607133453.png){: width="350" .shadow}
 
 
 $$
