@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 5. Interpolation-based Animation"
 date: "2024-11-04 16:22:40"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["컴퓨터 애니메이션", "키프레임", "보간", "쿼터니언", "모션 캡처", "물리 시뮬레이션", "데이터 스무딩", "변형 애니메이션"]
+tags: ["고급컴퓨터그래픽스", "애니메이션", "보간", "쿼터니언", "키프레임", "물리 시뮬레이션", "스플라인", "데이터 스무딩"]
 math: true
 toc: true
 comments: true
@@ -293,7 +293,7 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
 
 ## Image Morphing
 
-두 이미지 간의 자연스러운 보간을 위한 기술. 만약 그냥 각 Pixel Color를 보간하게 되면 별로 자연스럽지 않다. Source image와 Target image의 특징을 분석하고, 두 이미지에 비슷한 특징이 존재한다면 그 특징을 자연스럽게 보간하면 자연스러운 Morphing이 가능하다. 과정으 ㄴ다음과 같다.
+두 이미지 간의 자연스러운 보간을 위한 기술. 만약 그냥 각 Pixel Color를 보간하게 되면 별로 자연스럽지 않다. Source image와 Target image의 특징을 분석하고, 두 이미지에 비슷한 특징이 존재한다면 그 특징을 자연스럽게 보간하면 자연스러운 Morphing이 가능하다. 과정은 다음과 같다.
 
 1. Find Correspondence (대응 관계)
     - 원본 이미지와 대상 이미지 간의 대응되는 특징 점, Feature Point이나 특징적인 라인, Feature Line을 찾는다.
@@ -302,6 +302,3 @@ object의 시간에 따라 property value의 값을 설정해두고, 그 값을 
     - 중간 단계 이미지를 생성한다.
     - 두 이미지 간의 Feature Point, Line를 보간하여 딱 중간값 위치와 색깔을 만들어낸다.
 3. 원본 이미지 -> 중간 이미지 -> 최종 이미지로 보간한다.
-
-1. 중간 이미지 생성
-2. Feature 기반 생성
