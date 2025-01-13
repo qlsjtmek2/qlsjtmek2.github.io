@@ -2,7 +2,7 @@
 title: "Unity DOTS 1. 왜 데이터 지향 프로그래밍(DOP)을 사용하는가"
 date: "2025-01-12"
 categories: ["Unity", "DOTS"]
-tags: ["DOP", "CPU", "Cache", "Sparse Set", "Archetype", "ECS", "데이터 최적화", "메모리 관리"]
+tags: ["DOP", "CPU", "Cache", "Sparse Set", "Archetype", "ECS", "메모리 효율", "게임 엔진"]
 math: true
 toc: true
 comments: true
