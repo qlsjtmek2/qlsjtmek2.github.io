@@ -2,7 +2,7 @@
 title: "시스템 프로그래밍 9. Multiplexed IO"
 date: "2024-11-28 15:17:37"
 categories: ["IT", "시스템 프로그래밍"]
-tags: ["Multiplexed I/O", "File descriptor set", "select 함수", "pselect 함수", "네트워크 프로그래밍", "시스템 프로그래밍", "진현욱 교수", "감시"]
+tags: ["Multiplexed I/O", "File descriptor set", "select", "pselect", "네트워크 프로그래밍", "시스템 프로그래밍", "진현욱 교수", "클라이언트"]
 math: true
 toc: true
 comments: true

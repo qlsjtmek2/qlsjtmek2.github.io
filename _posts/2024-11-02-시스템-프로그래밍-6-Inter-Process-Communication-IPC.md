@@ -2,7 +2,7 @@
 title: "시스템 프로그래밍 6. Inter-Process Communication (IPC)"
 date: "2024-11-02 14:33:11"
 categories: ["IT", "시스템 프로그래밍"]
-tags: ["IPC", "Signal", "Pipe", "Message Queue", "Shared Memory", "Semaphore", "Sockets", "SysV", "POSIX"]
+tags: ["IPC", "Sockets", "Pipe", "Message Queue", "Shared Memory", "Semaphore", "SysV", "POSIX"]
 math: true
 toc: true
 comments: true
@@ -191,7 +191,7 @@ pipe read를 위한 Descriptor, pipe write를 위한 Descriptor 총 두개를 �
         - `IPC_CREAT` : key에 대응하는 Queue가 존재하지 않으면, 큐를 생성한다.
         - `IPC_EXCL` : 큐가 이미 존재할 경우, Queue의 ID값이 아닌 오류를 반환한다.
         - `0xxx` : 메세지 큐의 접근 권한을 설정한다.
-            - ex) IPC_CREAT | IPC_EXCL | 0666
+            - ex) `IPC_CREAT | IPC_EXCL | 0666`
 
 key값에 대응하는 Message Queue가 존재하면, Message Queue의 ID 값을 반환한다.
 
