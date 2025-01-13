@@ -2,7 +2,7 @@
 title: "수리물리학 5. Vector Calculus"
 date: "2024-11-28"
 categories: ["Math", "수리물리학"]
-tags: ["선적분", "면적분", "기울기", "회전", "발산", "그린 정리", "스톡스 정리", "보존 벡터 필드"]
+tags: ["선적분", "면적분", "기울기", "회전", "발산", "그린 정리", "스토크스 정리", "보존 벡터장"]
 math: true
 toc: true
 comments: true
@@ -16,6 +16,7 @@ Mathematical Methods in the Physical Sciences, Mary L. Boas의 5장 내용입니
 - <https://qlsjtmek2.github.io/posts/Unity-DOTS-1-왜-데이터-지향-프로그래밍DOP을-사용하는가/>
 - <https://qlsjtmek2.github.io/posts/고급컴퓨터그래픽스-1-Curves>
 - <https://qlsjtmek2.github.io/posts/%EA%B3%A0%EA%B8%89%EC%BB%B4%ED%93%A8%ED%84%B0%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4-1-Curves>
+-<https://qlsjtmek2.github.io/posts/%EC%8B%9C%EC%8A%A4%ED%85%9C-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-0-Map>
 
 Spline^[[Unity DOTS 1. 왜 데이터 지향 프로그래밍(DOP)을 사용하는가](https://qlsjtmek2.github.io/posts/Unity-DOTS-1-%EC%99%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8DDOP%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94%EA%B0%80)]
 Spline^[[시스템 프로그래밍 0. Map](https://qlsjtmek2.github.io/posts/%EC%8B%9C%EC%8A%A4%ED%85%9C-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-0-Map)]
