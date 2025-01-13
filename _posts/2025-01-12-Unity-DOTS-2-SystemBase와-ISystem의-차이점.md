@@ -2,7 +2,7 @@
 title: "Unity DOTS 2. SystemBase와 ISystem의 차이점"
 date: "2025-01-12"
 categories: ["Unity", "DOTS"]
-tags: ["SystemBase", "ISystem", "관리형 데이터", "비관리형 데이터", "가비지 컬렉터", "멀티스레딩", "최적화", "Unity"]
+tags: ["SystemBase", "ISystem", "관리형 데이터", "비관리형 데이터", "가비지 컬렉터", "멀티스레딩", "BurstCompile", "최적화"]
 math: true
 toc: true
 comments: true
@@ -17,7 +17,7 @@ comments: true
 
 다음은 SystemBase를 사용한 예제 코드이다.
 
-```c#
+```C#
 using Unity.Entities;
 using Unity.Transforms;
 
