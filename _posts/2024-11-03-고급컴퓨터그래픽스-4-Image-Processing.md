@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 4. Image Processing"
 date: "2024-11-03 16:22:40"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["고급컴퓨터그래픽스", "이미지 처리", "포스트 프로세싱", "쉐이더", "다중 패스 렌더링", "텍스쳐 좌표", "엣지 검출", "가우시안 블러"]
+tags: ["Image Processing", "Computer Graphics", "Post Processing", "Multi-pass Rendering", "Shader", "Texture Coordinates", "Edge Detection", "Gaussian Blur"]
 math: true
 toc: true
 comments: true
@@ -18,9 +18,9 @@ comments: true
 
 사진 보정, Game Post Processing 등이 대표적인 Image Processing 이다.
 
-## Post Processing이 어떻게 구현되어 있을까?
+## Post Processing은 어떻게 구현되는가가
 
-> [!question] Pipeline을 거쳐 생성한 이미지를, 다시 쉐이더로 어떻게 보낼까?{title}
+**Pipeline을 거쳐 생성한 이미지를, 다시 쉐이더로 어떻게 보낼 수 있을까?**
 
 > [!error] 이미지를 다시 픽셀 단위로 쪼개서 데이터로 보내면 되려나?{title}
 > 
@@ -283,7 +283,7 @@ $$
 
 가우시안 분포를 사용해서 Blur를 만드는 방법이다.
 
-![Pasted image 20241011094333.png](/assets/img/posts/Pasted image 20241011094333.png){: .shadow}
+![Pasted image 20241011094333.png](/assets/img/posts/Pasted image 20241011094333.png){: width="400" .shadow}
 
 저 식을 사용해서 대충 근사시킨 3x3 행렬은 다음과 같다.
 
