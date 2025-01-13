@@ -2,7 +2,7 @@
 title: "고급컴퓨터그래픽스 2. Advanced Shader"
 date: "2024-11-03 14:22:40"
 categories: ["IT", "고급컴퓨터그래픽스"]
-tags: ["OpenGL", "GPU", "렌더링", "Shader", "VAO", "VBO", "GLSL", "Tessellation"]
+tags: ["OpenGL", "GPU", "Shader", "Vertex", "Fragment", "GLSL", "Tessellation", "Geometry"]
 math: true
 toc: true
 comments: true
@@ -29,19 +29,19 @@ OpenGL은 보통 Microsoft SDK에 포함되어 있어 따로 설치하지 않고
 2. Input Vertex : 변환된 데이터를 GPU로 보내 Object를 그리게한다.
     1. 그래픽에서 가장 느린 과정이 CPU $$\iff$$ GPU Data Bus 과정이 제일 느리기 때문에, 이 과정을 프로세스에서 최대한 줄인다.
 3. Vertex Processing :  공간에서 표현된 좌표를 스크린 위의 좌표로 옮긴다. 이 과정을 Vertex Shader로 사용자 지정할 수 있다.
-4. Primitive Assembly : Vertex들을 [Primitive](https://qlsjtmek2.github.io/posts/Primitive/)로 묶는다,
+4. Primitive Assembly : Vertex들을 **Primitive**로 묶는다,
 5. (+) Tessellation : 프리미티브를 잘게 쪼개서 모델을 디테일하게 만든다. 이 과정을 Tessellation Control Shader와 Tessellation Evaluation Shader로 사용자 지정 가능하다.
     1. Tessellation Control Shader : 하나의 Primitive를 Patch라는 단위`(선분, 삼각형, 사각형)`로 Input 받는다. 이후 Tessellation Level을 결정하여 TPG에 전달한다.
     2. Tessellation Primitive Generator : Tessellation Level에 따라 Primitive를 쪼개도록 하는 Vertex를 생성한다. 이후 생성한 Vertex하나당 하나의 TES에게 전달한다.
     3. Tessellation Evaluation Shader : 생성된 Vertex를 받고, 원래 Primitive가 갖는 Vertex 좌표와, 생성된 Vertex의 상대적인 좌표값을 가지고 생성된 Vertex의 위치를 계산한다.
     4. Primitive Assembly : 생성된 Vertex들을 다시 Primitive로 합친다.
-6. (+) Geometry Shader : [Primitive](https://qlsjtmek2.github.io/posts/Primitive/)를 입력받아, Primitive Strip (집합)를 반환한다. Vertex를 내 마음대로 추가하거나 삭제할 수 있는 유일한 단계이다. `ex) 동물의 털`
+6. (+) Geometry Shader : Primitive를 입력받아, Primitive Strip (집합)를 반환한다. Vertex를 내 마음대로 추가하거나 삭제할 수 있는 유일한 단계이다. `ex) 동물의 털`
 7. Culling : 불필요한 정점을 걸러낸다.
     - 다른 오브젝트에 가려짐
     - 카메라 뒤에 있음
     - 안보이는 뒷면
 9. Clipping : 카메라 화면 밖에 있는 정점은 걸러낸다.
-10. Rasterization : 프리미티브를 받아 한 픽셀에 대응되는 [Fragment](https://qlsjtmek2.github.io/posts/Fragment/)를 생성한다.
+10. Rasterization : 프리미티브를 받아 한 픽셀에 대응되는 **Fragment**를 생성한다.
 11. Fragment Shader : Rasterization된 Fragment 정보를 주면, Fragment의 최종 Color를 Output한다.
 12. Post Processing
 13. Output FrameBuffer : 최종적으로 계산된 Fragment (픽셀의 정보)들을 FrameBuffer에 넘겨 화면에 출력한다.
@@ -914,10 +914,10 @@ GLSL이란, Shader Programming을 위한 언어다. C와 유사한 문법체계�
 > 
 > > [!example]- 예를들어..{title}
 > > ```c
-> > glUseProgram (1); glDrawArrays( A ...); 
-> > glUseProgram (2); glDrawArrays( B ...); 
-> > glUseProgram (1); glDrawArrays( C ...); 
-> > glUseProgram (2); glDrawArrays( D ...); 
+> > glUseProgram (1); glDrawArrays( A ...);
+> > glUseProgram (2); glDrawArrays( B ...);
+> > glUseProgram (1); glDrawArrays( C ...);
+> > glUseProgram (2); glDrawArrays( D ...);
 > > ```
 > > 
 > > 보다는
