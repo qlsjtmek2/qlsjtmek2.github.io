@@ -2,7 +2,7 @@
 title: "알고리즘 7. Randomized Algorithm"
 date: "2024-12-28 20:02:59"
 categories: ["IT", "알고리즘"]
-tags: ["랜더마이즈 알고리즘", "라스 베가스", "몬테 카를로", "LCA", "Binary Lifting", "MST", "Boruvka", "소수 판별"]
+tags: ["랜더마이즈 알고리즘", "라스 베가스", "몬테 카를로", "LCA", "Binary Lifting", "Boruvka", "MST", "최적화"]
 math: true
 toc: true
 comments: true
@@ -45,7 +45,9 @@ Monte Carlo
 - $$A[i][j]$$ Table을 정의한다. 이는 노드 i에서 $$2^j$$ 위에 있는 조상 노드의 번호가 기록된다. 즉 $$A[i][0]$$은 i 노드의 Parent와 같다.
 - 각 노드의 index number를 붙이기 위해 DFS를 돌려 pre number 또는 Post number를 붙인다. 이 경우 Pre number를 사용하자.
 - $$A[i][j]$$를 구하기 위해서는 재귀적으로 $$A[i][j-1]$$ 노드 번호의 $$2^{j-1}$$ 위의 노드 번호를 구하면 된다.
-- ![Pasted image 20241219144728.png](/assets/img/posts/Pasted image 20241219144728.png){: width="400" .shadow}
+
+![Pasted image 20241219144728.png](/assets/img/posts/Pasted image 20241219144728.png){: width="600" .shadow}
+
 - 따라서 점화식이 $$A[i][j]=A[A[i][j-1]][j-1]$$로 표현되며, $$A[i][0]$$을 모두 본인의 부모 노드를 기록하여 반복문으로 A 배열을 채움으로써 Preprocessing이 가능하다. 이 과정이 $$O(n\log n)$$이 걸린다. 그 이유는 i를 1부터 n까지 돌리고, j는 1부터 logn까지 돌리기 때문이다.
 - 이 모든것을 활용하여 두 노드의 LCA를 구하는 과정은 다음과 같다.
 	- Tree의 Pre Number, Depth Level, Binary Lifting Table (A Table)을 Pre Processing해둔다. 
@@ -63,6 +65,8 @@ Monte Carlo
 
 
 ## Randomized MST Algorithm
+
+`잘 모르겠다.`
 
 먼저 $$O(m\log n)$$에 찾는 방법은 Faster Find MST. 잘 쓰지는 않는다고 함. 그래프의 모든 Edge Weight가 다르다고 가정하자. 어떤 노드를 선택하고 인접한 엣지중 가장 Weight가 작은 것을 고른다. 그건 반드시 MST에 들어간다. 왜냐? 가장 작은 Edge가 없는 MST가 있다고 가정하자. 그 노드는 Tree에 들어가야 하기 떄문에 최소 Edge 엣지를 제외한 어떤 엣지 하나가 들어가야 한다. 하지만 그 Edge를 빼고 최소 Edge를 넣으면 더 좋은 MST가 만들어지기 때문에 모순이다.
 
