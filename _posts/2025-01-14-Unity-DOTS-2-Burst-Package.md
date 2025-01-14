@@ -2,7 +2,7 @@
 title: "Unity DOTS 2. Burst Package"
 date: "2025-01-14 15:27:39"
 categories: ["Unity", "DOTS"]
-tags: ["Burst", "Compiler", "AOT", "JIT", "Mono", "IL2CPP", "SIMD", "Managed Data", "Unmanaged Data"]
+tags: ["Burst", "JIT", "AOT", "Mono", "IL2CPP", "SIMD", "Managed Data", "Unmanaged Data"]
 math: true
 toc: true
 comments: true
@@ -60,13 +60,13 @@ Unity 내에서 `Project Settings > Player > Configuration > Scripting Backend`�
 > [!question]- C#을 C++로 변환해주면, 변환된 C++ 코드에는 가비지 컬렉터가 없는건가?{title}
 > 그렇다면, 굳이 C++로 개발하지 않아도 무조건 C#으로 개발하는 것이 더 좋은 것 아닌가? 왜냐하면 C#을 자동으로 C++으로 변환해주니까.
 > 
-> **그렇지 않다**. C++로 변환된다고 해서 가비지 컬렉터가 사용되지 않는 것이 아니다. C++에서 구현된 가비지 컬렉터가 메모리를 관리한다. 따라서 C++로 직접 Native Code를 작성하는 것이 C#에서 작성하는 것보다 더 빠르다.
+> **그렇지 않다**. C++로 변환된다고 해서 가비지 컬렉터가 사용되지 않는 것이 아니다. C++에서 구현된 가비지 컬렉터가 메모리를 관리한다. 따라서 C++로 직접 Native Code를 작성하는 것이 C#에서 작성하는 것보다 일반적으로 더 빠른 성능을 낼 수 있다.
 
 ### Burst
 
 원래 주제의 Topic인 **Burst**에 대해서 알아보자. Burst에 대해서 한마디로 정의하면, **Native Code에 한에서 빠르게 실행되는 코드를 만들어내는 컴파일러**로 설명할 수 있다.
 
-위에서 설명한 Mono와 IL2CPP는 Unity에서 사용하는 일반적인 컴파일 방법이다. Brust는 AOT 방식이며, IL2CPP 과정을 거치지 않고 IL에서 바로 Assembly 코드로 변환한다. 컴파일하는 과정은 다음과 같다.
+위에서 설명한 Mono와 IL2CPP는 Unity에서 사용하는 일반적인 컴파일 방법이다. Burst는 AOT 방식이며, IL2CPP 과정을 거치지 않고 IL에서 바로 Assembly 코드로 변환한다. 컴파일하는 과정은 다음과 같다.
 
 - `C# > .NET Assembly > (Burst) > Assembly > 기계어`
 
@@ -139,7 +139,7 @@ public struct MyJob : IJob
         // 전체 .NET 런타임에서 실행될 때만 실행됩니다. 
         // 이 메서드 호출은 [BurstCompile] 특성으로 
         // 이 작업을 컴파일할 때 제외됩니다.
-        MethodToDiscard();
+        MethodToDiscard(10);
     }
 
     [BurstDiscard] 
