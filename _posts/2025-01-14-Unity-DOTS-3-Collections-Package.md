@@ -2,7 +2,7 @@
 title: "Unity DOTS 3. Collections Package"
 date: "2025-01-14 18:06:00"
 categories: ["Unity", "DOTS"]
-tags: ["관리되지 않는 데이터", "Unmanaged Data", "Native Collection", "Unsafe Collection", "메모리 관리", "쓰레드 안전성", "Burst Compiler", "AtomicSafetyHandle"]
+tags: ["관리되지 않는 데이터", "Native Collection", "Unsafe Collection", "메모리 관리", "Burst Compiler", "쓰레드 안전성", "AtomicSafetyHandle", "Allocator"]
 math: true
 toc: true
 comments: true
@@ -18,11 +18,7 @@ comments: true
 - Native Collection은 인덱스 접근, 메모리 할당 해제 등의 작업을 처리할 때 **안전 검사를 수행**한다.
 - Unsafe Collection은 둘다 보장되지 않는다.
 
-Native Collection이 쓰레드에 대해 안전한 이유는 무엇일까? 각 Native Collection에는 마치 **Mutex 변수**^[[시스템 프로그래밍 7. Thread 프로그래밍](https://qlsjtmek2.github.io/posts/%EC%8B%9C%EC%8A%A4%ED%85%9C-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-7-Thread-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/)] 역할을 하는 `AtomicSafetyHandle`가 존재한다. Job에서 스케쥴을 예약하면, Job 내에 쓰기 권한이 있는 모든 Native Collection의 `AtomicSafetyHandle`를 Lock한다. 작업을 완료하면 Unlock한다. 다른 Job에서는 Native Collection의 `AtomicSafetyHandle`의 Lock을 시도해서, Lock이 걸리면 작업하고 걸리지 않으면 대기한다. 다음은 공식 문서의 설명이다.
-
-```
-When the safety checks are enabled, each `Native-` collection has an `AtomicSafetyHandle` for performing thread-safety checks. Scheduling a job locks the `AtomicSafetyHandle`'s of all `Native-` collections in the job. Completing a job releases the `AtomicSafetyHandle`'s of all `Native-` collections in the job.
-```
+Native Collection이 쓰레드에 대해 안전한 이유는 무엇일까? 각 Native Collection마다 마치 **Mutex 변수**^[[시스템 프로그래밍 7. Thread 프로그래밍](https://qlsjtmek2.github.io/posts/%EC%8B%9C%EC%8A%A4%ED%85%9C-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-7-Thread-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/)] 역할을 하는 `AtomicSafetyHandle`를 갖는다. `(직접 소유하는건 아님)` Job에서 스케쥴을 예약하면, Job 내에 쓰기 권한이 있는 모든 Native Collection의 `AtomicSafetyHandle`를 Lock한다. 작업을 완료하면 Unlock한다. 다른 Job에서는 Native Collection의 `AtomicSafetyHandle`의 Lock을 시도해서, Lock이 걸리면 작업하고 걸리지 않으면 대기한다.
 
 ## Why is it needed?
 
@@ -75,6 +71,7 @@ When the safety checks are enabled, each `Native-` collection has an `AtomicS
 		- 자동으로 할당이 해제되지 않음.
 - **Constructor**
 	- `NativeList<int> nums = new NativeList<int>(10, Allocator.Temp)`
+		- 크기 10의 비어있는 임시 Native 리스트를 생성한다.
 
 사용법은 간단하다. Collection을 동적 생성한다. 사용이 끝나면, `collection.Dispose()` 메서드를 사용해 메모리 할당을 해제하면 된다. `Allocator.Temp` 할당자를 사용해 Collection을 생성한 경우, 자동으로 메모리 할당이 해제되어 `Dispose()`를 생략 가능하다. 하지만 명시적으로 `Dispose()`를 선언하는 것은 좋은 습관이다.
 
