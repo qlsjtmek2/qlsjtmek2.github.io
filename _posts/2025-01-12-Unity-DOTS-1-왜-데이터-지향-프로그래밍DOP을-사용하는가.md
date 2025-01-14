@@ -2,7 +2,7 @@
 title: "Unity DOTS 1. 왜 데이터 지향 프로그래밍(DOP)을 사용하는가"
 date: "2025-01-12 18:03:18"
 categories: ["Unity", "DOTS"]
-tags: ["DOP", "CPU", "메모리", "캐시", "Sparse Set", "Archetype", "ECS", "게임 엔진"]
+tags: ["DOP", "CPU", "Cache Memory", "Sparse Set", "Archetype", "ECS", "캐시 히트", "캐시 미스"]
 math: true
 toc: true
 comments: true
@@ -188,10 +188,10 @@ Sparse Set에 컴포넌트를 Insert, Delete하는 연산 또한 $$O(1)$$에 수
 
 ### Reference
 
-- <https://velog.io/@wejaan/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-stack-pointer-and-program-counter>
-- <https://chunsubyeong.tistory.com/73>
-- <https://microelectronics.tistory.com/20>
-- <https://www.youtube.com/watch?v=7UphiG8UtTg>
-- <https://www.youtube.com/watch?v=LVjb_fQs2J8>
-- <https://www.geeksforgeeks.org/sparse-set/>
-- <https://usingsystem.tistory.com/539>
+- [[운영체제] 프로세스와 레지스터(PC, SP)](https://velog.io/@wejaan/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-stack-pointer-and-program-counter)
+- [[컴퓨터 구조] CPU Cache란 무엇인가](https://chunsubyeong.tistory.com/73)
+- [캐시 메모리(Cache Memory)의 원리](https://microelectronics.tistory.com/20)
+- [ECS : Unity ECS, Unity DOTS (초급 강좌)](https://www.youtube.com/watch?v=7UphiG8UtTg)
+- [Unity ECS로 속도 향상, 캐릭터 5000개 만들어 보기](https://www.youtube.com/watch?v=LVjb_fQs2J8)
+- [[Unity] DOTS 시스템과 Unity JobSystem, Burst, ECS 개념](https://usingsystem.tistory.com/539)
+- [Sparse Set - GeeksforGeeks](https://www.geeksforgeeks.org/sparse-set/)

@@ -2,7 +2,7 @@
 title: "Unity DOTS 4. Mathematics Package"
 date: "2025-01-14 21:11:08"
 categories: ["Unity", "DOTS"]
-tags: ["Unity", "Mathematics", "벡터", "행렬", "쿼터니언", "DOTS", "Random", "수학 함수"]
+tags: ["Unity", "Mathematics", "Unmanaged types", "벡터", "행렬", "쿼터니언", "Random", "DOTS"]
 math: true
 toc: true
 comments: true
@@ -82,4 +82,4 @@ float r2 = random.NextFloat(-5.0f, 5.0f);
 
 ## References
 
-- <https://docs.unity3d.com/Packages/com.unity.mathematics@1.3/manual/index.html>
+- [Fetching Title#i4t7](https://docs.unity3d.com/Packages/com.unity.mathematics@1.3/manual/index.html)

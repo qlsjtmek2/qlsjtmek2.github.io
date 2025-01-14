@@ -2,7 +2,7 @@
 title: "Unity DOTS 3. Collections Package"
 date: "2025-01-14 18:06:00"
 categories: ["Unity", "DOTS"]
-tags: ["관리되지 않는 데이터", "Unmanaged Data", "Native Collection", "Unsafe Collection", "쓰레드 안정성", "Burst Compiler", "메모리 할당", "AtomicSafetyHandle"]
+tags: ["관리되지 않는 데이터", "Unmanaged Data", "Native Collection", "Unsafe Collection", "쓰레드 안정성", "Burst Compiler", "메모리 관리", "Allocator"]
 math: true
 toc: true
 comments: true
@@ -105,12 +105,12 @@ Read는 여러 쓰레드에서 동시에 접근해도 문제 없기 때문에 Pa
 
 ### References
 
-- <https://docs.unity3d.com/Packages/com.unity.collections@2.1/manual/issues.html>
-- <https://docs.unity3d.com/Packages/com.unity.collections@2.1/manual/collections-overview.html>
-- <https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle.html>
-- <https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Unity.Collections.NativeArray_1.html>
-- <https://docs.unity3d.com/kr/2022.3/Manual/job-system-custom-nativecontainer.html>
-- <https://docs.unity3d.com/Packages/com.unity.collections@2.1/manual/collection-types.html>
-- <https://docs.unity3d.com/Packages/com.unity.collections%402.1/manual/collections-overview.html>
-- <https://docs.unity3d.com/Packages/com.unity.collections%401.0/manual/index.html>
-- <https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Unity.Collections.DeallocateOnJobCompletionAttribute.html>
+- [Known issues \| Collections \| 2.1.4](https://docs.unity3d.com/Packages/com.unity.collections@2.1/manual/issues.html)
+- [Collections overview \| Collections \| 2.1.4](https://docs.unity3d.com/Packages/com.unity.collections@2.1/manual/collections-overview.html)
+- [Unity - Scripting API: AtomicSafetyHandle](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle.html)
+- [Unity - Scripting API: NativeArray\<T0\>](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Unity.Collections.NativeArray_1.html)
+- [커스텀 네이티브 컨테이너 구현 - Unity 매뉴얼](https://docs.unity3d.com/kr/2022.3/Manual/job-system-custom-nativecontainer.html)
+- [Collection types \| Collections \| 2.1.4](https://docs.unity3d.com/Packages/com.unity.collections@2.1/manual/collection-types.html)
+- [Collections overview \| Collections \| 2.1.4](https://docs.unity3d.com/Packages/com.unity.collections%402.1/manual/collections-overview.html)
+- [Unity Collections Package \| Collections \| 1.0.0-pre.6](https://docs.unity3d.com/Packages/com.unity.collections%401.0/manual/index.html)
+- [Unity - Scripting API: DeallocateOnJobCompletionAttribute](https://docs.unity3d.com/6000.1/Documentation/ScriptReference/Unity.Collections.DeallocateOnJobCompletionAttribute.html)

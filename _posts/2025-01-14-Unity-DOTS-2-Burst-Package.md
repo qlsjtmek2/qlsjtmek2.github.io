@@ -2,7 +2,7 @@
 title: "Unity DOTS 2. Burst Package"
 date: "2025-01-14 15:27:39"
 categories: ["Unity", "DOTS"]
-tags: ["Burst", "JIT", "AOT", "Mono", "IL2CPP", "SIMD", "Managed Data", "Unmanaged Data"]
+tags: ["Burst", "AOT", "JIT", "Mono", "IL2CPP", "Native Code", "SIMD", "Managed Data", "Unmanaged Data"]
 math: true
 toc: true
 comments: true
@@ -160,14 +160,14 @@ public struct MyJob : IJob
 
 ## References
 
-- <https://programmingdev.com/mastering-unity-performance-optimization-with-c-burst-compiler-a-comprehensive-guide/>
-- <https://docs.unity3d.com/Packages/com.unity.burst@1.8/manual/index.html>
-- <https://docs.unity3d.com/2020.3/Documentation/Manual/Mono.html>
-- <https://www.youtube.com/watch?v=ZuzBOXUuEeM>
-- <https://www.youtube.com/watch?v=-9X965jXrn8>
-- <https://yuu5666.tistory.com/215>
-- <https://gus6615.tistory.com/104>
-- <https://docs.unity3d.com/Packages/com.unity.burst%401.8/manual/compilation-overview.html>
-- <https://docs.unity3d.com/Packages/com.unity.burst@1.8/manual/compilation-burstdiscard.html>
-- <https://docs.unity3d.com/Packages/com.unity.burst@1.8/manual/compilation-synchronous.html>
-- <https://stonzeteam.github.io/SIMD-%EB%B3%91%EB%A0%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/>
+- [Mastering Unity Performance Optimization with C# Burst Compiler: A Comprehensive Guide - 달여행](https://programmingdev.com/mastering-unity-performance-optimization-with-c-burst-compiler-a-comprehensive-guide/)
+- [About Burst \| Burst \| 1.8.18](https://docs.unity3d.com/Packages/com.unity.burst@1.8/manual/index.html)
+- [Unity - Manual: Mono overview](https://docs.unity3d.com/2020.3/Documentation/Manual/Mono.html)
+- [\[유니티 TIPS\] Burst 컴파일러 완전정복! 개념 & 기초 활용 - YouTube](https://www.youtube.com/watch?v=ZuzBOXUuEeM)
+- [\[유니티 TIPS\] 알고 있으면 쓸데 있는 IL2CPP, Mono, AOT, JIT 개념 파헤치기 - YouTube](https://www.youtube.com/watch?v=-9X965jXrn8)
+- [유니티 기초 - 스크립팅 백엔드 (Mono, il2cpp) :: 어느 게임 개발자의 기록](https://yuu5666.tistory.com/215)
+- [\[Unity\] Mono & IL2CPP 컴파일 방식의 차이 — 천냥의 게임 개발 일지](https://gus6615.tistory.com/104)
+- [Compilation overview \| Burst \| 1.8.18](https://docs.unity3d.com/Packages/com.unity.burst%401.8/manual/compilation-overview.html)
+- [BurstDiscard attribute \| Burst \| 1.8.18](https://docs.unity3d.com/Packages/com.unity.burst@1.8/manual/compilation-burstdiscard.html)
+- [Synchronous compilation \| Burst \| 1.8.18](https://docs.unity3d.com/Packages/com.unity.burst@1.8/manual/compilation-synchronous.html)
+- [SIMD 병렬 프로그래밍 – StonzeBlog](https://stonzeteam.github.io/SIMD-%EB%B3%91%EB%A0%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/)
