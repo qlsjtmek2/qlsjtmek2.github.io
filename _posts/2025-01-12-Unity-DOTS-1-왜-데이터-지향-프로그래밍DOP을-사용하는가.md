@@ -2,7 +2,7 @@
 title: "Unity DOTS 1. 왜 데이터 지향 프로그래밍(DOP)을 사용하는가"
 date: "2025-01-12 18:03:18"
 categories: ["Unity", "DOTS"]
-tags: ["DOP", "CPU", "메모리", "캐시", "ECS", "Sparse Set", "Archetype", "게임 엔진"]
+tags: ["DOP", "CPU", "Cache", "Sparse Set", "Archetype", "ECS", "캐시 히트", "캐시 미스"]
 math: true
 toc: true
 comments: true
@@ -180,7 +180,7 @@ Sparse Set에 컴포넌트를 Insert, Delete하는 연산 또한 $$O(1)$$에 수
 	- **Use Cases**
 		- V Rising, Unity, Unreal Engine
 
-왜 많은 게임 엔진에서 **Archetype** 방식을 채택하는가? 일반적으로 System에선 여러 컴포넌트를 한번에 Query하는 경우가 많기 때문이다. Sparse Set 방식은 여러 컴포넌트를 한번에 쿼리하면, 컴포넌트가 메모리에서 흩어져 있기 때문에 Cache Miss가 자주 발생한다. Archetype은 엔티티가 갖는 컴포넌트 단위로 데이터가 묶여 있으므로, Cache 
+왜 많은 게임 엔진에서 **Archetype** 방식을 채택하는가? 일반적으로 System에선 여러 컴포넌트를 한번에 Query하는 경우가 많기 때문이다. Sparse Set 방식은 여러 컴포넌트를 한번에 쿼리하면, 컴포넌트가 메모리에서 흩어져 있기 때문에 Cache Miss가 자주 발생한다. Archetype은 엔티티가 갖는 컴포넌트 단위로 데이터가 묶여 있으므로, Cache Hit가 더 많이 일어난다.
 
 하지만 단점도 존재한다. Archetype은 여러 시너지가 중첩되어 무수히 많은 조합을 만들어내는 게임에선 효율적이지 않다. **로그라이크** 장르가 그 예시다. 로그라이크와 같은 장르는 Player Entity에게 시너지 Component를 추가하거나 삭제할 일이 많다. 따라서, **Sparse Set** 방식을 채택하는 것이 효율적이다.
 
