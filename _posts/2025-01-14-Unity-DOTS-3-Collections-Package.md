@@ -2,7 +2,7 @@
 title: "Unity DOTS 3. Collections Package"
 date: "2025-01-14 18:06:00"
 categories: ["Unity", "DOTS"]
-tags: ["관리되지 않는 데이터", "Unmanaged Data", "Native Collection", "Unsafe Collection", "쓰레드 안전성", "Burst Compiler", "AtomicSafetyHandle", "메모리 관리"]
+tags: ["관리되지 않는 데이터", "Unmanaged Data", "Native Collection", "Unsafe Collection", "쓰레드 안정성", "Burst Compiler", "메모리 할당", "AtomicSafetyHandle"]
 math: true
 toc: true
 comments: true
@@ -60,14 +60,15 @@ Native Collection이 쓰레드에 대해 안전한 이유는 무엇일까? 각 N
 		- Job에 전달할 수 없음.
 		- 1프레임 내에서만 유효함.
 		- `Dispose()` 메서드를 사용하지 않아도 프레임이 끝나면 자동으로 할당 해제됨.
-	- `Allocator.TempJob` : 4프레임에서만 유효하도록 한다.
+	- `Allocator.TempJob`
 		- '임시'적으로 사용할 Collection을 할당함.
 		- Job에 전달할 수 있음.
 		- 전달받은 Job에서 `Dispose()`을 사용하여 할당을 해제해야 한다.
 			- 넉넉잡아 4프레임이 제공된다. 4프레임 내에 할당을 해제해야 한다.
 			- 그렇지 않으면 Native Collection의 경우 예외가 발생한다.
 		- 자동으로 할당이 해제되지 않음.
-	- `Allocator.Persistent` : 영구적으로 유효하도록 한다.
+	- `Allocator.Persistent`
+		- 영구적으로 유지됨.
 		- 자동으로 할당이 해제되지 않음.
 - **Constructor**
 	- `NativeList<int> nums = new NativeList<int>(10, Allocator.Temp)`
