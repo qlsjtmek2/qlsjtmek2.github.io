@@ -2,7 +2,7 @@
 title: "Unity DOTS 4. Mathematics Package"
 date: "2025-01-14 21:11:08"
 categories: ["Unity", "DOTS"]
-tags: ["Unity", "Mathematics", "Unmanaged type", "Vector", "Matrix", "Quaternion", "Random", "DOTS"]
+tags: ["Unity", "Mathematics", "벡터", "행렬", "쿼터니언", "DOTS", "Random", "수학 함수"]
 math: true
 toc: true
 comments: true
@@ -68,14 +68,16 @@ var result = math.mul(q, orientation);
 난수는 `Random` 구조체를 사용할 수 있다. 생성할 때 seed를 넘기면 된다.
 
 ```c#
+using Random = Unity.Mathematics.Random;
+
 uint seed = 1;
-Unity.Mathematics.Random rng = new Unity.Mathematics.Random(seed);
+Random random = new Random(seed);
 
 // [0, 1) exclusive
-float randomFloat1 = rng.NextFloat(); 
+float r1 = random.NextFloat(); 
 
 // [-5, 5) exclusive 
-float randomFloat2 = rng.NextFloat(-5.0f, 5.0f);
+float r2 = random.NextFloat(-5.0f, 5.0f);
 ```
 
 ## References
