@@ -154,6 +154,10 @@ public struct MyJob : IJob
 
 만약 BurstCompile으로 인해 성능이 얼마나 빨라지는지 프로파일링하고 싶을 땐, `[BurstCompile(CompileSynchronously = true)]`를 사용하면 된다. Burst Compile를 Play mode에서 실행할 땐 먼저 Mono로 컴파일된 결과가 실행되고, 비동기적으로 Burst Compile이 진행되어 나중에 그 결과가 반영된다. 이 어트리뷰트를 사용하면, Burst Compile이 동기적으로 실행되기 때문에 바로 Burst Compile 결과를 확인할 수 있다.
 
+![Pasted image 20250114214202.png](/assets/img/posts/Pasted image 20250114214202.png){: width="400" .shadow}
+
+**(추가)** `[BurstCompile(CompileSynchronously = true)]`를 사용하지 않아도 `Jobs > Synchronous Compilation` 옵션을 켜주면 동기적으로 확실하게 Burst Compile을 적용할 수 있다.
+
 ## References
 
 - <https://programmingdev.com/mastering-unity-performance-optimization-with-c-burst-compiler-a-comprehensive-guide/>
