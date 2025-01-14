@@ -2,7 +2,7 @@
 title: "Unity DOTS 2. Burst Package"
 date: "2025-01-14 15:27:39"
 categories: ["Unity", "DOTS"]
-tags: ["Burst", "AOT", "JIT", "Unity", "Mono", "IL2CPP", "SIMD", "Managed Data", "Unmanaged Data"]
+tags: ["Burst", "Compiler", "AOT", "JIT", "Mono", "IL2CPP", "SIMD", "Managed Data", "Unmanaged Data"]
 math: true
 toc: true
 comments: true
@@ -34,15 +34,11 @@ comments: true
 
 ### Mono
 
-Unity 내에서 `Project Settings > Player > Configuration > Scripting Backend`를 보면, 다음과 같다.
-
 ![Pasted image 20250114152134.png](/assets/img/posts/Pasted image 20250114152134.png){: .shadow}
 
-Mono와 IL2CPP 두개가 있는걸 확인할 수 있다. **Mono**가 JIT 방식이고, **IL2CPP**가 AOT 방식이다. 
+Unity 내에서 `Project Settings > Player > Configuration > Scripting Backend`를 보면 두가지 방식이 존재한다. **Mono**가 JIT 방식이고, **IL2CPP**가 AOT 방식이다. 
 
-**Mono**란 C# 코드를 여러 플랫폼에서 구동시키고자 만든 프레임워크다. C#은 .NET Framework에서만 동작하고, 닷넷 프레임워크는 윈도우에서만 구동된다. 따라서 .NET 위에서 실행되는 **Managed Code**를 **Native Code**로 변환하는 중간 어댑터가 필요하다. 그 역할을 하는 것이 Mono다.
-
-Mono를 사용하여 컴파일하는 과정은 다음과 같다.
+**Mono**란 C# 코드를 여러 플랫폼에서 구동시키고자 만든 프레임워크다. C#은 .NET Framework에서만 동작하고, 닷넷 프레임워크는 윈도우에서만 구동된다. 따라서 .NET 위에서 실행되는 **Managed Code**를 **Native Code**로 변환하는 중간 어댑터가 필요하다. 그 역할을 하는 것이 Mono다. 컴파일 과정은 다음과 같다.
 
 - `C# > .NET Assembly > (Mono) > Assembly > 기계어`
 
@@ -55,7 +51,7 @@ Mono를 사용하여 컴파일하는 과정은 다음과 같다.
 
 ### IL2CPP
 
-IL2CPP를 사용하여 컴파일하는 과정은 다음과 같다.
+**IL2CPP**는 중간 코드(IL)을 CPP로 변환해주는 컴파일러다. AOT 방식으로 동작한다. 컴파일 과정은 다음과 같다.
 
 - `C# > .NET Assembly > (IL2CPP) > C++ > Assembly > 기계어`
 
