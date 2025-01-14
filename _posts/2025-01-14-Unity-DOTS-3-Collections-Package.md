@@ -2,7 +2,7 @@
 title: "Unity DOTS 3. Collections Package"
 date: "2025-01-14 18:06:00"
 categories: ["Unity", "DOTS"]
-tags: ["관리되지 않는 데이터", "Native Collection", "Unsafe Collection", "메모리 관리", "Burst Compiler", "쓰레드 안전성", "AtomicSafetyHandle", "Allocator"]
+tags: ["관리되지 않는 데이터", "Unmanaged Data", "Native Collection", "Unsafe Collection", "쓰레드 안전성", "Burst Compiler", "AtomicSafetyHandle", "메모리 관리"]
 math: true
 toc: true
 comments: true
@@ -18,7 +18,7 @@ comments: true
 - Native Collection은 인덱스 접근, 메모리 할당 해제 등의 작업을 처리할 때 **안전 검사를 수행**한다.
 - Unsafe Collection은 둘다 보장되지 않는다.
 
-Native Collection이 쓰레드에 대해 안전한 이유는 무엇일까? 각 Native Collection마다 마치 **Mutex 변수**^[[시스템 프로그래밍 7. Thread 프로그래밍](https://qlsjtmek2.github.io/posts/%EC%8B%9C%EC%8A%A4%ED%85%9C-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-7-Thread-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/)] 역할을 하는 `AtomicSafetyHandle`를 갖는다. `(직접 소유하는건 아님)` Job에서 스케쥴을 예약하면, Job 내에 쓰기 권한이 있는 모든 Native Collection의 `AtomicSafetyHandle`를 Lock한다. 작업을 완료하면 Unlock한다. 다른 Job에서는 Native Collection의 `AtomicSafetyHandle`의 Lock을 시도해서, Lock이 걸리면 작업하고 걸리지 않으면 대기한다.
+Native Collection이 쓰레드에 대해 안전한 이유는 무엇일까? 각 Native Collection마다 마치 **Mutex 변수**^[[시스템 프로그래밍 7. Thread 프로그래밍](https://qlsjtmek2.github.io/posts/%EC%8B%9C%EC%8A%A4%ED%85%9C-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-7-Thread-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/)] 역할을 하는 `AtomicSafetyHandle`를 갖는다. `(Collection이 직접 갖고있는건 아님)` Job에서 스케쥴을 예약하면, Job 내에 쓰기 권한이 있는 모든 Native Collection의 `AtomicSafetyHandle`를 Lock한다. 작업을 완료하면 Unlock한다. 다른 Job에서는 Native Collection의 `AtomicSafetyHandle`의 Lock을 시도해서, Lock이 걸리면 작업하고 걸리지 않으면 대기한다.
 
 ## Why is it needed?
 
