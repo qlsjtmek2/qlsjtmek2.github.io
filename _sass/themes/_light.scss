@@ -137,6 +137,18 @@
   --callout-quote-bg: #f3f4f6;
   --callout-quote-border: #e5e7eb;
   --callout-quote-color: #1f2937;
+  --callout-todo-bg: #f8f9fa;
+  --callout-todo-border: #e2e3e5;
+  --callout-todo-color: #383d41;
+  --callout-success-bg: #edfdf5;
+  --callout-success-border: #d4edda;
+  --callout-success-color: #155724;
+  --callout-question-bg: #fff8f3;
+  --callout-question-border: #ffe5d0;
+  --callout-question-color: #8a4f00;
+  --callout-failure-bg: #fdf2f2;
+  --callout-failure-border: #f5c6cb;
+  --callout-failure-color: #721c24;
 
   [class^='prompt-'] {
     --link-underline-color: rgb(219, 216, 216);

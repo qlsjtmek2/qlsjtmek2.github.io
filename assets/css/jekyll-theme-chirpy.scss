@@ -114,9 +114,9 @@
 
   // Todo
   &.todo {
-    background-color: #f8f9fa;
-    color: #383d41;
-    border-color: #e2e3e5;
+    background-color: var(--callout-todo-bg);
+    color: var(--callout-todo-color);
+    border-color: var(--callout-todo-border);
 
     &::before {
       background-color: #6c757d;
@@ -146,9 +146,9 @@
 
   // Success/Check/Done
   &.success, &.check, &.done {
-    background-color: #edfdf5;
-    color: #155724;
-    border-color: #d4edda;
+    background-color: var(--callout-success-bg);
+    color: var(--callout-success-color);
+    border-color: var(--callout-success-border);
 
     &::before {
       background-color: #28a745;
@@ -162,9 +162,9 @@
 
   // Question/Help/FAQ
   &.question, &.help, &.faq {
-    background-color: #fff8f3;
-    color: #8a4f00;
-    border-color: #ffe5d0;
+    background-color: var(--callout-question-bg);
+    color: var(--callout-question-color);
+    border-color: var(--callout-question-border);
 
     &::before {
       background-color: #fd7e14;
@@ -194,9 +194,9 @@
 
   // Failure/Fail/Missing
   &.failure, &.fail, &.missing {
-    background-color: #fdf2f2;
-    color: #721c24;
-    border-color: #f5c6cb;
+    background-color: var(--callout-failure-bg);
+    color: var(--callout-failure-color);
+    border-color: var(--callout-failure-border);
 
     &::before {
       background-color: #dc3545;
@@ -272,12 +272,12 @@
     }
   }
 
-  // 다크 모드
-  @media (prefers-color-scheme: dark) {
-    .callout-icon::before {
-      opacity: 0.8;
-    }
-  }
+  // // 다크 모드
+  // @media (prefers-color-scheme: dark) {
+  //   .callout-icon::before {
+  //     opacity: 0.8;
+  //   }
+  // }
 
   // 중첩된 Callout을 위한 스타일
   .callout {

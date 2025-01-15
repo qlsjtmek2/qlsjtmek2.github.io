@@ -138,6 +138,18 @@
   --callout-quote-bg: rgba(243, 244, 246, 0.05);
   --callout-quote-border: rgba(229, 231, 235, 0.1);
   --callout-quote-color: #d1d5db;
+  --callout-todo-bg: rgba(248, 249, 250, 0.05);
+  --callout-todo-border: rgba(226, 227, 229, 0.1);
+  --callout-todo-color: #d1d3d6;
+  --callout-success-bg: rgba(237, 253, 245, 0.05);
+  --callout-success-border: rgba(212, 237, 218, 0.1);
+  --callout-success-color: #a8e6c9;
+  --callout-question-bg: rgba(255, 248, 243, 0.05);
+  --callout-question-border: rgba(255, 229, 208, 0.1);
+  --callout-question-color: #ffe5cc;
+  --callout-failure-bg: rgba(253, 242, 242, 0.05);
+  --callout-failure-border: rgba(245, 198, 203, 0.1);
+  --callout-failure-color: #ffc9c9;
 
   .light {
     display: none;
