@@ -4,9 +4,9 @@ refactor: true
 panel_includes:
   - toc
 tail_includes:
+  - footer-ads
   - related-posts
   - post-nav
-  - footer-ads
 script_includes:
   - comment
 ---
@@ -16,11 +16,8 @@ script_includes:
 <article class="px-1" data-toc="{{ enable_toc }}">
   <header>
     <!-- applause-button -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/applause-button/dist/applause-button.css"
-    />
-    <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+    <link rel="stylesheet" href="applause-button.css" />
+    <script src="applause-button.js"></script>
 
     <!-- title -->
     <h1 data-toc-skip>{{ page.title }}</h1>
