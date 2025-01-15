@@ -105,7 +105,7 @@ script_includes:
   </header>
   <br />
   <br />
-  {% if enable_toc %} {% include header-ads.html %}
+  {% if enable_toc %}
   <div
     id="toc-bar"
     class="d-flex align-items-center justify-content-between invisible"
@@ -144,7 +144,7 @@ script_includes:
   </dialog>
   {% endif %}
 
-  <div class="content">{{ content }}</div>
+  <div class="content">{% include header-ads.html %} {{ content }}</div>
 
   <div class="post-tail-wrapper text-muted">
     <!-- Add clap button after content -->
