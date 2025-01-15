@@ -301,3 +301,36 @@
 // .me-2 {
 //   font-weight: bold;
 // }
+
+/* Panel Ads */
+#panel-ads-wrapper {
+  top: calc(20vh + 2rem);
+  transition: top 0.2s ease-in-out;
+  overflow-y: auto;
+  max-height: 100vh;
+  scrollbar-width: none;
+  margin-top: 2rem;
+
+  &:not(.invisible) {
+    -webkit-animation: fade-up 0.8s;
+    animation: fade-up 0.8s;
+  }
+
+  &::before {
+    @extend %top-cover;
+  }
+
+  &::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    width: 15%;
+    height: 2.25rem;
+    margin-left: -1px;
+    background: linear-gradient(transparent, var(--main-bg) 70%);
+  }
+
+  > * {
+    @extend %panel-border;
+  }
+}
