@@ -302,35 +302,41 @@
 //   font-weight: bold;
 // }
 
-/* Panel Ads */
-#panel-ads-wrapper {
-  top: calc(20vh + 2rem);
-  transition: top 0.2s ease-in-out;
-  overflow-y: auto;
-  max-height: 100vh;
-  scrollbar-width: none;
-  margin-top: 2rem;
+// /* Panel Ads */
+// #panel-ads-wrapper {
+//   @extend #toc-wrapper;  // TOC의 기본 스타일을 상속
+//   top: 0;
+//   transition: top 0.2s ease-in-out;
+//   overflow-y: auto;
+//   max-height: 100vh;
+//   scrollbar-width: none;
+//   margin-top: 2rem;
 
-  &:not(.invisible) {
-    -webkit-animation: fade-up 0.8s;
-    animation: fade-up 0.8s;
-  }
+//   &:not(.invisible) {
+//     -webkit-animation: fade-up 0.8s;
+//     animation: fade-up 0.8s;
+//   }
 
-  &::before {
-    @extend %top-cover;
-  }
+//   @at-root .panel-ads-border-cover {
+//     @extend %top-cover;
+//     margin-bottom: -4rem;
+//   }
 
-  &::after {
-    content: '';
-    position: fixed;
-    bottom: 0;
-    width: 15%;
-    height: 2.25rem;
-    margin-left: -1px;
-    background: linear-gradient(transparent, var(--main-bg) 70%);
-  }
+//   &::before {
+//     @extend %top-cover;
+//   }
 
-  > * {
-    @extend %panel-border;
-  }
-}
+//   &::after {
+//     content: '';
+//     position: fixed;
+//     bottom: 0;
+//     width: 15%;
+//     height: 2.25rem;
+//     margin-left: -1px;
+//     background: linear-gradient(transparent, var(--main-bg) 70%);
+//   }
+
+//   > * {
+//     @extend %panel-border;
+//   }
+// }

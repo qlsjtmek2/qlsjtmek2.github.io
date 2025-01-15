@@ -3,7 +3,6 @@ layout: default
 refactor: true
 panel_includes:
   - toc
-  - panel-ads
 tail_includes:
   - related-posts
   - post-nav
@@ -91,6 +90,10 @@ script_includes:
         </div>
       </div>
     </div>
+
+    {% include header-ads.html %} {% if page.image %}
+    <!-- ... existing image code ... -->
+    {% endif %}
   </header>
 
   {% if enable_toc %}
