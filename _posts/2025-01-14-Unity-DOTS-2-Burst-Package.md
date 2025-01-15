@@ -2,7 +2,7 @@
 title: "Unity DOTS 2. Burst Package"
 date: "2025-01-14 15:27:39"
 categories: ["Unity", "DOTS"]
-tags: ["Burst", "AOT", "JIT", "Mono", "IL2CPP", "Native Code", "SIMD", "Managed Data", "Unmanaged Data"]
+tags: ["Burst", "AOT", "JIT", "Mono", "IL2CPP", "SIMD", "Native Code", "Unmanaged Data"]
 math: true
 toc: true
 comments: true
@@ -20,9 +20,9 @@ comments: true
 
 컴파일 방식에는 크게 AOT 방식과 JIT 방식이 존재한다.
 
-**AOT(Ahead-Of-Time)** 방식은 흔히 알고있는 컴파일 방법과 같다. 실행 전에 모든 코드를 전부 컴파일한다. **JIT(Just-In-Time)** 방식은, 미리 모든 코드를 컴파일해두지 않는다. 코드가 필요하다고 판단되는 시점에 그때그때 컴파일한다. `즉, 코드가 Runtime에서 비동기적으로 컴파일된다.`
+**AOT(Ahead-Of-Time)** 방식은 흔히 알고있는 컴파일 방법과 같다. 실행 전에 모든 코드를 전부 컴파일한다. **JIT(Just-In-Time)** 방식은 미리 모든 코드를 컴파일해두지 않는 것이다. 코드가 필요하다고 판단되는 시점에 그때그때 컴파일한다. `즉, 코드가 Runtime에서 비동기적으로 컴파일된다.`
 
-왜 JIT과 같은 컴파일 방식이 필요한가? **테스트**하기 위함이다. 만약 Unity의 Play mode를 실행할 때마다 모든 파일을 컴파일 한 뒤 실행하면, 한번 테스트할 때마다 몇 분, 몇십 분이 걸릴 수 있다. 테스트할 땐 굳이 모든 파일을 컴파일할 필요가 없다. 딱 필요한 파일만 컴파일하는 JIT 방식을 사용하면 좋을 것이다. 따라서, 개발 중엔 **JIT** 방식으로 생산성을 챙기고, 최종 빌드는 **AOT** 방식을 사용하는 것을 권장한다.
+왜 JIT과 같은 컴파일 방식이 필요한가? **테스트** 때문이다. 만약 Unity의 Play mode를 실행할 때마다 모든 파일을 컴파일 한 뒤 실행하면, 한번 테스트할 때마다 몇십 분이 걸릴 수 있다. 테스트할 땐 굳이 모든 파일을 컴파일할 필요가 없기 때문에 딱 필요한 파일만 컴파일하면 좋을 것이다. 따라서, 개발 중엔 **JIT** 방식으로 생산성을 챙기고, 최종 빌드는 **AOT** 방식을 사용하는 것을 권장한다.
 
 > [!NOTE] NOTE{title}
 > - JIT(Just-In-Time)
