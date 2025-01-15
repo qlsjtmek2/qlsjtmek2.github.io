@@ -16,7 +16,7 @@ timezone: Asia/Seoul
 
 title: Huigon's Blog # the main title
 
-tagline: Hello, World! # it will display as the subtitle
+tagline: Simple, Easy is the best. # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   배운 지식, 깨달음 등을 공유하는 블로그입니다.
