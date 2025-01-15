@@ -2,7 +2,7 @@
 title: "Google Search Console 자동 색인 등록하기"
 date: "2025-01-15 12:42:32"
 categories: ["Github Pages"]
-tags: ["Google Search Console", "Web Search Indexing API", "Python", "색인 요청", "서비스 계정", "JSON", "GUI", "자동화"]
+tags: ["Google Search Console", "Web Search Indexing API", "색인 요청", "Python", "서비스 계정", "JSON", "GUI", "URL 입력"]
 math: true
 toc: true
 comments: true
@@ -68,16 +68,16 @@ from tkinter import ttk, scrolledtext
 # ---------------------------------------------------------
 # 1. 서비스 계정 키 파일 경로 설정
 # ---------------------------------------------------------
-SERVICE_ACCOUNT_FILE = './service_account_key.json'  # 실제 키 파일 경로
+SERVICE_ACCOUNT_FILE = './service_account_key.json'  # 실제 키 파일 경로
 
 
 # ---------------------------------------------------------
 # 2. 서비스 계정 인증 객체 생성
-#    - 권한 범위: <https://www.googleapis.com/auth/indexing>
+#    - 권한 범위: <https://www.googleapis.com/auth/indexing>
 # ---------------------------------------------------------
 SCOPES = ['<https://www.googleapis.com/auth/indexing'>]
 credentials = service_account.Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE, scopes=SCOPES
+    SERVICE_ACCOUNT_FILE, scopes=SCOPES
 )
 
 # ---------------------------------------------------------
@@ -87,89 +87,89 @@ service = build('indexing', 'v3', credentials=credentials)
 
 
 def publish_to_indexing_api(url_list, action='URL_UPDATED'):
-    """
-    Google Indexing API에 URL을 등록(색인 요청)하거나 색인을 제거(삭제 요청)하는 함수.
-    :param url_list: 색인 대상이 될 URL 목록 (list)
-    :param action: 'URL_UPDATED' or 'URL_DELETED'
-                   - 'URL_UPDATED' -> 색인 요청
-                   - 'URL_DELETED' -> 색인 제거 요청
-    """
-    body = {
-        "url": "",       # 실제 요청 시 반복문에서 개별 URL로 대체
-        "type": action   # URL_UPDATED or URL_DELETED
-    }
+    """
+    Google Indexing API에 URL을 등록(색인 요청)하거나 색인을 제거(삭제 요청)하는 함수.
+    :param url_list: 색인 대상이 될 URL 목록 (list)
+    :param action: 'URL_UPDATED' or 'URL_DELETED'
+                   - 'URL_UPDATED' -> 색인 요청
+                   - 'URL_DELETED' -> 색인 제거 요청
+    """
+    body = {
+        "url": "",       # 실제 요청 시 반복문에서 개별 URL로 대체
+        "type": action   # URL_UPDATED or URL_DELETED
+    }
 
-    results = []
-    for url in url_list:
-        body["url"] = url
-        try:
-            # ---------------------------------------------------------
-            # 4. API 호출 (urls: publish 메서드)
-            # ---------------------------------------------------------
-            request = service.urlNotifications().publish(body=body)
-            response = request.execute()
+    results = []
+    for url in url_list:
+        body["url"] = url
+        try:
+            # ---------------------------------------------------------
+            # 4. API 호출 (urls: publish 메서드)
+            # ---------------------------------------------------------
+            request = service.urlNotifications().publish(body=body)
+            response = request.execute()
 
-            result = f"[{action.upper()}] {url} --> 결과: {response}"
-            print(result)
-            results.append(result)
+            result = f"[{action.upper()}] {url} --> 결과: {response}"
+            print(result)
+            results.append(result)
 
-        except Exception as e:
-            error_msg = f"[에러] {url}: {e}"
-            print(error_msg)
-            results.append(error_msg)
+        except Exception as e:
+            error_msg = f"[에러] {url}: {e}"
+            print(error_msg)
+            results.append(error_msg)
 
-    # GUI의 결과 텍스트 영역에 결과 표시
-    if hasattr(app, 'result_text'):
-        app.result_text.insert(tk.END, "\n".join(results) + "\n")
+    # GUI의 결과 텍스트 영역에 결과 표시
+    if hasattr(app, 'result_text'):
+        app.result_text.insert(tk.END, "\n".join(results) + "\n")
 
 class IndexingUI:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Google 색인 요청 도구")
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Google 색인 요청 도구")
 
-        # URL 입력 영역
-        url_frame = ttk.LabelFrame(root, text="URL 목록 입력", padding="10")
-        url_frame.pack(fill="both", expand=True, padx=10, pady=5)
+        # URL 입력 영역
+        url_frame = ttk.LabelFrame(root, text="URL 목록 입력", padding="10")
+        url_frame.pack(fill="both", expand=True, padx=10, pady=5)
 
-        self.url_text = scrolledtext.ScrolledText(url_frame, height=10)
-        self.url_text.pack(fill="both", expand=True)
+        self.url_text = scrolledtext.ScrolledText(url_frame, height=10)
+        self.url_text.pack(fill="both", expand=True)
 
-        # 버튼 영역
-        btn_frame = ttk.Frame(root, padding="10")
-        btn_frame.pack(fill="x", padx=10, pady=5)
+        # 버튼 영역
+        btn_frame = ttk.Frame(root, padding="10")
+        btn_frame.pack(fill="x", padx=10, pady=5)
 
-        ttk.Button(btn_frame, text="색인 요청", command=self.request_indexing).pack(side="left", padx=5)
-        ttk.Button(btn_frame, text="색인 제거", command=self.request_deletion).pack(side="left", padx=5)
+        ttk.Button(btn_frame, text="색인 요청", command=self.request_indexing).pack(side="left", padx=5)
+        ttk.Button(btn_frame, text="색인 제거", command=self.request_deletion).pack(side="left", padx=5)
 
-        # 결과 표시 영역
-        result_frame = ttk.LabelFrame(root, text="결과", padding="10")
-        result_frame.pack(fill="both", expand=True, padx=10, pady=5)
-        
-        self.result_text = scrolledtext.ScrolledText(result_frame, height=10)
-        self.result_text.pack(fill="both", expand=True)
+        # 결과 표시 영역
+        result_frame = ttk.LabelFrame(root, text="결과", padding="10")
+        result_frame.pack(fill="both", expand=True, padx=10, pady=5)
+        
+        self.result_text = scrolledtext.ScrolledText(result_frame, height=10)
+        self.result_text.pack(fill="both", expand=True)
 
-    def get_url_list(self):
-        urls = self.url_text.get("1.0", tk.END).strip().split("\n")
-        return [url.strip() for url in urls if url.strip()]
+    def get_url_list(self):
+        urls = self.url_text.get("1.0", tk.END).strip().split("\n")
+        return [url.strip() for url in urls if url.strip()]
 
-    def request_indexing(self):
-        urls = self.get_url_list()
-        if urls:
-            self.result_text.delete("1.0", tk.END)
-            self.result_text.insert(tk.END, "색인 요청 처리 중...\n")
-            publish_to_indexing_api(urls, action='URL_UPDATED')
+    def request_indexing(self):
+        urls = self.get_url_list()
+        if urls:
+            self.result_text.delete("1.0", tk.END)
+            self.result_text.insert(tk.END, "색인 요청 처리 중...\n")
+            publish_to_indexing_api(urls, action='URL_UPDATED')
 
-    def request_deletion(self):
-        urls = self.get_url_list()
-        if urls:
-            self.result_text.delete("1.0", tk.END)
-            self.result_text.insert(tk.END, "색인 제거 처리 중...\n")
-            publish_to_indexing_api(urls, action='URL_DELETED')
+    def request_deletion(self):
+        urls = self.get_url_list()
+        if urls:
+            self.result_text.delete("1.0", tk.END)
+            self.result_text.insert(tk.END, "색인 제거 처리 중...\n")
+            publish_to_indexing_api(urls, action='URL_DELETED')
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = IndexingUI(root)
-    root.mainloop()
+    root = tk.Tk()
+    app = IndexingUI(root)
+    root.mainloop()
 ```
 
 아까 다운로드 받았던 .json 파일의 이름을 `service_account_key.json`으로 수정하여 `.py` 파일과 같은 위치에 넣습니다. 이후 실행하면 다음과 같은 창을 볼 수 있습니다.
@@ -186,7 +186,7 @@ URL 입력부에 URL를 입력하고 색인 요청을 하면 됩니다. 요청�
 
 아래는 `Search Console 자동 색인.bat` 파일의 내용입니다.
 
-```bat
+```search Console 자동 색인.bat
 @echo off
 python "Search Sonole 자동 색인.py"
 pause
