@@ -328,6 +328,11 @@ applause-button {
   font-size: 1rem !important;
 }
 
+// 광고 빈 공간 없애기
+ins.adsbygoogle[data-ad-status="unfilled"] {
+  display: none !important;
+}
+
 // /* Panel Ads */
 // #panel-ads-wrapper {
 //   @extend #toc-wrapper;  // TOC의 기본 스타일을 상속
