@@ -2,7 +2,7 @@
 title: "Google Search Console 자동 색인 등록하기"
 date: "2025-01-15 12:42:32"
 categories: ["Github Pages"]
-tags: ["Google Search Console", "Web Search Indexing API", "색인 요청", "Python", "서비스 계정", "JSON", "GUI", "URL 입력"]
+tags: ["Google Search Console", "Web Search Indexing API", "Python", "색인 요청", "서비스 계정", "JSON", "GUI", "URL 목록"]
 math: true
 toc: true
 comments: true
@@ -52,11 +52,11 @@ Google Search Console에서 직접 색인 요청을 하려면 모든 URL에 대�
 
 ![Pasted image 20250115130245.png](/assets/img/posts/Pasted image 20250115130245.png){: .shadow}
 
-```
+```shell
 pip install google-api-python-client google-auth google-auth-oauthlib google-auth-httplib2
 ```
 
-위 명령어를 통해 api를 설치합니다. 이후 파이썬 파일을 하나 생성하여 아래 코드를 복사하여 붙여넣습니다.
+위 명령어를 터미널에 입력하여 api를 설치합니다. 이후 파이썬 파일을 하나 생성하여 아래 코드를 복사하여 붙여넣습니다.
 
 ```python
 import json
@@ -186,7 +186,7 @@ URL 입력부에 URL를 입력하고 색인 요청을 하면 됩니다. 요청�
 
 아래는 `Search Console 자동 색인.bat` 파일의 내용입니다.
 
-```search Console 자동 색인.bat
+```bat
 @echo off
 python "Search Sonole 자동 색인.py"
 pause
