@@ -101,12 +101,10 @@ script_includes:
       </div>
     </div>
 
-    {% include header-ads.html %} {% if page.image %}
-    <!-- ... existing image code ... -->
-    {% endif %}
+    {% if page.image %} {% endif %}
   </header>
 
-  {% if enable_toc %}
+  {% if enable_toc %} {% include header-ads.html %}
   <div
     id="toc-bar"
     class="d-flex align-items-center justify-content-between invisible"
