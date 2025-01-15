@@ -395,7 +395,7 @@ applause-button {
   // 카드 스타일링
   [id^="google_ads_iframe"] {
     border: 1px solid var(--card-border-color);
-    border-radius: v.$radius;
+    border-radius: 0.625rem;
     transition: all 0.3s ease-in-out;
     background: var(--card-bg);
     overflow: hidden;
@@ -430,7 +430,7 @@ applause-button {
 
   ins.adsbygoogle {
     border: 1px solid var(--card-border-color);
-    border-radius: v.$radius;
+    border-radius: 0.625rem;
     background: var(--card-bg);
     height: 100%;
     transition: all 0.3s ease-in-out;
