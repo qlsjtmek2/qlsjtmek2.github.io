@@ -48,7 +48,7 @@ Google Search Console에서 직접 색인 요청을 하려면 모든 URL에 대�
 
 파일을 열고, "client_email" 부분의 `id-숫자@...iam.gserviceaccount.com` 이메일 항목을 복사해둡니다.
 
-이후 Search Sonsole로 들어가 `설정 > 사용자 및 권한 > 사용자 추가`로 들어가 복사해둔 이메일을 입력하고, 권한을 소유자료 변경하여 추가합니다. 여기까지 진행하면 사전 작업은 완료됩니다.
+이후 Search Sonsole로 들어가 `설정 > 사용자 및 권한 > 사용자 추가`로 들어가 복사해둔 이메일을 입력하고, 권한을 소유자로 변경하여 추가합니다. 여기까지 진행하면 사전 작업은 완료됩니다.
 
 ![Pasted image 20250115130245.png](/assets/img/posts/Pasted image 20250115130245.png){: .shadow}
 
