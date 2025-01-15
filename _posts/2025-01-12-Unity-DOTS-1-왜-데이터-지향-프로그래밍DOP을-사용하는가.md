@@ -141,6 +141,7 @@ Sparse Set와 Archetype를 이해하기 전에 먼저 **ECS**를 이해할 필�
 > - 기능의 확장이 편리하다. 
 > 	- 그저 Component와 System을 추가하고, Entity에 Component를 부착하기만 하면 된다.
 > - 코드가 독립적이다.
+> 	- 코드 간 의존성이 없다. 따라서 재사용하기 좋다.
 > 	- 만약 Shooter 기능에 문제가 있다면, ShooterSystem만 체크하면 된다.
 > - 모듈성이 좋으니 테스트도 편리해진다.
 
@@ -158,7 +159,21 @@ Sparse Set에 컴포넌트를 Insert, Delete하는 연산 또한 $$O(1)$$에 수
 
 ### Archetype
 
-동일한 Component 구조를 갖는 Entity들을 한 덩어리(**Chunk**)로 묶어 **배열**에 저장하는 방식이다.
+![Pasted image 20250115155021.png](/assets/img/posts/Pasted image 20250115155021.png){: .shadow}
+
+동일한 Component 구조를 갖는 Entity들을 한 덩어리(**Chunk**)로 묶어 **배열**에 저장하는 방식이다. Archetype은 **Chunk**라는 구조로 구현된다. Chunk는 크기가 16KB로 고정되며, 컴포넌트 종류만큼 Array를 갖는 자료구조다. 
+
+> [!question]- 왜 청크의 크기는 16KB인가?{title}
+> 청크의 크기가 너무 크면 메모리 낭비가 발생할 수 있고, 청크의 크기가 너무 작으면 캐시 히트의 이점을 받기 힘들다. `(L1 캐시 용량은 대략 (8KB~64KB) 정도이다.)` 이런 점을 고려해서 청크의 크기는 적절히 16KB라는 값을 사용한다.
+> 
+> [Why chunk has size 16k? - Unity Engine - Unity Discussions](https://discussions.unity.com/t/why-chunk-has-size-16k/784184)
+> [Why chunk size is 16kb? - Unity Engine - Unity Discussions](https://discussions.unity.com/t/why-chunk-size-is-16kb/920107)
+
+![Pasted image 20250115155338.png](/assets/img/posts/Pasted image 20250115155338.png){: width="300" .shadow}
+
+가로로 같은 Component가 연속적인 Array로 배치되며, 같은 Index에 있는 세로 줄이 하나의 Entity에 해당한다. 한 청크에 많은 엔티티를 넣을 수록 캐시 적중률이 높아진다. 그러기 위해선 컴포넌트 수가 적을 수록 한 청크안에 많은 엔티티가 들어간다. 따라서 **엔티티에는 딱 필요한 컴포넌트만** 갖도록 설계하는 것이 권장된다.
+
+![Pasted image 20250115155611.png](/assets/img/posts/Pasted image 20250115155611.png){: .shadow}
 
 ### Sparse Set vs Archetype
 
@@ -195,3 +210,4 @@ Sparse Set에 컴포넌트를 Insert, Delete하는 연산 또한 $$O(1)$$에 수
 - [Unity ECS로 속도 향상, 캐릭터 5000개 만들어 보기](https://www.youtube.com/watch?v=LVjb_fQs2J8)
 - [[Unity] DOTS 시스템과 Unity JobSystem, Burst, ECS 개념](https://usingsystem.tistory.com/539)
 - [Sparse Set - GeeksforGeeks](https://www.geeksforgeeks.org/sparse-set/)
+- [C# Job System + ECS usage and demo with Intel - Unite LA - YouTube](https://www.youtube.com/watch?v=fp1D45hhVEM)
