@@ -143,7 +143,10 @@ script_includes:
   </dialog>
   {% endif %}
 
-  <div class="content">{% include header-ads.html %} {{ content }}</div>
+  <div class="content">
+    {% include header-ads.html %} <br />
+    {{ content }}
+  </div>
 
   <div class="post-tail-wrapper text-muted">
     <!-- Add clap button after content -->
