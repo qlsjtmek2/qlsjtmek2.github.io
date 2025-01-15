@@ -375,32 +375,34 @@ applause-button {
 // 멀티플렉스 광고 스타일링
 .adsbygoogle[data-ad-format="autorelaxed"] {
   margin-top: 3rem;
-  padding: 1.5rem 0;
+  margin-bottom: 3rem;
 
   &::before {
-    content: "추천 콘텐츠";  // 한국어로 "추천 콘텐츠" 표시
+    content: "추천 콘텐츠";
+    @include label(1.1rem, 600);
     display: block;
-    font-size: 1.5rem;
-    font-weight: 600;
     margin-bottom: 1.5rem;
     color: var(--heading-color);
   }
 
   // 카드 스타일링
   [id^="google_ads_iframe"] {
-    border-radius: 0.5rem;
+    border: 1px solid var(--card-border-color);
+    border-radius: v.$radius;
     transition: all 0.3s ease-in-out;
+    background: var(--card-bg);
 
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 2px 8px 0 var(--card-shadow);
+      box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+      transform: translateY(-0.15rem);
+      border-color: var(--card-hover-border-color);
     }
   }
 }
 
-// 관련 글과 광고 사이 구분선 추가
+// related posts와 광고 사이 간격 조정
 #related-posts + .adsbygoogle {
-  border-top: 1px solid var(--border-color);
-  margin-top: 2rem;
-  padding-top: 2rem;
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--main-border-color);
 }
