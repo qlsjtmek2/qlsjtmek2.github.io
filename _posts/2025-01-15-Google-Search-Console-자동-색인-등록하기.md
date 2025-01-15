@@ -1,8 +1,8 @@
 ---
 title: "Google Search Console 자동 색인 등록하기"
 date: "2025-01-15 12:42:32"
-categories: ["Github Pages"]
-tags: ["Google Search Console", "Web Search Indexing API", "Python", "색인 요청", "서비스 계정", "JSON", "URL 목록", "GUI"]
+categories: ["IT", "Github Pages"]
+tags: ["Google Search Console", "Web Search Indexing API", "색인 요청", "Python", "서비스 계정", "GUI", "자동화", "JSON"]
 math: true
 toc: true
 comments: true

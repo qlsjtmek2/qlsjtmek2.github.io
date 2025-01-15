@@ -1,8 +1,8 @@
 ---
 title: "Obsidian과 Git Blog 연동하기"
 date: "2025-01-10 16:25:30"
-categories: ["Github Pages"]
-tags: ["Jekyll", "Chirpy", "옵시디언", "플러그인", "Git", "자동화", "개발", "AI 코딩"]
+categories: ["IT", "Github Pages"]
+tags: ["Jekyll Chirpy", "옵시디언", "플러그인", "Git", "자동화", "커뮤니티 플러그인", "Cursor 자동 코딩", "소프트웨어 개발"]
 math: true
 toc: true
 comments: true
