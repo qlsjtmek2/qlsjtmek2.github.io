@@ -127,7 +127,7 @@ comments:
     strict:
     input_position:
     lang: ko
-    reactions_enabled:
+    reactions_enabled: 0
 
 # Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets
 assets:

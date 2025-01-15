@@ -302,6 +302,33 @@
   font-weight: bold;
 }
 
+.clap-button-wrapper {
+  padding-top: 2rem;
+  margin-bottom: 8rem;
+}
+
+applause-button.clap {
+  animation-name: pulse;
+  animation-duration: 0.5s;
+}
+
+applause-button {
+  box-sizing: border-box;
+  display: block;
+  scale: 1;
+  width: 55px;
+  margin: 0 auto;
+  height: initial !important;
+
+  .count-container {
+    color: inherit;
+  }
+}
+
+.clap-count {
+  font-size: 1rem !important;
+}
+
 // /* Panel Ads */
 // #panel-ads-wrapper {
 //   @extend #toc-wrapper;  // TOC의 기본 스타일을 상속

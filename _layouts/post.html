@@ -15,7 +15,17 @@ script_includes:
 
 <article class="px-1" data-toc="{{ enable_toc }}">
   <header>
+    <!-- applause-button -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/applause-button/dist/applause-button.css"
+    />
+    <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+
+    <!-- title -->
     <h1 data-toc-skip>{{ page.title }}</h1>
+
+    <!-- description -->
     {% if page.description %}
     <p class="post-desc fw-light mb-4">{{ page.description }}</p>
     {% endif %}
@@ -138,6 +148,9 @@ script_includes:
   <div class="content">{{ content }}</div>
 
   <div class="post-tail-wrapper text-muted">
+    <!-- Add clap button after content -->
+    {% include clap.html %}
+
     <!-- categories -->
     {% if page.categories.size > 0 %}
     <div class="post-meta mb-3">
