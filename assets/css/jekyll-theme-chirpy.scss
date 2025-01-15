@@ -409,14 +409,36 @@ applause-button {
 }
 
 // related posts와 광고 사이 간격 조정
-.related-content-wrapper {
+#related-content {
   margin-top: 5rem;
   padding-top: 3rem;
   border-top: 1px solid var(--main-border-color);
-}
 
-#related-posts + .related-content-wrapper {
-  margin-top: 3rem;
-  padding-top: 3rem;
-  border-top: 1px solid var(--main-border-color);
+  .related-content-wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  ins.adsbygoogle {
+    border: 1px solid var(--card-border-color);
+    border-radius: v.$radius;
+    background: var(--card-bg);
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      box-shadow: var(--card-shadow);
+      transform: translateY(-0.15rem);
+      border-color: var(--card-hover-border-color);
+    }
+  }
 }
