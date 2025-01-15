@@ -2,7 +2,7 @@
 title: "Google Search Console 자동 색인 등록하기"
 date: "2025-01-15 12:42:32"
 categories: ["Github Pages"]
-tags: ["Google Search Console", "Web Search Indexing API", "Python", "색인 요청", "서비스 계정", "JSON", "GUI", "URL 목록"]
+tags: ["Google Search Console", "Web Search Indexing API", "Python", "색인 요청", "서비스 계정", "JSON", "URL 목록", "GUI"]
 math: true
 toc: true
 comments: true
@@ -69,7 +69,6 @@ from tkinter import ttk, scrolledtext
 # 1. 서비스 계정 키 파일 경로 설정
 # ---------------------------------------------------------
 SERVICE_ACCOUNT_FILE = './service_account_key.json'  # 실제 키 파일 경로
-
 
 # ---------------------------------------------------------
 # 2. 서비스 계정 인증 객체 생성
