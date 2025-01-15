@@ -371,3 +371,36 @@ applause-button {
 //     @extend %panel-border;
 //   }
 // }
+
+// 멀티플렉스 광고 스타일링
+.adsbygoogle[data-ad-format="autorelaxed"] {
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+
+  &::before {
+    content: "추천 콘텐츠";  // 한국어로 "추천 콘텐츠" 표시
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--heading-color);
+  }
+
+  // 카드 스타일링
+  [id^="google_ads_iframe"] {
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px 0 var(--card-shadow);
+    }
+  }
+}
+
+// 관련 글과 광고 사이 구분선 추가
+#related-posts + .adsbygoogle {
+  border-top: 1px solid var(--border-color);
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
