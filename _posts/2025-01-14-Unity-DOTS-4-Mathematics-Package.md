@@ -2,7 +2,7 @@
 title: "Unity DOTS 4. Mathematics Package"
 date: "2025-01-14 21:11:08"
 categories: ["Unity", "DOTS"]
-tags: ["Unity", "Mathematics", "Unmanaged Type", "벡터", "행렬", "쿼터니언", "Random", "DOTS"]
+tags: ["Unity", "Mathematics", "벡터", "행렬", "쿼터니언", "Random", "DOTS", "수학 함수"]
 math: true
 toc: true
 comments: true

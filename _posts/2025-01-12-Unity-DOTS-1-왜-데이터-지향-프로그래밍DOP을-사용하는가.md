@@ -2,7 +2,7 @@
 title: "Unity DOTS 1. 왜 데이터 지향 프로그래밍(DOP)을 사용하는가"
 date: "2025-01-12 18:03:18"
 categories: ["Unity", "DOTS"]
-tags: ["DOP", "CPU", "Cache Memory", "Sparse Set", "Archetype", "ECS", "캐시 히트", "캐시 미스"]
+tags: ["DOP", "CPU", "메모리", "캐시", "Sparse Set", "Archetype", "데이터 중심 프로그래밍", "캐시 효율성"]
 math: true
 toc: true
 comments: true
@@ -52,98 +52,11 @@ for (int i = 0; i < 50; i++)
 
 ![Pasted image 20250110204612.png](/assets/img/posts/Pasted image 20250110204612.png){: .shadow}
 
-Sparse Set와 Archetype를 이해하기 전에 먼저 **ECS**를 이해할 필요가 있다. 개념은 간단하다.
-- **Entity**는 단순히 고유의 ID를 갖는 Component의 집합이다.
-- **Component**는 그저 Data를 갖는 Structure와 같다.
-- **System**에서 모든 Logic을 구현한다.
+ECS의 핵심 요소 세가지의 의미는 다음과 같다.
 
-따라서 데이터와 로직이 엄격히 **분리**된다. Component는 메서드를 갖지 않고 오로지 필드값만 가진다. 반대로 System은 필드값을 갖지 않고 오로지 메서드만 가진다. System의 메서드에선 특정 Component를 갖는 Entity를 검색하여 `(이를 Query한다고 한다.)` 원하는 동작을 수행한다.
-
-> [!example]- 예를 들어, 다음과 같은 컴포넌트를 정의한다고 가정하자.{title}
-> 
-> ```c#
-> public struct Transform : IComponentData
-> {
->     public float3 Position;
->     public float3 Scale;
->     public quaternion Rotation;
-> }
-> 
-> public struct Shooter : IComponentData
-> {
->     public float Damage;
->     public float Speed;
-> }
-> 
-> public struct Monster : IComponentData
-> {
->     public float Health;
-> }
-> 
-> public struct Player : IComponentData
-> {
->     public float Health;
->     public float MoveSpeed;
-> }
-> ```
-> 
-> 또한 다음과 같은 컴포넌트를 갖는 Entity 3개를 만든다고 가정하자.
-> 
-> ```
-> Entity ID=1
-> {
->     Transform,
->     Shooter,
->     Monster
-> }
-> 
-> Entity ID=2
-> {
->     Transform,
->     Shooter,
->     Monster
-> }
-> 
-> Entity ID=3
-> {
->     Transform,
->     Shooter,
->     Player
-> }
-> ```
-> 
-> 시스템에선 그저 Component를 불러와 원하는 로직을 작성하기만 하면 된다. 
-> 
-> ```c#
-> public partial struct ShooterSystem : ISystem
-> {
->     public void OnUpdate(ref SystemState state)
->     {
->         foreach (var (shooter) in SystemAPI.Query<RefRO<Shooter>>())
->         {
->             var damage = shooter.ValueRO.Damage;
->             var speed = shooter.ValueRO.Speed;
->             
->             /* 이곳에서 로직을 구현한다. */
->         }
->     }
-> }
-> ```
-
-> [!NOTE] 즉, ECS 방식으로 코딩한다는 것은 다음과 같다.{title}
-> 1. Entity를 생성한다. `(Entity는 고유의 ID를 갖고있음)`
-> 2. Entity에 Component를 부착한다. `(Component = Struct라고 봐도 됨)`
-> 3. System을 작성한다.
-> 	1. 필요한 Component들을 Query한다.
-> 	2. 가져온 데이터들을 forloop 돌면서 원하는 연산 후, Conponent의 Value를 갱신한다.
-
-> [!tip]- ECS 방식은 다음과 같은 장점이 존재한다.{title}
-> - 기능의 확장이 편리하다. 
-> 	- 그저 Component와 System을 추가하고, Entity에 Component를 부착하기만 하면 된다.
-> - 코드가 독립적이다.
-> 	- 코드 간 의존성이 없다. 따라서 재사용하기 좋다.
-> 	- 만약 Shooter 기능에 문제가 있다면, ShooterSystem만 체크하면 된다.
-> - 모듈성이 좋으니 테스트도 편리해진다.
+- **Entity** : Component의 집합
+- **Component** : 데이터
+- **System** : 게임 내 모든 Logic
 
 ### Sparse Set
 
@@ -166,14 +79,16 @@ Sparse Set에 컴포넌트를 Insert, Delete하는 연산 또한 $$O(1)$$에 수
 > [!question]- 왜 청크의 크기는 16KB인가?{title}
 > 청크의 크기가 너무 크면 메모리 낭비가 발생할 수 있고, 청크의 크기가 너무 작으면 캐시 히트의 이점을 받기 힘들다. `(L1 캐시 용량은 대략 (8KB~64KB) 정도이다.)` 이런 점을 고려해서 청크의 크기는 적절히 16KB라는 값을 사용한다.
 > 
-> [Why chunk has size 16k? - Unity Engine - Unity Discussions](https://discussions.unity.com/t/why-chunk-has-size-16k/784184)
-> [Why chunk size is 16kb? - Unity Engine - Unity Discussions](https://discussions.unity.com/t/why-chunk-size-is-16kb/920107)
+> - [Why chunk has size 16k? - Unity Engine - Unity Discussions](https://discussions.unity.com/t/why-chunk-has-size-16k/784184)
+> - [Why chunk size is 16kb? - Unity Engine - Unity Discussions](https://discussions.unity.com/t/why-chunk-size-is-16kb/920107)
 
 ![Pasted image 20250115155338.png](/assets/img/posts/Pasted image 20250115155338.png){: width="300" .shadow}
 
 가로로 같은 Component가 연속적인 Array로 배치되며, 같은 Index에 있는 세로 줄이 하나의 Entity에 해당한다. 한 청크에 많은 엔티티를 넣을 수록 캐시 적중률이 높아진다. 그러기 위해선 컴포넌트 수가 적을 수록 한 청크안에 많은 엔티티가 들어간다. 따라서 **엔티티에는 딱 필요한 컴포넌트만** 갖도록 설계하는 것이 권장된다.
 
 ![Pasted image 20250115155611.png](/assets/img/posts/Pasted image 20250115155611.png){: .shadow}
+
+실제 청크는 컴포넌트 삽입, 삭제 비용 최소화를 위해 연결리스트로 구현된다. 개별 청크 내에서만 캐쉬 적중률이 높다.
 
 ### Sparse Set vs Archetype
 

@@ -2,7 +2,7 @@
 title: "Unity DOTS 2. Burst Package"
 date: "2025-01-14 15:27:39"
 categories: ["Unity", "DOTS"]
-tags: ["Burst", "AOT", "JIT", "Mono", "IL2CPP", "SIMD", "Native Code", "Unmanaged Data"]
+tags: ["Burst", "AOT", "JIT", "Mono", "IL2CPP", "SIMD", "Managed Data", "Unmanaged Data"]
 math: true
 toc: true
 comments: true

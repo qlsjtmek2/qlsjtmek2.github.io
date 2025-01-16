@@ -2,7 +2,7 @@
 title: "Unity DOTS 3. Collections Package"
 date: "2025-01-14 18:06:00"
 categories: ["Unity", "DOTS"]
-tags: ["관리되지 않는 데이터", "Unmanaged Data", "Native Collection", "Unsafe Collection", "쓰레드 안정성", "Burst Compiler", "메모리 관리", "Allocator"]
+tags: ["Unmanaged Data", "Native Collection", "Unsafe Collection", "Garbage Collection", "Burst Compiler", "AtomicSafetyHandle", "메모리 관리", "Job 시스템"]
 math: true
 toc: true
 comments: true
@@ -43,7 +43,8 @@ Native Collection이 쓰레드에 대해 안전한 이유는 무엇일까? 각 N
 	- `UnsafeQueue`
 - **Attribute**
 	- `[DeallocateOnJobCompletion]`
-		- Job 수행이 완료되면 자동으로 메모리 할당을 수행한다.
+		- Job 수행이 완료되면 자동으로 메모리 할당을 해제한다.
+		- Job의 Field에서 Collection을 정의할 때 사용할 수 있다.
 	- `[NativeDisableParallelForRestriction]`
 		- 멀티 쓰레드에서 직접 Native Collection에 Write 접근을 허용한다.
 		- 일반적으로 Job에서 직접 Write 접근은 허용되지 않고, ParallelWriter 객체를 사용해야 한다.

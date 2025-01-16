@@ -2,7 +2,7 @@
 title: "Unity DOTS 5. DOTS와 Entities Package"
 date: "2025-01-16 20:04:39"
 categories: ["Unity", "DOTS"]
-tags: ["DOTS", "ECS", "Entity", "Component", "System", "데이터 지향", "Unity", "패키지"]
+tags: ["DOTS", "ECS", "Entities", "Component", "System", "데이터 지향", "병렬 처리", "Unity"]
 math: true
 toc: true
 comments: true
@@ -102,7 +102,7 @@ public partial struct ShooterSystem : ISystem
 {
     public void OnUpdate(ref SystemState state)
     {
-        foreach (var (shooter) in SystemAPI.Query<RefRO<Shooter>>())
+        foreach (var shooter in SystemAPI.Query<RefRO<Shooter>>())
         {
             var damage = shooter.ValueRO.Damage;
             var speed = shooter.ValueRO.Speed;
@@ -129,8 +129,8 @@ public partial struct ShooterSystem : ISystem
 	- 국내 학습 자료가 적다.
 	- 익숙하지 않다.
 		- `기존과는 완전히 다른 스타일의 코드를 작성해야 한다.`
-	- ECS에선 상태 개념이 없다.
-		- `따라서, 이벤트 드리븐 방식을 사용할 수 없다.`
+	- 이벤트 드리븐 방식을 사용할 수 없다.
+		- `ECS에선 상태 개념이 없기 때문에 상태 변화도 없다.`
 
 ## References
 
