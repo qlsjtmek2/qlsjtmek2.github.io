@@ -2,7 +2,7 @@
 title: "Unity DOTS 6. Entity와 Components"
 date: "2025-01-16 20:26:07"
 categories: ["Unity", "DOTS"]
-tags: ["Entity", "Component", "Unmanaged Component", "Managed Component", "Shared Component", "Cleanup Component", "Buffer Component", "Chunk Component", "Enableable Component", "Singleton Component"]
+tags: ["Entity", "Component", "Unmanaged Component", "Managed Component", "Shared Component", "Cleanup Component", "Buffer Component", "Chunk Component"]
 math: true
 toc: true
 comments: true
@@ -393,7 +393,7 @@ healthLookup.SetComponentEnabled(e, false);
 Health h = healthLookup[e];
 ```
 
-비활성화된 컴포넌트는 일반적으로 쿼리되지 않는다.. 하지만 데이터를 읽거나 수정할 순 있다. 비활성화된 컴포넌트를 쿼리하려면 `EntityQuery`의 추가 옵션을 설정해줘야 한다
+비활성화된 컴포넌트는 일반적으로 쿼리되지 않는다. 하지만 데이터를 읽거나 수정할 순 있다. 비활성화된 컴포넌트를 쿼리하려면 `EntityQuery`의 추가 옵션을 설정해줘야 한다.
 
 ```c#
 public partial struct EnableableHealthSystem : ISystem
@@ -436,7 +436,7 @@ SingleComponent settings = EntityManager.GetSingleton<SingleComponent>();
 단순히 GetSingleton 메서드로 얻어올 수 있다. 만약 컴포넌트가 world 내 2개 이상 존재하면 GetSingleton으로 얻어낼 수 없고, 쿼리해야 한다.
 
 > [!warning] Singleton Component는 쓰레드에 안전하지 않다.{title}
-> 따라서, 싱글톤 컴포넌트를 사용할 때 컴포넌트가 갖는 `NativeContainer`에 접근하는데만 사용을 권장하고 있다. Native Container는 쓰레드에 대해 안전하기 때문이다.
+> 따라서, 싱글톤 컴포넌트를 사용할 때 컴포넌트가 갖는 `NativeContainer`만 사용하는 것을 권장하고 있다. Native Container는 쓰레드에 대해 안전하기 때문이다.
 > 
 > 그렇지 않다면, `EntityManager.CompleteDependencyBeforeRW<T>()`를 호출하여 작업이 완료될 때까지 기다려야 한다.
 
