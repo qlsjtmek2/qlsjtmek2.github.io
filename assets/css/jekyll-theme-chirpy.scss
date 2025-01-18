@@ -328,6 +328,13 @@ applause-button {
   font-size: 1rem !important;
 }
 
+/* Heading spacing */
+h2, h3, h4, h5, h6 {
+  margin-top: 4rem !important;
+  // padding-top: 10rem;
+  // margin-bottom: 1rem;
+}
+
 // // 광고 빈 공간 없애기
 // ins.adsbygoogle[data-ad-status="unfilled"] {
 //   display: none !important;
