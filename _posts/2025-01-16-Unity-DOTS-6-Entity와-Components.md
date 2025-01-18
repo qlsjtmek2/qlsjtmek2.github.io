@@ -2,7 +2,7 @@
 title: "Unity DOTS 6. Entity와 Components"
 date: "2025-01-16 20:26:07"
 categories: ["Unity", "DOTS"]
-tags: ["Entity", "Component", "Unmanaged Component", "Managed Component", "Shared Component", "Cleanup Component", "Buffer Component", "Chunk Component"]
+tags: ["Entity", "Component", "Unmanaged Component", "Managed Component", "Shared Component", "Cleanup Component", "Buffer Component", "Chunk Component", "Enableable Component", "Singleton Component"]
 math: true
 toc: true
 comments: true
@@ -393,7 +393,7 @@ healthLookup.SetComponentEnabled(e, false);
 Health h = healthLookup[e];
 ```
 
-비활성화된 컴포넌트는 일반적으로 쿼리되지 않는다. 비활성화된 컴포넌트를 쿼리하려면 `EntityQuery`의 추가 옵션을 설정해줘야 한다. 하지만 데이터를 읽거나 수정할 순 있다.
+비활성화된 컴포넌트는 일반적으로 쿼리되지 않는다.. 하지만 데이터를 읽거나 수정할 순 있다. 비활성화된 컴포넌트를 쿼리하려면 `EntityQuery`의 추가 옵션을 설정해줘야 한다
 
 ```c#
 public partial struct EnableableHealthSystem : ISystem
