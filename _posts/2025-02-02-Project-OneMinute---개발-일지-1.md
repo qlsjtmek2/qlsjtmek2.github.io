@@ -20,7 +20,7 @@ comments: true
 1. DOTS 사용
 2. 그래픽/UI 개선
 3. 3D로 변경
-4. 멀티 추가
+4. 멀티플레이 추가
 5. PC/Mobile 크로스 플랫폼으로 개발하여 스팀에도 출시
 6. 1분을 버티는 컨셉의 다른 컨텐츠 추가
 
@@ -35,7 +35,7 @@ comments: true
 
 ![Pasted image 20250202234646.png](/assets/img/posts/Pasted image 20250202234646.png){: .shadow}
 
-다운받아보니, FPS와 TPS 컨트롤러는 있지만 TopView 컨트롤러는 없습니다. 따라서 직접 개발해야 합니다.
+다운받아보니, FPS와 TPS 컨트롤러는 있지만 TopView 컨트롤러는 없습니다. 직접 개발해야 할 것 같습니다.
 
 ![Pasted image 20250202234745.png](/assets/img/posts/Pasted image 20250202234745.png){: .shadow}
 
