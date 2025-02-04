@@ -10,7 +10,7 @@ comments: true
 
 ### DOTS 폐기
 
-현재 DOTS에는 지원하지 않는 것들이 너무 많아, 잠시 내려놓고자 합니다. AI Navigation, Animation 등등이 DOTS에 추가되면 그때 다시 사용하려 합니다.. 그 전까진 아쉬운대로 Job + Burst Compile만 사용해서 최적화를 해보겠습니다.
+현재 DOTS에는 지원하지 않는 것들이 너무 많아, 잠시 내려놓고자 합니다. AI Navigation, Animation 등등이 DOTS에 추가되기 전까진 사용하지 않을 것 같습니다. 그 전까진 아쉬운대로 Job + Burst Compile만 사용해서 최적화를 진행해보겠습니다.
 
 ---
 ## Top Down Camera
@@ -43,6 +43,7 @@ void LateUpdate()
     _cineamachinePositionComposer.CameraDistance = distance;
 }
 ```
+{: file="CinemachineCameraZoomSystem.cs" }
 
 ## Player Move
 
@@ -385,4 +386,4 @@ public class CameraLockSystem : MonoBehaviour
 
 ![Pasted image 20250205012318.png](/assets/img/posts/Pasted image 20250205012318.png){: .shadow}
 
-다음엔 에너미를 만드는 것이 목표입니다. 기존의 게임에선 에너미가 랜덤한 방향으로 사방에서 스폰됩니다. 이를 비슷하게 구현해보겠습니다.
+다음엔 에너미를 구현해보겠습니다. 기존의 게임에선 에너미가 랜덤한 방향으로 사방에서 스폰됩니다. 이를 비슷하게 만드는게 목표입니다.
