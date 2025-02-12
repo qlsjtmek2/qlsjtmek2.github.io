@@ -1,6 +1,6 @@
 ---
 title: "Project OneMinute - 개발 일지 (4)"
-date: "2025-02-11 24:16:42"
+date: "2025-02-11 00:16:42"
 categories: ["Unity", "Projects"]
 tags: []
 math: true
