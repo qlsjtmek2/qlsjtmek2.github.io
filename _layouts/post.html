@@ -145,8 +145,9 @@ script_includes:
   {% endif %}
 
   <div class="content">
-    {% include ads-display-rect.html %} <br />
-    {{ content }}
+    {% comment %} 콘텐츠 상단 광고 {% endcomment %} {% comment %} {% include
+    ads-display-rect.html %} <br />
+    {% endcomment %} {{ content }}
   </div>
 
   <div class="post-tail-wrapper text-muted">
