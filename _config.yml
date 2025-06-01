@@ -236,6 +236,5 @@ jekyll-archives:
 plugins:
   - jekyll-sitemap
   - jekyll-archives
-  - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
