@@ -32,17 +32,28 @@
   );
 
   /* Sidebar */
-  --site-title-color: #717070;
-  --site-subtitle-color: #868686;
   // --sidebar-bg: #1e1e1e;
-  --sidebar-bg: url('/assets/img/sidebar/bg-dark.jpg');
-  --sidebar-border-color: #292929;
-  --sidebar-muted-color: #868686;
+  // --sidebar-bg: url('/assets/img/sidebar/bg-dark.jpg');
+  // --site-title-color: #717070;
+  // --site-subtitle-color: #868686;
+  // --sidebar-border-color: #292929;
+  // --sidebar-muted-color: #868686;
+  // --sidebar-active-color: rgb(255, 255, 255, 0.95);
+  // --sidebar-hover-bg: #262626;
+  // --sidebar-btn-bg: #232328;
+  // --sidebar-btn-color: #787878;
+  // --avatar-border-color: rgb(206, 206, 206, 0.9);
+
+  --sidebar-bg: url('/assets/img/sidebar/bg-dark-lamp.jpg');
+  --site-title-color: #FFFFFF;
+  --site-subtitle-color: rgba(255, 255, 255, 0.85);;
+  --sidebar-border-color: rgba(255, 255, 255, 0.15);
+  --sidebar-muted-color: rgba(255, 255, 255, 0.75);
   --sidebar-active-color: rgb(255, 255, 255, 0.95);
-  --sidebar-hover-bg: #262626;
-  --sidebar-btn-bg: #232328;
-  --sidebar-btn-color: #787878;
-  --avatar-border-color: rgb(206, 206, 206, 0.9);
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.1);
+  --sidebar-btn-bg: rgba(255, 255, 255, 0.15);
+  --sidebar-btn-color: #FFFFFF;
+  --avatar-border-color: #FFFFFF;
 
   /* Topbar */
   --topbar-bg: rgb(27, 27, 30, 0.64);

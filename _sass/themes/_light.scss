@@ -33,17 +33,40 @@
   );
 
   /* Sidebar */
-  --site-title-color: rgb(113, 113, 113);
-  --site-subtitle-color: #717171;
-  // --sidebar-bg: #f6f8fa;
-  --sidebar-bg: url('/assets/img/sidebar/bg-light.jpg');
-  --sidebar-border-color: #efefef;
-  --sidebar-muted-color: #545454;
-  --sidebar-active-color: #1d1d1d;
-  --sidebar-hover-bg: rgb(223, 233, 241, 0.64);
-  --sidebar-btn-bg: white;
-  --sidebar-btn-color: #8e8e8e;
-  --avatar-border-color: white;
+
+  // --site-title-color: rgb(113, 113, 113);
+  // --site-subtitle-color: #717171;
+  // // --sidebar-bg: #f6f8fa;
+  // --sidebar-bg: url('/assets/img/sidebar/bg-light.jpg');
+  // --sidebar-border-color: #efefef;
+  // --sidebar-muted-color: #545454;
+  // --sidebar-active-color: #1d1d1d;
+  // --sidebar-hover-bg: rgb(223, 233, 241, 0.64);
+  // --sidebar-btn-bg: white;
+  // --sidebar-btn-color: #8e8e8e;
+  // --avatar-border-color: white;
+
+  // --sidebar-bg: url('/assets/img/sidebar/bg-light-sky.jpg');
+  // --site-title-color: #FFFFFF;
+  // --site-subtitle-color: #E0E0E0;
+  // --sidebar-border-color: #efefef;
+  // --sidebar-muted-color: #D3D3D3;
+  // --sidebar-active-color: #FFFFFF;
+  // --sidebar-hover-bg: rgb(255, 255, 255, 0.15);
+  // --sidebar-btn-bg: rgb(255, 255, 255, 0.8);
+  // --sidebar-btn-color: #333333;
+  // --avatar-border-color: white;
+
+  --sidebar-bg: url('/assets/img/sidebar/bg-light-lamp.jpg');
+  --site-title-color: #383838; /* 제목: 가장 진한 회색으로 잘 보이게 */
+  --site-subtitle-color: #656565; /* 부제목: 제목보다 살짝 옅은 색으로 구분 */
+  --sidebar-border-color: #EAEAEA; /* 사이드바 경계선: 은은한 연회색 라인 */
+  --sidebar-muted-color: #707070; /* 메뉴 텍스트: 부드러운 회색 */
+  --sidebar-active-color: #000000; /* 활성 메뉴 텍스트: 검은색으로 강조 */
+  --sidebar-hover-bg: rgba(0, 0, 0, 0.05); /* 메뉴 호버 배경: 살짝 어두워지는 효과 */
+  --sidebar-btn-bg: rgba(0, 0, 0, 0.08); /* 활성 메뉴 배경: 호버보다 조금 더 강한 회색 */
+  --sidebar-btn-color: #000000; /* 활성 메뉴 버튼 텍스트: 검은색으로 통일 */
+  --avatar-border-color: #FFFFFF; /* 프로필 사진 테두리: 흰색으로 유지하여 깔끔한 느낌 */
 
   /* Topbar */
   --topbar-bg: rgb(255, 255, 255, 0.7);
