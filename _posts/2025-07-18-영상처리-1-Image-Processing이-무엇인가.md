@@ -146,9 +146,9 @@ $$
 
 ## 영상처리 알고리즘
 영상처리에서 주로 사용되는 알고리즘 유형이 4가지 존재한다.
-1. [영상처리 2. Point Processing이 무엇인가|Point Processing](https://qlsjtmek2.github.io/posts/%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC-2-Point-Processing%EC%9D%B4-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80Point-Processing/)
-2. [영상처리 3. Area Processing이 무엇인가|Area Processing](https://qlsjtmek2.github.io/posts/%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC-3-Area-Processing%EC%9D%B4-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80Area-Processing/)
-3. [영상처리 6. Frame Processing이 무엇인가|Frame Processing](https://qlsjtmek2.github.io/posts/%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC-6-Frame-Processing%EC%9D%B4-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80Frame-Processing/)
-4. [영상처리 8. Geometric Processing을 어떻게 할까|Geometric Processing](https://qlsjtmek2.github.io/posts/%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC-8-Geometric-Processing%EC%9D%84-%EC%96%B4%EB%96%BB%EA%B2%8C-%ED%95%A0%EA%B9%8CGeometric-Processing/)
+1. **Point Processing** : [영상처리 2. Point Processing이 무엇인가](https://qlsjtmek2.github.io/posts/%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC-2-Point-Processing%EC%9D%B4-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80/)
+2. **Area Processing** : [영상처리 3. Area Processing이 무엇인가](https://qlsjtmek2.github.io/posts/%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC-3-Area-Processing%EC%9D%B4-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80/)
+3. **Frame Processing** : [영상처리 6. Frame Processing이 무엇인가](https://qlsjtmek2.github.io/posts/%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC-6-Frame-Processing%EC%9D%B4-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80/)
+4. **Geometric Processing** : [영상처리 8. Geometric Processing을 어떻게 할까](https://qlsjtmek2.github.io/posts/%EC%98%81%EC%83%81%EC%B2%98%EB%A6%AC-8-Geometric-Processing%EC%9D%84-%EC%96%B4%EB%96%BB%EA%B2%8C-%ED%95%A0%EA%B9%8C/)
 
 이 알고리즘이 무엇인지 하나씩 다뤄보자.
