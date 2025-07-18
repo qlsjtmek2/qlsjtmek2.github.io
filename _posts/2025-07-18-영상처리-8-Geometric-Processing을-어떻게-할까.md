@@ -1,6 +1,6 @@
 ---
 title: "영상처리 8. Geometric Processing을 어떻게 할까"
-date: "2025-07-18 12:20:44"
+date: "2025-07-18 12:34:01"
 categories: ["IT", "영상처리"]
 tags: []
 math: true
