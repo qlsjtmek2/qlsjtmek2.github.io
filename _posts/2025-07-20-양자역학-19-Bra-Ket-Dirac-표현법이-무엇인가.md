@@ -17,7 +17,7 @@ comments: true
 Bra-Ket는 복소수 벡터 공간 $$V$$ 내의 벡터를 나타내는 표기법이다. **Ket** 벡터의 정의는 다음과 같다.
 
 $$
-|\beta\rangle = \begin{pmatrix}
+\ket{\beta} = \begin{pmatrix}
 b_{1} \\
 b_{2} \\
 \vdots \\
@@ -28,7 +28,7 @@ $$
 **Bra** 벡터의 정의는 다음과 같다.
 
 $$
-\langle \alpha \mid = \begin{pmatrix}
+\bra{\alpha} = \begin{pmatrix}
 a_{1}^* & a_{2}^* & \dots & a_{n}^*
 \end{pmatrix}
 $$
@@ -36,7 +36,7 @@ $$
 **두 벡터의 내적**은 다음과 같다. 일반적으로 복소수 값을 반환한다.
 
 $$
-\langle \alpha \mid \beta \rangle = \begin{pmatrix}
+\braket { \alpha \mid \beta } = \begin{pmatrix}
 a_{1}^* & a_{2}^* & \dots & a_{n}^*
 \end{pmatrix}\begin{pmatrix}
 b_{1} \\
@@ -49,18 +49,18 @@ $$
 동일한 두 벡터를 내적하면, **벡터의 크기 제곱**을 얻는다.
 
 $$
-\langle v \mid v \rangle = \lvert v_{1} \rvert^2 + \lvert v_{2} \rvert^2 + \dots + \lvert v_{n} \rvert^2
+\braket{ v \mid v} = \lvert v_{1} \rvert^2 + \lvert v_{2} \rvert^2 + \dots + \lvert v_{n} \rvert^2
 $$
 
 **내적 연산에 대한 성질**은 다음과 같다.
 
 $$
-\langle v \mid w \rangle^* = \langle w \mid v \rangle
+\braket{v \mid w}^* = \braket{w \mid v}
 $$
 
 
 $$
-\langle v \mid v \rangle \geq 0
+\braket{v \mid v} \geq 0
 $$
 
 **켤레 대칭성**은 내적의 물리적 일관성을, **양의 정부호성**은 확률 해석의 타당성을 부여한다.
@@ -68,7 +68,7 @@ $$
 **두 벡터의 외적**은 다음과 같다. 외적의 결과는 $$N \times N$$ 행렬이다.
 
 $$
-| \beta \rangle \langle \alpha \mid = \begin{pmatrix}
+\ket{\beta} \bra{\alpha} = \begin{pmatrix}
 b_{1} \\
 b_{2} \\
 \vdots \\
@@ -91,71 +91,71 @@ $$
 **(1) $$+$$ 결합 법칙**
 
 $$
-(\midv \rangle + \midw \rangle) + \mid x \rangle = \mid v \rangle + ( \midw \rangle + \mid x \rangle )
+( \ket{v}  + \ket{w} ) + \ket{x}  = \ket{v}  + ( \ket{w}  + \ket{x}  )
 $$
 
 **(2) $$+$$ 항등원**
 
 $$
-^\exists \mid 0 \rangle, ~~ \mid v \rangle + \mid 0 \rangle = \midv \rangle
+^\exists \ket{0} , ~~ \ket{v}  + \ket{0}  = \ket{v}
 $$
 
 **(3) $$+$$ 역원**
 
 $$
-^\forall \mid v \rangle, ~ ^\exists\mid-v\rangle,~~\midv\rangle + \mid-v\rangle = \mid0 \rangle
+^\forall \ket{v} , ~ ^\exists \ket{-v} ,~~\ket{v}  + \ket{-v}  = \ket{0}
 $$
 
 **(4) $$+$$ 교환법칙**
 
 $$
-|v \rangle + \mid w \rangle = \mid w \rangle + \mid v \rangle
+\ket{v}  + \ket{w}  = \ket{w}  + \ket{v}
 $$
 
 **(5) 스칼라 덧셈 분배법칙**
 
 $$
-(a+b) \mid v \rangle = a \mid v \rangle + b \mid v \rangle
+(a+b) \ket{v}  = a \ket{v}  + b \ket{v}
 $$
 
 **(6) 벡터 덧셈 분배법칙**
 
 $$
-a(\midv \rangle + \midw \rangle) = a \midv \rangle + a \midw \rangle
+a(\ket{v}  + \ket{w} ) = a \ket{v}  + a \ket{w}
 $$
 
 **(7) 스칼라 곱셈 결합법칙**
 
 $$
-a(b\midv\rangle) = b(a\midv\rangle) = ab\midv \rangle
+a(b\ket{v} ) = b(a\ket{v} ) = ab\ket{v}
 $$
 
 **(8) 스칼라 항등원**
 
 $$
-1 \cdot \midv \rangle = \midv \rangle ~~~(1 \in \mathbb{F})
+1 \cdot \ket{v}  = \ket{v}  ~~~(1 \in \mathbb{F})
 $$
 
 **(9) $$+$$ 이항 연산, 스칼라 연산의 닫힘성**
 
 $$
-| v \rangle + \mid w \rangle \in V
+\ket{v}  + \ket{w}  \in V
 $$
 
 
 $$
-a\midv \rangle \in V
+a\ket{v}  \in V
 $$
 
 연산의 닫힘성으로 인해 Bra-Ket 벡터는 선형성을 만족한다.
 
 $$
-|x \rangle = a \mid w \rangle + b \mid z \rangle
+\ket{x}  = a \ket{w}  + b \ket{z}
 $$
 
 
 $$
-|x \rangle^* = \langle x \mid = a^* \langle w \mid + b^* \langle z\mid
+\ket{x} ^* = \bra{x} = a^* \bra{w}  + b^* \bra{z}
 $$
 
 **켓의 선형성**은 중첩 원리를, **브라의 반선형성**은 쌍대 공간과의 호환성을 유지한다.
@@ -190,13 +190,13 @@ $$
 **함수의 내적**은 다음과 같이 정의된다.
 
 $$
-\langle f \mid g \rangle \equiv \int_{a}^{b} f(x)^* g(x) dx
+\braket{f \mid g} \equiv \int_{a}^{b} f(x)^* g(x) dx
 $$
 
 자기 자신과의 내적은 실수이며, 0 이상이다.
 
 $$
-\langle f \mid f \rangle = \int_{a}^{b} \lvert f(x)^2 \rvert dx
+\braket{f \mid f} = \int_{a}^{b} \lvert f(x)^2 \rvert dx
 $$
 
 두 함수가 제곱적분이 가능하면, Schwarz 부등식으로부터 내적값이 반드시 존재함이 보장된다.
@@ -265,19 +265,19 @@ $$
 만약 어떤 함수열 $$\{ f_{n} \}$$이 **규격화** 되어있고, 서로 직교한다면 이를 **직교규격화** 되어있다고 한다. 그리고 다음 성질을 만족한다.
 
 $$
-\langle f_{n} \mid f_{m} \rangle = \delta_{nm}
+\braket{ f_{n} \mid f_{m} } = \delta_{nm}
 $$
 
 힐베르트 위의 모든 함수를 함수열 $$f_{n}$$의 선형 결합으로 나타낼 수 있다면, 이 함수는 **완전**(complete) 하다.
 
 $$
-|f \rangle = \sum_{n=1}^{\infty} c_{n} \mid f_{n} \rangle
+\ket{f}  = \sum_{n=1}^{\infty} c_{n} \ket{f_{n}}
 $$
 
 계수 $$c_{n}$$은 양 변에 $$\langle f_{m}\mid$$을 곱하여 얻을 수 있다.
 
 $$
-c_{n} = \langle f_{n} \mid f \rangle
+c_{n} = \braket{f_{n} \mid f}
 $$
 
 
@@ -298,19 +298,19 @@ $$
 파동 함수를 위치 기저로 표현하면?
 
 $$
-\Psi(x) = \langle x \mid \Psi \rangle, ~~~\mid\Psi \rangle = \int \Psi(x) \midx \rangle dx
+\Psi(x) = \braket{x \mid \Psi}, ~~~\ket{\Psi}  = \int \Psi(x) \ket{x}  dx
 $$
 
 파동 함수를 에너지 기저로 표현하면?
 
 $$
-c_{n} = \langle \psi_{n} \mid \Psi \rangle, ~~ \mid \Psi \rangle = \sum_{n}c_{n} \mid \psi_{n} \rangle
+c_{n} = \braket{ \psi_{n} \mid \Psi }, ~~ \ket{\Psi}  = \sum_{n}c_{n} \ket{\psi_{n}}
 $$
 
 파동 함수를 운동량 기저로 표현하면?
 
 $$
-\Phi(p) = \langle p \mid \Psi \rangle, ~~ \mid \Psi \rangle = \int \Phi(p) \midp \rangle dp
+\Phi(p) = \braket{ p \mid \Psi }, ~~ \ket{\Psi}  = \int \Phi(p) \ket{p}  dp
 $$
 
 기저 선택은 특정 관측가능량에 대한 계산을 용이하게 하기 위한 편의일 뿐이다.
@@ -319,25 +319,25 @@ $$
 직교 규격화된 기저는 다음 성질이 성립한다.
 
 $$
-\langle n \midm \rangle = \delta_{nm}
+\braket{n \mid m} = \delta_{nm}
 $$
 
-임의의 상태 $$| \Psi \rangle$$를 이 기저의 선형 결합으로 표현할 수 있다.
+임의의 상태 $$\ket{\Psi}$$를 이 기저의 선형 결합으로 표현할 수 있다.
 
 $$
-|\Psi \rangle = \sum_{n} c_{n} \mid n \rangle
+\ket{\Psi}  = \sum_{n} c_{n} \ket{n}
 $$
 
-이때 기저 $$|m \rangle$$과 내적하면, 파동함수 $$| \Psi \rangle$$의 $$m$$ 성분인 $$c_{m}$$을 추출할 수 있다.
+이때 기저 $$\ket{m}$$과 내적하면, 파동함수 $$\ket{\Psi}$$의 $$m$$ 성분인 $$c_{m}$$을 추출할 수 있다.
 
 $$
-\langle m \mid \Psi \rangle = \left\langle  m \middle\mid \sum_{n} c_{n} \middle\mid n  \right\rangle = \sum_{n} c_{n} \langle n \mid m \rangle = c_{m}
+\braket{ m \mid \Psi } = \braket{  m \mid \sum_{n} c_{n} \mid n  } = \sum_{n} c_{n} \braket{n \mid m} = c_{m}
 $$
 
-따라서, 기저 $$\langle x \mid$$와 내적하면, 파동함수 $$|\Psi \rangle$$의 $$x$$ 성분인 $$\Psi(x)$$를 추출할 수 있다.
+따라서, 기저 $$\bra{x}$$와 내적하면, 파동함수 $$\ket{\Psi}$$의 $$x$$ 성분인 $$\Psi(x)$$를 추출할 수 있다.
 
 $$
-\langle x \mid \Psi \rangle = \Psi (x)
+\braket{ x \mid \Psi } = \Psi (x)
 $$
 
-생각해보면 당연하다. 특정 벡터와 내적하는 것은 어떤 벡터를 특정 벡터로 **사영**(Projection)하는 것과 같다. 즉, 기저 $$|  x \rangle$$와 $$| \Psi \rangle$$를 내적하는 것은, 추상 벡터 $$| \Psi \rangle$$를 그 기저 방향으로 사영하여 그 성분`(크기)`을 측정하는 행위와 같다.
+생각해보면 당연하다. 특정 벡터와 내적하는 것은 어떤 벡터를 특정 벡터로 **사영**(Projection)하는 것과 같다. 즉, 기저 $$\ket{x}$$와 $$\ket{\Psi}$$를 내적하는 것은, 추상 벡터 $$\ket{\Psi}$$를 그 기저 방향으로 사영하여 그 성분`(크기)`을 측정하는 행위와 같다.
