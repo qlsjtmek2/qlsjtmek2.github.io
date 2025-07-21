@@ -97,7 +97,7 @@ $$
 위는 Ray Casting 식이고, $$\rho(x,x',x'')$$로 표현하면 다음과 같다. 어차피 $$I_{\text{light}}$$는 모든 항에 곱해져 있으므로, 묶어서 따로 분리할 수 있다.
 
 $$
-\text{lighting}\textunderscore\text{model(d,q,l,n)} = \rho(\vec{v}, q, \vec{l}, \hat{n})
+\text{lighting}\_\text{model(d,q,l,n)} = \rho(\vec{v}, q, \vec{l}, \hat{n})
 $$
 
 
