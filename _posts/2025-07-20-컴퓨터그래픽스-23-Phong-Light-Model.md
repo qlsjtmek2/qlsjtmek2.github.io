@@ -36,14 +36,10 @@ comments: true
 표면과 수직하게 입사할 수록 난반사가 커지고, 비스듬하게 입사할 수록 난반사 양이 작아진다. 즉 난반사되는 빛의 양 $$I_{\text{diffuse}}$$는 표면 벡터와 입사 벡터를 내적한 양과 비례한다. 그리고 비례 상수 $$k_{d}$$를 정의하면 다음과 같다.
 
 $$
+I_{\text{diffuse}} = k_{d} I_{\text{light}} \hat{n} \cdot \hat{l}
+$$
 
-$$
-I_{\text{diffuse}} = k_{d} I_{\text{light}} \hat{n} \cdot \hat{l}$$$$
-
-$$
-\vec{n}
-$$
-는 표면 법선 벡터, $$\vec{l}$$는 입사광 방향으로의 방향 벡터와 같다. 만약 내적 결과가 음수라면? $$I_{\text{diffuse}} < 0$$이며, 이 경우는 취급하지 않겠다.
+$$\vec{n}$$는 표면 법선 벡터, $$\vec{l}$$는 입사광 방향으로의 방향 벡터와 같다. 만약 내적 결과가 음수라면? $$I_{\text{diffuse}} < 0$$이며, 이 경우는 취급하지 않겠다.
 
 **(2) 정반사는 입사각과 반사각이 같을 수록 많이 보이고, 차이날 수록 적게 보이겠지.**
 
@@ -52,54 +48,38 @@ $$
 우리의 시선 벡터, 즉 카메라 방향 벡터 $$\hat{v}$$은 Uniform 변수로 주어진다. $$\hat{v}$$와 반사 방향 벡터 $$\hat{r}$$가 일치할 수록 $$I_{\text{specular}}$$ 양이 커지며, 그렇지 않을 수록 작아진다. 따라서 비례 상수 $$k_{s}$$와 상수 $$n_{\text{shiny}}$$을 도입하면 다음과 같다.
 
 $$
+I_{\text{specular}} = k_{s} I_{\text{light}} (\hat{v} \cdot \hat{r})^{n_{\text{shiny}}}
+$$
 
-$$
-I_{\text{specular}} = k_{s} I_{\text{light}} (\hat{v} \cdot \hat{r})^{n_{\text{shiny}}}$$$$
-
-$$
-\hat{r}
-$$
-은 어떻게 계산하는가? 
+$$\hat{r}$$은 어떻게 계산하는가? 
 
 ![Pasted image 20250613185946.png](/assets/img/posts/Pasted image 20250613185946.png){: width="350" .shadow}
 
 따라서 다음과 같다. 이때 $$P = -\hat{l}$$과 같고, $$\hat{l}$$는 광원 방향으로의 벡터다.
 
 $$
-
+\hat{r} = - \hat{l} + 2n(\hat{l} \cdot \hat{n})
 $$
-\hat{r} = - \hat{l} + 2n(\hat{l} \cdot \hat{n})$$$$
 
 
-$$
-n_{\text{shiny}}
-$$
-는 무엇인가? 표면의 광택도와 같다. 이 값이 클 수록 더 집중된 하이라이트가 생기며, 작을 수록 넙대대한 하이라이트가 생긴다.
+$$n_{\text{shiny}}$$는 무엇인가? 표면의 광택도와 같다. 이 값이 클 수록 더 집중된 하이라이트가 생기며, 작을 수록 넙대대한 하이라이트가 생긴다.
 
 - $$n_{\text{shiny}} = 0.1$$: 매우 거친 표면, 넓은 하이라이트
 - $$n_{\text{shiny}} = 1$$: 보통 표면
 - $$n_{\text{shiny}} = 10$$: 매끄러운 표면, 집중된 하이라이트
 - $$n_{\text{shiny}} > 100$$: 거울에 가까운 매우 매끄러운 표면
 
-
-$$
-\hat{v} \cdot \hat{r} = \cos \phi \leq 1
-$$
-이며, $$n_{\text{shiny}}$$ 값이 클 수록 $$\cos \phi$$ 항이 빠르게 감소한다. 따라서 시선 벡터가 조금만 벗어나도 하이라이트를 보지 못한다.
+$$\hat{v} \cdot \hat{r} = \cos \phi \leq 1$$이며, $$n_{\text{shiny}}$$ 값이 클 수록 $$\cos \phi$$ 항이 빠르게 감소한다. 따라서 시선 벡터가 조금만 벗어나도 하이라이트를 보지 못한다.
 
 ![Pasted image 20250613183839.png](/assets/img/posts/Pasted image 20250613183839.png){: .shadow}
 
 **(3) 간접 반사 조명 효과는 그냥 전역 조명으로 퉁치자.**
+$$k_{\text{ambient}}$$ 상수를 정의하면 다음과 같다.
 
 $$
-k_{\text{ambient}}
-$$
- 상수를 정의하면 다음과 같다.
-
+I_{\text{ambient}} = k_{\text{ambient}}I_{\text{light}}
 $$
 
-$$
-I_{\text{ambient}} = k_{\text{ambient}}I_{\text{light}}$$$$
 왜 이 효과가 필요한가? 없으면 아래처럼 보인다.
 
 ![Pasted image 20250613184000.png](/assets/img/posts/Pasted image 20250613184000.png){: .shadow}
@@ -111,20 +91,20 @@ I_{\text{ambient}} = k_{\text{ambient}}I_{\text{light}}$$$$
 따라서, 최종적인 퐁 셰이딩 모델의 공식은 다음과 같다.
 
 $$
-
+I = I_{\text{ambient}} + \sum_{i=1}^{\text{lights}} (I_{\text{diffuse}} + I_{\text{specular}})
 $$
-I = I_{\text{ambient}} + \sum_{i=1}^{\text{lights}} (I_{\text{diffuse}} + I_{\text{specular}})$$$$
+
 위는 Ray Casting 식이고, $$\rho(x,x',x'')$$로 표현하면 다음과 같다. 어차피 $$I_{\text{light}}$$는 모든 항에 곱해져 있으므로, 묶어서 따로 분리할 수 있다.
 
 $$
-
-$$
-\text{lighting\_model(d,q,l,n)} = \rho(\vec{v}, q, \vec{l}, \hat{n})$$$$
-
+\text{lighting}\textunderscore\text{model(d,q,l,n)} = \rho(\vec{v}, q, \vec{l}, \hat{n})
 $$
 
+
 $$
-= k_{\text{ambient}} + k_{d} \hat{n} \cdot \hat{l} + k_{s}(\hat{v} \cdot \hat{r})^{n_{\text{shiny}}}$$$$
+= k_{\text{ambient}} + k_{d} \hat{n} \cdot \hat{l} + k_{s}(\hat{v} \cdot \hat{r})^{n_{\text{shiny}}}
+$$
+
 - $$d = \vec{v} = v \hat{v} =$$ 시선 벡터
 - $$q =$$ 시선의 위치
 - $$\vec{l} = l \hat{l} =$$ 빛의 입사 방향 벡터의 반대 `광원쪽의 방향 벡터`
