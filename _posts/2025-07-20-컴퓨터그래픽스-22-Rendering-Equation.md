@@ -49,11 +49,11 @@ color trace(point p, vector d)
 }
 ```
 
-- \$$\rho(x,x',x'') = \text{lighting\_model}(d,q,l,n)$$ 
-- \$$\epsilon(x,x') = \text{light\_source\_color}$$
+- \$$\rho(x,x',x'') = \text{lighting}\_\text{model}(d,q,l,n)$$ 
+- \$$\epsilon(x,x') = \text{light}\_\text{source}\_\text{color}$$
 - \$$x = p$$
 - \$$x' = q$$
-- \$$x'' = \text{light\_source\_position}$$
+- \$$x'' = \text{light}\_\text{source}\_\text{position}$$
 
 위 코드를 **Ray Casting**이라 한다. **이를 Fragment Shader에서 구현하려면 어떻게 해야할까?**
 
@@ -163,8 +163,8 @@ color trace(point p, vector d, int step)
 }
 ```
 
-- \$$\rho(x,x',x'') = \text{lighting\_model}(d,q,l,n)$$ 
-- \$$\epsilon(x,x') = \text{light\_source\_color}$$
+- \$$\rho(x,x',x'') = \text{lighting}\_\text{model}(d,q,l,n)$$ 
+- \$$\epsilon(x,x') = \text{light}\_\text{source}\_\text{color}$$
 - $$g(x,x') = g(p,q)$$`
 - \$$x = p$$
 - \$$x' = q$$
