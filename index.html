@@ -1,4 +1,29 @@
----
-layout: home
-# Index page
----
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>엉뚱한개발자 / QuirkyDeveloper</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main>
+  <h1>엉뚱한개발자 <span style="color:var(--muted);font-weight:400">/ QuirkyDeveloper</span></h1>
+  <p class="meta">게임 정책 문서 / Game policies · 문의 / Contact: <a href="mailto:qlsjtmek2@gmail.com">qlsjtmek2@gmail.com</a></p>
+
+  <ul class="games">
+    <li>
+      <div class="title">1분 넘길 수 있으면 넘겨 보던가 ㅋ <span style="color:var(--muted);font-weight:400">· Last 1 Minute? Bet You Can't</span></div>
+      <div class="links"><a href="/dodge/privacy/">개인정보처리방침 / Privacy Policy</a></div>
+    </li>
+  </ul>
+</main>
+<script>
+  // 예전 블로그(PWA)가 남긴 서비스 워커와 캐시를 정리한다.
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function (rs) { rs.forEach(function (r) { r.unregister(); }); });
+  }
+  if (window.caches) { caches.keys().then(function (ks) { ks.forEach(function (k) { caches.delete(k); }); }); }
+</script>
+</body>
+</html>
